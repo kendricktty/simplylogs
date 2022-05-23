@@ -1,3 +1,4 @@
+// require is the JS equivalent of import in Python and Java.
 const express = require('express');
 const app = express();
  
