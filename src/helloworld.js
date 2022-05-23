@@ -9,6 +9,10 @@ const PORT = process.env.PORT || 4001;
 
 const names = ["A", "B", "C", "D", "E"];
 
-app.get('/hello', (req, res, next) => {
-    res.send("Hello world!");
+app.get('/', (req, res) => {
+    res.send('Hello World!')
 });
+
+app.listen(PORT, () => {
+    console.log(`Hello World test app listening on port ${PORT}`)
+  })
