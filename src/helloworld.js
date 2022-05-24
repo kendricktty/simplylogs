@@ -7,8 +7,6 @@ const app = express();
 app.use(express.static('public'));
 const PORT = process.env.PORT || 4001;
 
-const names = ["A", "B", "C", "D", "E"];
-
 app.get('/', (req, res) => {
     res.send('Hello World!')
 });
