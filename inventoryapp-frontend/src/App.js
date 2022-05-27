@@ -4,11 +4,9 @@ import InventoryHeader from './components/InventoryHeader';
 
 function App() {
   return (
-    <div className="inventory">
+    <div className="inventory container-fluid">
         <SideNav />
-        <div className="main-inventory">
-          <InventoryHeader />
-        </div>
+      
     </div>
   )
 }

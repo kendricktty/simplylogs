@@ -2,46 +2,45 @@ import React from 'react'
 
 export default function SideNav() {
     return (
-        <div className="SideNav">
-            <h4 className="SideNav--title">InventoryApp</h4>
-            <ul className="SideNav--tabs">
-                <li className="tabs">
-                    <a href="">
-                        <span class="material-symbols-outlined tab-icon">
-                        space_dashboard
-                        </span>Dash
-                    </a>
-                </li>
-                <li className="tabs">
-                    <a href="">
-                        <span class="material-symbols-outlined tab-icon">
-                        inventory_2
-                        </span>Inventory
-                    </a>
-                </li>
-                <li className="tabs">
-                    <a href="">
-                        <span class="material-symbols-outlined tab-icon">
-                        insights
-                        </span>Sales
-                    </a>
-                </li>
-            </ul>
-            <div className="SideNav--user">
-                <img src="../../logo192.png" className="profile-picture"/>
-                TheManager
+        <div className="sidebar">
+            <div className="logo-details">
+                <i class='bx bxl-react'></i>
+                <div className="logo_name">InventoryApp</div>
             </div>
-            <div>
-            <ul className="tabs">
+            <ul className="nav-links">
                 <li>
-                    <a href="">
-                    <span class="material-symbols-outlined tab-icon">
-                    logout
-                    </span>Logout
+                    <a href="#">
+                        <i class='bx bxs-dashboard' ></i>
+                        <span className="sideNav--tabs">Dashboard</span>
+                        {/* <span className="tooltip">Dashboard</span> */}
                     </a>
                 </li>
+                <li>
+                    <a href="#">
+                    <i class='bx bx-package'></i>
+                        <span className="sideNav--tabs">Inventory</span>
+                        {/* <span className="tooltip">Inventory</span> */}
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-stats' ></i>
+                        <span className="sideNav--tabs">Sales</span>
+                        {/* <span className="tooltip">Sales</span> */}
+                    </a>
+                </li>
+                <li className="profile">
+                    <div className="profile-details">
+
+                            <img src="../../logo192.png" alt="profileImg" />
+                            <div className="name_job">
+                                <div className="name">Manager</div>
+                            </div>
+                        <i class='bx bx-log-out' id="log_out"></i>
+                    </div>
+                </li>
             </ul>
-            </div>
+
         </div>
     )
 }
