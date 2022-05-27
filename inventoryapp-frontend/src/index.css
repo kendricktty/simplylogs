@@ -11,3 +11,89 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.inventory {
+  margin: 20px;
+  display: flex;
+  height: 1024px;
+  width: 1440px;
+}
+
+/* SideNav */
+
+.SideNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 230px;
+  padding: 10px 5px;
+  box-shadow: 2px 0px 1px grey;
+}
+
+.SideNav--title {
+  margin-bottom: 80%;
+}
+
+.profile-picture {
+  height: 64px;
+  width: 64px;;
+}
+
+.SideNav--tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: auto;
+}
+
+.tabs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  font-size: larger;
+}
+
+li a{
+  display: block;
+  color: #000;
+  padding: 8px 0px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+
+.tab-icon {
+  vertical-align: middle;
+  line-height: 50px;
+  margin-right: 30px;
+}
+
+.SideNav--user {
+  margin-bottom: 20px;
+}
+
+
+/* main inventory */
+
+.main-inventory {
+  width: 1110px;
+}
+
+.inventoryHeader {
+  display: flex;
+  margin: 10px 20px;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.inventoryHeader--name {
+  margin-right: auto;
+}

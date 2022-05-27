@@ -1,13 +1,15 @@
-
-import './App.css';
-import Nav1 from './Nav.js'
+import React from 'react'
+import SideNav from './components/SideNav'
+import InventoryHeader from './components/InventoryHeader';
 
 function App() {
   return (
-   <>
-   <Nav1 />
-   <button className="btn btn-lg btn-outline-dark">Helllo</button>
-   </>
+    <div className="inventory">
+        <SideNav />
+        <div className="main-inventory">
+          <InventoryHeader />
+        </div>
+    </div>
   )
 }
 
