@@ -3,6 +3,7 @@ import SideNav from '../components/SideNav'
 import InventoryHeader from '../components/InventoryHeader';
 import InventoryNav from '../components/InventoryNav';
 import InventoryUtilityBar from '../components/InventoryUtilityBar';
+import InventoryTable from '../components/InventoryTable';
 
 function Inventory() {
   return (
@@ -13,6 +14,9 @@ function Inventory() {
           <div className="inventoryDisplay">
             <InventoryNav />
             <InventoryUtilityBar />
+            <div className="inventoryTable">
+                <InventoryTable />
+            </div>
           </div>
         </div>
     </div>

@@ -287,12 +287,13 @@
 
 .inventoryDisplay {
   width: 100%;
-  height: 92%;
+  height: 90%;
   border-radius: 20px;
   background-color: #ebe7df;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-top: 20px;
   position: relative;
+  overflow: auto;
 }
 
 .inventoryHeaderLogo {
@@ -360,5 +361,14 @@ InventoryNav--catergoryBtn:hover {
   word-wrap: break-word;
 }
 
+/* inventory Table */
 
+.inventoryTable {
+  position: relative;
+  width: 90%;
+  left: 5.5%;
+  top: 10%;
+  background-color: #fff;
+  border-radius: 5px;
+}
 

@@ -36,7 +36,7 @@ export default function SideNav() {
                             <div className="name_job">
                                 <div className="name">Manager</div>
                             </div>
-                        <i class='bx bx-log-out' id="log_out"></i>
+                        <a href="/"><i class='bx bx-log-out' id="log_out"></i></a>
                     </div>
                 </li>
             </ul>
