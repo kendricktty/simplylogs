@@ -3,19 +3,19 @@ import SideNav from './components/SideNav'
 import InventoryHeader from './components/InventoryHeader';
 import InventoryNav from './components/InventoryNav';
 import InventoryUtilityBar from './components/InventoryUtilityBar';
+import Login from './pages/Login';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Inventory from './pages/Inventory';
+
 
 function App() {
   return (
-    <div className="inventory container-fluid">
-        <SideNav />
-        <div className="inventoryMain">
-          <InventoryHeader />
-          <div className="inventoryDisplay">
-            <InventoryNav />
-            <InventoryUtilityBar />
-          </div>
-        </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route exact path="/inventory" element={<Inventory />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
