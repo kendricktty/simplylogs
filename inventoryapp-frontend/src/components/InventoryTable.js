@@ -115,6 +115,34 @@ const data = [
         supplier: 'Coca Cola',
         quatity: 99,
         price: "$1.20"
+    },
+    {
+        productId: 1,
+        productName: 'Beetlejuice',
+        supplier: 'Coca Cola',
+        quatity: 99,
+        price: "$1.20"
+    },
+    {
+        productId: 1,
+        productName: 'Beetlejuice',
+        supplier: 'Coca Cola',
+        quatity: 99,
+        price: "$1.20"
+    },
+    {
+        productId: 1,
+        productName: 'Beetlejuice',
+        supplier: 'Coca Cola',
+        quatity: 99,
+        price: "$1.20"
+    },
+    {
+        productId: 1,
+        productName: 'Beetlejuice',
+        supplier: 'Coca Cola',
+        quatity: 99,
+        price: "$1.20"
     }
    
 ]
