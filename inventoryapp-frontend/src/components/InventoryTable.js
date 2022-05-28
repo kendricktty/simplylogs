@@ -55,42 +55,42 @@ const data = [
     },
     {
         productId: 3,
-        productName: 'Beetlejuice',
+        productName: 'Apple Juice',
         supplier: 'Coca Cola',
         quatity: 99,
         price: "$1.20"
     },
     {
         productId: 2,
-        productName: 'Beetlejuice',
+        productName: 'Water',
         supplier: 'Coca Cola',
         quatity: 99,
         price: "$1.20"
     },
     {
         productId: 1,
-        productName: 'Beetlejuice',
+        productName: 'Sprite',
         supplier: 'Coca Cola',
         quatity: 99,
         price: "$1.20"
     },
     {
         productId: 1,
-        productName: 'Beetlejuice',
+        productName: 'Fanta Grape',
         supplier: 'Coca Cola',
         quatity: 99,
         price: "$1.20"
     },
     {
         productId: 1,
-        productName: 'Beetlejuice',
+        productName: 'Fanta Orange',
         supplier: 'Coca Cola',
         quatity: 99,
         price: "$1.20"
     },
     {
         productId: 1,
-        productName: 'Beetlejuice',
+        productName: 'Root Beer',
         supplier: 'Coca Cola',
         quatity: 99,
         price: "$1.20"
