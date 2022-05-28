@@ -2,6 +2,7 @@ import React from 'react'
 import SideNav from './components/SideNav'
 import InventoryHeader from './components/InventoryHeader';
 import InventoryNav from './components/InventoryNav';
+import InventoryUtilityBar from './components/InventoryUtilityBar';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <InventoryHeader />
           <div className="inventoryDisplay">
             <InventoryNav />
+            <InventoryUtilityBar />
           </div>
         </div>
     </div>
