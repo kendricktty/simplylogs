@@ -1,11 +1,15 @@
 import React from 'react'
 
 export default function InventoryHeader() {
-    let currentdate = new Date()
+    const currentdate = new Date()
+    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     return (
         <div className="inventoryHeader">
-            <h4 className="inventoryHeader--name">Inventory</h4>
-            <h5>{`${currentdate.getDate()} / ${(currentdate.getMonth()+1)} / ${currentdate.getFullYear()}`}</h5>
+            <div className="inventoryHeaderLogo">
+                <i class='bx bx-package'></i>
+                <h4 className="inventoryHeader--name">Inventory</h4>
+            </div>
+            <h5>{`${currentdate.getDate()} / ${(currentdate.getMonth()+1)} / ${currentdate.getFullYear()} , ${days[currentdate.getDay()]}`}</h5>
         </div>
     )
 }
