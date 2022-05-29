@@ -1,7 +1,7 @@
 import React from 'react'
 import DataTable from 'react-data-table-component';
 import CustomMaterialPagination from '../materialui/CustomMaterialPagination';
-import InventoryUtilityBar from './InventoryUtilityBar';
+import data from '../data/data.json'
 
 /*
 https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- link to 
@@ -10,119 +10,130 @@ https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- 
 // A super simple expandable component.
 const ExpandedComponent = ({ data }) => <pre>{JSON.stringify(data, null, 2)}</pre>;
 
-//
-
 
 //test data ultimate we will have to pull data from backend to add to this
 
-const data = [
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 3,
-        productName: 'Apple Juice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 2,
-        productName: 'Water',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Sprite',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Fanta Grape',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Fanta Orange',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Root Beer',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    }
-   
-]
+// !! moved in data.json !! //
+// const data = 
+// {inventory: [
+//     {
+//         productId: 1,
+//         productName: 'Beetlejuice',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 2,
+//         productName: 'Apple Juice',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 3,
+//         productName: 'Water',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 4,
+//         productName: 'Sprite',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 5,
+//         productName: 'Fanta Grape',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 6,
+//         productName: 'Fanta Orange',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 7,
+//         productName: 'Root Beer',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 8,
+//         productName: 'Beetlejuice',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 9,
+//         productName: 'Beetlejuice',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 10,
+//         productName: 'Beetlejuice',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 11,
+//         productName: 'Beetlejuice',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 12,
+//         productName: 'Beetlejuice',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 13,
+//         productName: 'Beetlejuice',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     },
+//     {
+//         productId: 14,
+//         productName: 'Beetlejuice',
+//         supplier: 'Coca Cola',
+//         quatity: 99,
+//         price: "$1.20"
+//     }
+// ]}
 
-const handleButtonClick = (data) => {
-    alert(JSON.stringify(data))
-    console.log(data);
-};
+
 
 export default function InventoryTable() {
+
+    const [dynamicData, setDynamicData] = React.useState(data)
+
+    
+    //testing editing of data only can edit name for now//
+    const handleButtonClick = (data) => {
+        const newName = prompt("Enter new name: ")
+        const id = data.productId
+        setDynamicData(prevState => ({
+            inventory: prevState.inventory.map(
+                el => el.productId === id ? {...el, productName: newName} : el 
+            )
+        }))
+
+    };
 
     const columns = [
         {
@@ -146,7 +157,7 @@ export default function InventoryTable() {
         },
         {
             name: 'Quantity',
-            selector: row => row.quatity,
+            selector: row => row.quantity,
             sortable: true,
             sortField: 'title',
             maxWidth: "120px"
@@ -176,7 +187,7 @@ export default function InventoryTable() {
         <DataTable
             className="dataTable"
             columns={columns}
-            data={data}
+            data={dynamicData.inventory}
             fixedHeader={true}
             selectableRows
             // actions={

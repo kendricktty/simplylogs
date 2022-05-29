@@ -1,0 +1,101 @@
+{
+    "inventory": [
+        {
+            "productId": 1,
+            "productName": "Beetlejuice",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 2,
+            "productName": "Apple Juice",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 3,
+            "productName": "Water",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 4,
+            "productName": "Sprite",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 5,
+            "productName": "Fanta Grape",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 6,
+            "productName": "Fanta Orange",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 7,
+            "productName": "Root Beer",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 8,
+            "productName": "Beetlejuice",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 9,
+            "productName": "Beetlejuice",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 10,
+            "productName": "Beetlejuice",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 11,
+            "productName": "Beetlejuice",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 12,
+            "productName": "Beetlejuice",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 13,
+            "productName": "Beetlejuice",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        },
+        {
+            "productId": 14,
+            "productName": "Beetlejuice",
+            "supplier": "Coca Cola",
+            "quantity": 99,
+            "price": "$1.20"
+        }
+]}
