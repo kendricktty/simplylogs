@@ -1,6 +1,7 @@
 import React from 'react'
 import DataTable from 'react-data-table-component';
 import CustomMaterialPagination from '../materialui/CustomMaterialPagination';
+import InventoryUtilityBar from './InventoryUtilityBar';
 
 /*
 https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- link to 
@@ -10,38 +11,7 @@ https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- 
 const ExpandedComponent = ({ data }) => <pre>{JSON.stringify(data, null, 2)}</pre>;
 
 //
-const columns = [
-    {
-        name: 'ProductID',
-        selector: row => row.productId,
-        sortable: true,
-		sortField: 'title'
-    },
-    {
-        name: 'ProductName',
-        selector: row => row.productName,
-        sortable: true,
-		sortField: 'title'
-    },
-    {
-        name: 'Supplier',
-        selector: row => row.supplier,
-        sortable: true,
-		sortField: 'title'
-    },
-    {
-        name: 'Quantity',
-        selector: row => row.quatity,
-        sortable: true,
-		sortField: 'title'
-    },
-    {
-        name: 'Price',
-        selector: row => row.price,
-        sortable: true,
-		sortField: 'title'
-    },
-];
+
 
 //test data ultimate we will have to pull data from backend to add to this
 
@@ -147,13 +117,71 @@ const data = [
    
 ]
 
+const handleButtonClick = (data) => {
+    alert(JSON.stringify(data))
+    console.log(data);
+};
+
 export default function InventoryTable() {
+
+    const columns = [
+        {
+            name: 'ProductID',
+            selector: row => row.productId,
+            sortable: true,
+            sortField: 'title',
+            maxWidth: "120px"
+        },
+        {
+            name: 'ProductName',
+            selector: row => row.productName,
+            sortable: true,
+            sortField: 'title'
+        },
+        {
+            name: 'Supplier',
+            selector: row => row.supplier,
+            sortable: true,
+            sortField: 'title'
+        },
+        {
+            name: 'Quantity',
+            selector: row => row.quatity,
+            sortable: true,
+            sortField: 'title',
+            maxWidth: "120px"
+        },
+        {
+            name: 'Price',
+            selector: row => row.price,
+            sortable: true,
+            sortField: 'title',
+            maxWidth: "120px"
+        },
+        {
+            cell: (data) => <button onClick={()=>handleButtonClick(data)} className='btn btn-warning'>edit</button>,
+            ignoreRowClick: true,
+            allowOverflow: true,
+            button: true,
+        }, {
+            cell: (data) => <button onClick={()=>handleButtonClick(data)} className='btn btn-success'>generate</button>,
+            ignoreRowClick: true,
+            allowOverflow: false,
+            button: true,
+        }
+    ];
+    
+
     return (
         <DataTable
             className="dataTable"
             columns={columns}
             data={data}
+            fixedHeader={true}
             selectableRows
+            // actions={
+            //     (<InventoryUtilityBar />)
+            // }
             //adding pagination to the table
             pagination
             paginationComponent={CustomMaterialPagination}

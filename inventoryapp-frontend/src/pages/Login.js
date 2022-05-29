@@ -32,7 +32,7 @@ export default function Login() {
                   <button type="button " className="btn btn-success mt-3 ">
                     <a
                       style={{ color: "white", textDecoration: "none" }}
-                      href="/inventory"
+                      href="/dashboard"
                     >
                       Login
                     </a>

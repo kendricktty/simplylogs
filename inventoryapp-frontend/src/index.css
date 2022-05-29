@@ -349,6 +349,7 @@ InventoryNav--catergoryBtn:hover {
 
 .InventoryUtilityBar {
   position: relative;
+  display: flex;
   width: 90%;
   left: 5.5%;
   top: 8%;

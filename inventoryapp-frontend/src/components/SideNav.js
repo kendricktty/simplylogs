@@ -9,14 +9,14 @@ export default function SideNav() {
             </div>
             <ul className="nav-links">
                 <li>
-                    <a href="#">
+                    <a href="/dashboard">
                         <i class='bx bxs-dashboard' ></i>
                         <span className="sideNav--tabs">Dashboard</span>
                         {/* <span className="tooltip">Dashboard</span> */}
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/inventory">
                     <i class='bx bx-package'></i>
                         <span className="sideNav--tabs">Inventory</span>
                         {/* <span className="tooltip">Inventory</span> */}
