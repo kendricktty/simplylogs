@@ -1,7 +1,9 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import DataTable from 'react-data-table-component';
 import CustomMaterialPagination from '../materialui/CustomMaterialPagination';
 import data from '../data/data.json'
+import Barcode from 'react-barcode'
 
 /*
 https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- link to 
@@ -124,8 +126,11 @@ export default function InventoryTable() {
 
     
     //testing editing of data only can edit name for now//
-    const handleButtonClick = (data) => {
-        const newName = prompt("Enter new name: ")
+    const handleEditButtonClick = (data) => {
+        let newName = prompt("Enter new name: ")
+        if(newName === null) {
+            newName = data.productName
+        }
         const id = data.productId
         setDynamicData(prevState => ({
             inventory: prevState.inventory.map(
@@ -134,6 +139,14 @@ export default function InventoryTable() {
         }))
 
     };
+
+    const handleGenerateButtonClick = (data) => {
+        const productName = data.productName
+        ReactDOM.render(
+            <Barcode value={productName} />,
+            document.getElementById("barcode")
+        );
+    }
 
     const columns = [
         {
@@ -170,13 +183,13 @@ export default function InventoryTable() {
             maxWidth: "120px"
         },
         {
-            cell: (data) => <button onClick={()=>handleButtonClick(data)} className='btn btn-warning'>edit</button>,
+            cell: (data) => <button onClick={()=>handleEditButtonClick(data)} className='btn btn-warning'>edit</button>,
             ignoreRowClick: true,
             allowOverflow: true,
             button: true,
         }, {
-            cell: (data) => <button onClick={()=>handleButtonClick(data)} className='btn btn-success'>generate</button>,
-            ignoreRowClick: true,
+            cell: (data) => <button onClick={()=>handleGenerateButtonClick(data)} className='btn btn-success'>generate</button>,
+            ignoreRowClick: true, 
             allowOverflow: false,
             button: true,
         }

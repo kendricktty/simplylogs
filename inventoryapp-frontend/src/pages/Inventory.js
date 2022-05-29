@@ -16,6 +16,8 @@ function Inventory() {
             <InventoryUtilityBar />
             <div className="inventoryTable">
                 <InventoryTable />
+                Generated Barcode:
+                <div id='barcode'></div>
             </div>
           </div>
         </div>
