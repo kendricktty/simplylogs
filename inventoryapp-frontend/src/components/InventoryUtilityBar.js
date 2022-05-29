@@ -1,19 +1,19 @@
 import React from 'react'
 
-export default function InventoryUtilityBar() {
-    const handleSubmit = event => {
-        event.preventDefault();
-        alert('You have submitted the form.')
-        setSearch('')
-    }
+export default function InventoryUtilityBar(props) {
+    // const handleSubmit = event => {
+    //     event.preventDefault();
+    //     alert('You have submitted the form.')
+    //     setSearch('')
+    // }
 
-    const [search, setSearch] = React.useState('')
+    // const [search, setSearch] = React.useState('')
 
 
 
     return (
         <div className="InventoryUtilityBar row">
-            <div class="row select-view col-lg-4 col-sm-12">
+            {/* <div class="row select-view col-lg-4 col-sm-12">
                 <div class="col-lg-12 my-3">
                     <div class="pull-right">
                         <div class="btn-group">
@@ -26,13 +26,20 @@ export default function InventoryUtilityBar() {
                         </div>
                     </div>
                 </div>
-            </div>
-            <form className="searchBar col-lg-4 col-sm-12 my-3" action="" method="GET" onSubmit={handleSubmit}>
+            </div> */}
+            <form className="searchBar col-lg-4 col-sm-12 my-3" action="" method="GET" >
                 <div class="input-group">
-                    <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value={search} onChange={(e) => setSearch(e.target.value)}/>
-                    <button type="submit" class="btn btn-outline-primary" >Submit</button>
+                    <input 
+                    type="text" class="form-control rounded" id="search"
+			
+			placeholder="Filter By Name"
+			aria-label="Search Input"
+			value={props.filterText}
+			onChange={props.onFilter}/>
+                    <button type="button" onClick={props.onClear} class="btn btn-outline-primary" >X</button>
                 </div>
             </form>
+            <div className="col-lg-4"></div>
             <button class="btn btn-outline-primary col-lg-2 col-sm-6 utilityBtn my-3">Export</button>
             <button class="btn btn-outline-primary col-lg-2 col-sm-6 utilityBtn my-3">Add +</button>
         </div>

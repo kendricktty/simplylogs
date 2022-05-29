@@ -351,7 +351,7 @@ InventoryNav--catergoryBtn:hover {
   position: relative;
   display: flex;
   width: 90%;
-  left: 5.5%;
+  right: 10%;
   top: 8%;
   align-items: center;
   justify-content: space-between;
@@ -374,3 +374,11 @@ InventoryNav--catergoryBtn:hover {
 }
 
 
+/* some weird tableHeader not set to 100% width */
+.gtQiQo {
+  width: 100%;
+}
+
+.TUEFO {
+  border-radius: 5px;
+}

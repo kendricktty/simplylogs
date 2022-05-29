@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import CustomMaterialPagination from '../materialui/CustomMaterialPagination';
 import data from '../data/data.json'
 import Barcode from 'react-barcode'
+import InventoryUtilityBar from './InventoryUtilityBar';
 
 /*
 https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- link to 
@@ -123,8 +124,29 @@ const ExpandedComponent = ({ data }) => <pre>{JSON.stringify(data, null, 2)}</pr
 export default function InventoryTable() {
 
     const [dynamicData, setDynamicData] = React.useState(data)
-
     
+    // filter function
+    const [filterText, setFilterText] = React.useState('');
+	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
+	const filteredItems = dynamicData.inventory.filter(
+		item => item.productName && item.productName.toLowerCase().includes(filterText.toLowerCase()),
+	);
+    
+
+    const subHeaderComponentMemo = React.useMemo(() => {
+		const handleClear = () => {
+			if (filterText) {
+				setResetPaginationToggle(!resetPaginationToggle);
+				setFilterText('');
+			}
+		};
+
+		return (
+			<InventoryUtilityBar onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
+		);
+	}, [filterText, resetPaginationToggle]);
+
+
     //testing editing of data only can edit name for now//
     const handleEditButtonClick = (data) => {
         let newName = prompt("Enter new name: ")
@@ -200,14 +222,18 @@ export default function InventoryTable() {
         <DataTable
             className="dataTable"
             columns={columns}
-            data={dynamicData.inventory}
+            data={filteredItems}
             fixedHeader={true}
             selectableRows
             // actions={
             //     (<InventoryUtilityBar />)
             // }
+            subHeader
+            subHeaderComponent = {subHeaderComponentMemo}
             //adding pagination to the table
+            
             pagination
+			paginationResetDefaultPage={resetPaginationToggle}
             paginationComponent={CustomMaterialPagination}
         />
     );
