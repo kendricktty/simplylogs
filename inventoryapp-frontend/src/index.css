@@ -271,7 +271,7 @@
 
 /* InventoryMain */
 
-.inventoryMain {
+.inventoryMain, .salesMain, .dashboardMain{
   position: absolute;
   height: 100%;
   width: calc(100% - 260px);

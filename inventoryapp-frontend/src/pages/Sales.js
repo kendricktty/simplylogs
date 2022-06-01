@@ -1,12 +1,12 @@
 import React from 'react'
 import SideNav from '../components/SideNav'
 
-export default function Dashboard() {
+export default function Sales() {
     return (
         <div className="dashboard container-fluid">
             <SideNav />
-            <div className="dashboardMain">
-                <h1>This is Dashboard</h1>
+            <div className="salesMain">
+                <h1>This is Sales</h1>
             </div>
         </div>
     )

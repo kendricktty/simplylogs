@@ -24,7 +24,7 @@ export default function InventoryHeader() {
                 <i class='bx bx-package'></i>
                 <h4 className="inventoryHeader--name">Inventory</h4>
             </div>
-            <h5>{`${currentdate.getDate()} / ${(currentdate.getMonth()+1)} / ${currentdate.getFullYear()} , ${days[currentdate.getDay()]}, ${time}`}</h5>
+            <h6>{`${currentdate.getDate()}/${(currentdate.getMonth()+1)}/${currentdate.getFullYear()} , ${days[currentdate.getDay()]}, ${time}`}</h6>
         </div>
     )
 }

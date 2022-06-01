@@ -36,7 +36,7 @@ export default function InventoryUtilityBar(props) {
 			aria-label="Search Input"
 			value={props.filterText}
 			onChange={props.onFilter}/>
-                    <button type="button" onClick={props.onClear} class="btn btn-outline-primary" >X</button>
+                    <button type="button" onClick={props.onClear} class="btn btn-outline-primary" >Clear</button>
                 </div>
             </form>
             <div className="col-lg-4"></div>

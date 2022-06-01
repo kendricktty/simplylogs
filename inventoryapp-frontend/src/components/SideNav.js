@@ -23,7 +23,7 @@ export default function SideNav() {
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/sales">
                         <i class='bx bx-stats' ></i>
                         <span className="sideNav--tabs">Sales</span>
                         {/* <span className="tooltip">Sales</span> */}
