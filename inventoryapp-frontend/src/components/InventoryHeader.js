@@ -16,7 +16,7 @@ export default function InventoryHeader() {
         return function clearTimer() {
             clearInterval(Timer)
         }
-    }, [])
+    },[])
 
     return (
         <div className="inventoryHeader">
