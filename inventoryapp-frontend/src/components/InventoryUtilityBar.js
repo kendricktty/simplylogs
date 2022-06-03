@@ -23,7 +23,7 @@ export default function InventoryUtilityBar(props) {
   function addButtonPressed() {
     console.log(showForm);
     console.log("Pressed");
-    setForm(true);
+    setForm(!showForm);
   }
 
   return (
@@ -106,6 +106,14 @@ export default function InventoryUtilityBar(props) {
             }}
           >
             Submit
+          </Button>
+          <Button
+            variant="outline-secondary"
+            onClick={() => {
+              setForm(false);
+            }}
+          >
+            Cancel
           </Button>
         </Form>
       ) : null}
