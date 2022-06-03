@@ -14,7 +14,7 @@ function TablePaginationActions({ count, page, rowsPerPage, onChangePage }) {
     };
 
     function getNumberOfPages(count, rowsPerPage) {
-        return count / rowsPerPage
+        return Math.ceil(count / rowsPerPage)
     }
 
     // RDT uses page index starting at 1, MUI starts at 0

@@ -13,9 +13,11 @@ function Inventory() {
           <InventoryHeader />
           <div className="inventoryDisplay">
             <InventoryNav />
-            <InventoryUtilityBar />
+            {/* <InventoryUtilityBar /> */}
             <div className="inventoryTable">
                 <InventoryTable />
+                Generated Barcode:
+                <div id='barcode'></div>
             </div>
           </div>
         </div>

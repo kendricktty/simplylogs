@@ -1,161 +1,133 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import DataTable from 'react-data-table-component';
 import CustomMaterialPagination from '../materialui/CustomMaterialPagination';
+import data from '../data/data.json'
+import Barcode from 'react-barcode'
+import InventoryUtilityBar from './InventoryUtilityBar';
 
 /*
 https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- link to 
   table  api
 */
 // A super simple expandable component.
-const ExpandedComponent = ({ data }) => <pre>{JSON.stringify(data, null, 2)}</pre>;
+// const ExpandedComponent = ({ data }) => <pre>{JSON.stringify(data, null, 2)}</pre>;
 
-//
-const columns = [
-    {
-        name: 'ProductID',
-        selector: row => row.productId,
-        sortable: true,
-		sortField: 'title'
-    },
-    {
-        name: 'ProductName',
-        selector: row => row.productName,
-        sortable: true,
-		sortField: 'title'
-    },
-    {
-        name: 'Supplier',
-        selector: row => row.supplier,
-        sortable: true,
-		sortField: 'title'
-    },
-    {
-        name: 'Quantity',
-        selector: row => row.quatity,
-        sortable: true,
-		sortField: 'title'
-    },
-    {
-        name: 'Price',
-        selector: row => row.price,
-        sortable: true,
-		sortField: 'title'
-    },
-];
-
-//test data ultimate we will have to pull data from backend to add to this
-
-const data = [
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 3,
-        productName: 'Apple Juice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 2,
-        productName: 'Water',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Sprite',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Fanta Grape',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Fanta Orange',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Root Beer',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    },
-    {
-        productId: 1,
-        productName: 'Beetlejuice',
-        supplier: 'Coca Cola',
-        quatity: 99,
-        price: "$1.20"
-    }
-   
-]
+// !! moved in data.json !! //
 
 export default function InventoryTable() {
+
+    const [dynamicData, setDynamicData] = React.useState(data)
+    
+    // filter function
+    const [filterText, setFilterText] = React.useState('');
+	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
+	const filteredItems = dynamicData.inventory.filter(
+		item => item.productName && item.productName.toLowerCase().includes(filterText.toLowerCase()),
+	);
+    
+
+    const subHeaderComponentMemo = React.useMemo(() => {
+		const handleClear = () => {
+			if (filterText) {
+				setResetPaginationToggle(!resetPaginationToggle);
+				setFilterText('');
+			}
+		};
+
+		return (
+			<InventoryUtilityBar onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
+		);
+	}, [filterText, resetPaginationToggle]);
+
+
+    //testing editing of data only can edit name for now//
+    const handleEditButtonClick = (data) => {
+        let newName = prompt("Enter new name: ")
+        if(newName === null) {
+            newName = data.productName
+        }
+        const id = data.productId
+        setDynamicData(prevState => ({
+            inventory: prevState.inventory.map(
+                el => el.productId === id ? {...el, productName: newName} : el 
+            )
+        }))
+
+    };
+
+    const handleGenerateButtonClick = (data) => {
+        const productName = data.productName
+        ReactDOM.render(
+            <Barcode value={productName} />,
+            document.getElementById("barcode")
+        );
+    }
+
+    const columns = [
+        {
+            name: 'ProductID',
+            selector: row => row.productId,
+            sortable: true,
+            sortField: 'title',
+            maxWidth: "120px"
+        },
+        {
+            name: 'ProductName',
+            selector: row => row.productName,
+            sortable: true,
+            sortField: 'title'
+        },
+        {
+            name: 'Supplier',
+            selector: row => row.supplier,
+            sortable: true,
+            sortField: 'title'
+        },
+        {
+            name: 'Quantity',
+            selector: row => row.quantity,
+            sortable: true,
+            sortField: 'title',
+            maxWidth: "120px"
+        },
+        {
+            name: 'Price',
+            selector: row => row.price,
+            sortable: true,
+            sortField: 'title',
+            maxWidth: "120px"
+        },
+        {
+            cell: (data) => <button onClick={()=>handleEditButtonClick(data)} className='btn btn-warning'>edit</button>,
+            ignoreRowClick: true,
+            allowOverflow: true,
+            button: true,
+        }, {
+            cell: (data) => <button onClick={()=>handleGenerateButtonClick(data)} className='btn btn-success'>generate</button>,
+            ignoreRowClick: true, 
+            allowOverflow: false,
+            button: true,
+        }
+    ];
+    
+
     return (
         <DataTable
             className="dataTable"
             columns={columns}
-            data={data}
+            data={filteredItems}
+            fixedHeader={true}
             selectableRows
+            // actions={
+            //     (<InventoryUtilityBar />)
+            // }
+            subHeader
+            subHeaderComponent = {subHeaderComponentMemo}
             //adding pagination to the table
+            
             pagination
+			paginationResetDefaultPage={resetPaginationToggle}
             paginationComponent={CustomMaterialPagination}
         />
     );
