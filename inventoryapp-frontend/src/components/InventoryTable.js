@@ -15,20 +15,18 @@ https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- 
 // const ExpandedComponent = ({ data }) => <pre>{JSON.stringify(data, null, 2)}</pre>;
 
 // !! moved in data.json !! //
+let serverData
 
 export default function InventoryTable() {
-  const [serverData, setServerData] = React.useState([])
+  
+  axios.get("/inventory").then(res => {serverData = (res.data[0])})
+  console.log(serverData)
   const [dynamicData, setDynamicData] = React.useState(data);
 
 
   // Integrate backend to frontend
-  useEffect(() => {
-    axios.get("/inventory").then(res => {
-      setServerData(res.data)
-    })
-  }, [])
-
-  console.log(serverData[0].inventory)
+  
+ 
 
   
   
