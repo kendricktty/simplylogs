@@ -21,27 +21,40 @@ export default function InventoryUtilityBar(props) {
 
   const [showForm, setShowForm] = React.useState(false);
   const [formData, setFormData] = React.useState({
-    productId: "", 
-    productName: "", 
-    supplier: "", 
-    quantity: "", 
-    category: "", 
-    price: ""
+    productId: "",
+    productName: "",
+    supplier: "",
+    quantity: "",
+    price: "",
+    category: ""
   })
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(formData)
+    const submittingData = formData
+    submittingData.productId = parseInt(submittingData.productId)
+    submittingData.quantity = parseInt(submittingData.quantity)
+    console.log(submittingData)
+    props.addData(submittingData)
+    setFormData({
+      productId: "",
+      productName: "",
+      supplier: "",
+      quantity: "",
+      price: "",
+      category: ""
+    })
+    setShowForm(!showForm)
   }
 
   function handleCancel() {
     setFormData({
-      productId: "", 
-      productName: "", 
-      supplier: "", 
-      quantity: "", 
-      category: "", 
-      price: ""
+      productId: "",
+      productName: "",
+      supplier: "",
+      quantity: "",
+      price: "",
+      category: ""
     })
     setShowForm(!showForm)
   }
@@ -116,7 +129,7 @@ export default function InventoryUtilityBar(props) {
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label >ProductID</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
               placeholder="ProductId"
               name="productId"
               value={formData.productId} 
@@ -152,7 +165,7 @@ export default function InventoryUtilityBar(props) {
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>Price</Form.Label>
             <Form.Control
-              type="number"
+              // type="number"
               placeholder="Price($)"
               name="price"
               value={formData.price} 

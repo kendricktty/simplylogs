@@ -27,6 +27,20 @@ export default function InventoryTable() {
 	);
     
 
+
+    //adds new item to the current data
+    function handleAddData(data) {
+        setDynamicData(prevState => {
+            console.log(prevState)
+            const newState = prevState
+            newState.inventory.push(data)
+            return newState
+        })
+
+    }
+
+
+    //InventoryUtility
     const subHeaderComponentMemo = React.useMemo(() => {
 		const handleClear = () => {
 			if (filterText) {
@@ -36,7 +50,7 @@ export default function InventoryTable() {
 		};
 
 		return (
-			<InventoryUtilityBar onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
+			<InventoryUtilityBar onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} addData={data => handleAddData(data)}/>
 		);
 	}, [filterText, resetPaginationToggle]);
 
