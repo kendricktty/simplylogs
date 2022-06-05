@@ -3,7 +3,6 @@ import ReactDOM, { render } from "react-dom";
 import DataTable from "react-data-table-component";
 import CustomMaterialPagination from "../materialui/CustomMaterialPagination";
 import data from "../data/data.json";
-import axios from './axios'
 import Barcode from "react-barcode";
 import InventoryUtilityBar from "./InventoryUtilityBar";
 import {
@@ -14,35 +13,35 @@ import {
   ControlLabel,
   Modal,
 } from "react-bootstrap";
-import { createRoot } from "react-dom/client";
+
 
 /*
 https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- link to 
   table  api
 */
-// A super simple expandable component.
-// const ExpandedComponent = ({ data }) => <pre>{JSON.stringify(data, null, 2)}</pre>;
-
-// !! moved in data.json !! //
-let serverData
 
 export default function InventoryTable() {
-  
-  axios.get("/inventory").then(res => {serverData = (res.data[0])})
-  console.log(serverData)
-  const [dynamicData, setDynamicData] = React.useState(data);
 
+  // States
+  const [dynamicData, setDynamicData] = React.useState(data);
+  const [filterText, setFilterText] = React.useState("");
+  const [show, setShow] = React.useState(false);
 
   // Integrate backend to frontend
-  
- 
 
-  
-  
+  React.useEffect(() => {
+    fetch('http://localhost:8001/inventory')
+      .then(res => res.json())
+      .then(data => setDynamicData(data[0]))
+
+  }, [])
+
+
+
   // filter function
-  const [filterText, setFilterText] = React.useState("");
+
   // show Edit From
-  const [editForm, setEditForm] = React.useState(false);
+  // const [editForm, setEditForm] = React.useState(false);
   const [resetPaginationToggle, setResetPaginationToggle] =
     React.useState(false);
   const filteredItems = dynamicData.inventory.filter(
@@ -50,7 +49,7 @@ export default function InventoryTable() {
       item.productName &&
       item.productName.toLowerCase().includes(filterText.toLowerCase())
   );
-  const [show, setShow] = React.useState(false);
+
 
   //adds new item to the current data
   function handleAddData(data) {
@@ -61,13 +60,19 @@ export default function InventoryTable() {
       return newState;
     });
   }
+
+  function toggleForm() {
+    setShow(prevState => !prevState)
+    console.log(show)
+  }
+
   function EditForm() {
-    const handleClose = () => setShow(!show);
-    // const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
       <>
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleShow}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
@@ -123,7 +128,6 @@ export default function InventoryTable() {
               >
                 <Form.Label>Price</Form.Label>
                 <Form.Control
-                  // type="number"
                   placeholder="Price($)"
                   name="price"
                 />
@@ -175,9 +179,10 @@ export default function InventoryTable() {
 
   //testing editing of data only can edit name for now//
   const handleEditButtonClick = (data) => {
-    setShow(true);
-    console.log(show);
-    ReactDOM.render(<EditForm />, document.getElementById('editForm'))
+    toggleForm()
+    if (show) {
+      ReactDOM.render(<EditForm />, document.getElementById('editForm'))
+    }
 
     // console.log(editForm);
 
