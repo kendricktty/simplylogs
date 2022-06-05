@@ -2,7 +2,6 @@ import React from 'react'
 import SideNav from '../components/SideNav'
 import InventoryHeader from '../components/InventoryHeader';
 import InventoryNav from '../components/InventoryNav';
-import InventoryUtilityBar from '../components/InventoryUtilityBar';
 import InventoryTable from '../components/InventoryTable';
 
 function Inventory() {
@@ -13,7 +12,6 @@ function Inventory() {
           <InventoryHeader />
           <div className="inventoryDisplay">
             <InventoryNav />
-            {/* <InventoryUtilityBar /> */}
             <div className="inventoryTable">
                 <InventoryTable />
                 Generated Barcode:

@@ -19,11 +19,45 @@ export default function InventoryUtilityBar(props) {
   // This is the function when the button is pressed
   // to add items to data.json
 
-  const [showForm, setForm] = React.useState(false);
+  const [showForm, setShowForm] = React.useState(false);
+  const [formData, setFormData] = React.useState({
+    productId: "", 
+    productName: "", 
+    supplier: "", 
+    quantity: "", 
+    category: "", 
+    price: ""
+  })
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    console.log(formData)
+  }
+
+  function handleCancel() {
+    setFormData({
+      productId: "", 
+      productName: "", 
+      supplier: "", 
+      quantity: "", 
+      category: "", 
+      price: ""
+    })
+    setShowForm(!showForm)
+  }
+
+  function handleChange(e) {
+    const {name, value} = e.target
+    setFormData(prevState => {
+      return {
+        ...prevState,
+        [name]: value
+      }
+    })
+  }
+
   function addButtonPressed() {
-    console.log(showForm);
-    console.log("Pressed");
-    setForm(!showForm);
+    setShowForm(!showForm);
   }
 
   return (
@@ -77,46 +111,74 @@ export default function InventoryUtilityBar(props) {
         Add +
       </button>
 
-      {showForm ? (
-        <Form>
+      {showForm && (
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
-            <Form.Label>ProductID</Form.Label>
-            <Form.Control type="text" placeholder="ProductId" />
+            <Form.Label >ProductID</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="ProductId"
+              name="productId"
+              value={formData.productId} 
+              onChange={handleChange}/>
           </Form.Group>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>Product Name</Form.Label>
-            <Form.Control type="text" placeholder="Product Name" />
+            <Form.Control
+              type="text"
+              placeholder="Product Name"
+              name="productName"
+              value={formData.productName} 
+              onChange={handleChange}/>
           </Form.Group>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>Supplier</Form.Label>
-            <Form.Control type="text" placeholder="Product Supplier" />
+            <Form.Control
+              type="text"
+              placeholder="Product Supplier"
+              name="supplier"
+              value={formData.supplier} 
+              onChange={handleChange}/>
           </Form.Group>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>Quanity</Form.Label>
-            <Form.Control type="number" placeholder="Quantity" />
+            <Form.Control 
+              type="number" 
+              placeholder="Quantity" 
+              name="quantity"
+              onChange={handleChange}
+              value={formData.quantity} />
           </Form.Group>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>Price</Form.Label>
-            <Form.Control type="number" placeholder="Price($)" />
+            <Form.Control
+              type="number"
+              placeholder="Price($)"
+              name="price"
+              value={formData.price} 
+              onChange={handleChange}/>
           </Form.Group>
-          <Button
-            variant="primary"
-            onClick={() => {
-              setForm(false);
-            }}
-          >
+          <Form.Label>Category</Form.Label>
+          <Form.Select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}>
+            <option value="">Select Category</option>
+            <option value="food">Food</option>
+            <option value="kitchenware">KitchenWare</option>
+            <option value="furnishings">Furnishings</option>
+          </Form.Select>
+          <Button type="submit" variant="primary">
             Submit
           </Button>
           <Button
             variant="outline-secondary"
-            onClick={() => {
-              setForm(false);
-            }}
+            onClick={handleCancel}
           >
             Cancel
           </Button>
         </Form>
-      ) : null}
+      )}
     </div>
   );
 }
