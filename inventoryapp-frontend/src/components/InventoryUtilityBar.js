@@ -100,8 +100,6 @@ export default function InventoryUtilityBar(props) {
             </div> */}
       <form
         className="searchBar col-lg-4 col-sm-12 my-3"
-        action=""
-        method="GET"
       >
         <div class="input-group">
           <input
