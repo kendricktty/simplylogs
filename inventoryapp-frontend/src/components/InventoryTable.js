@@ -1,10 +1,19 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM, { render } from "react-dom";
 import DataTable from "react-data-table-component";
 import CustomMaterialPagination from "../materialui/CustomMaterialPagination";
 import data from "../data/data.json";
 import Barcode from "react-barcode";
 import InventoryUtilityBar from "./InventoryUtilityBar";
+import {
+  Form,
+  Button,
+  FormGroup,
+  FormControl,
+  ControlLabel,
+  Modal,
+} from "react-bootstrap";
+import { createRoot } from "react-dom/client";
 
 /*
 https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- link to 
@@ -20,6 +29,8 @@ export default function InventoryTable() {
 
   // filter function
   const [filterText, setFilterText] = React.useState("");
+  // show Edit From
+  const [editForm, setEditForm] = React.useState(false);
   const [resetPaginationToggle, setResetPaginationToggle] =
     React.useState(false);
   const filteredItems = dynamicData.inventory.filter(
@@ -27,6 +38,7 @@ export default function InventoryTable() {
       item.productName &&
       item.productName.toLowerCase().includes(filterText.toLowerCase())
   );
+  const [show, setShow] = React.useState(false);
 
   //adds new item to the current data
   function handleAddData(data) {
@@ -36,6 +48,98 @@ export default function InventoryTable() {
       newState.inventory.push(data);
       return newState;
     });
+  }
+  function EditForm() {
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+      <>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group
+                className="mb-1"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>ProductID</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="ProductId"
+                  name="productId"
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-1"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Product Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Product Name"
+                  name="productName"
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-1"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Supplier</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Product Supplier"
+                  name="supplier"
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-1"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Quanity</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="Quantity"
+                  name="quantity"
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-1"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Price</Form.Label>
+                <Form.Control
+                  // type="number"
+                  placeholder="Price($)"
+                  name="price"
+                />
+              </Form.Group>
+              <Form.Label>Category</Form.Label>
+              <Form.Select name="category">
+                <option value="">Select Category</option>
+                <option value="food">Food</option>
+                <option value="kitchenware">KitchenWare</option>
+                <option value="furnishings">Furnishings</option>
+              </Form.Select>
+              <Button type="submit" variant="primary">
+                Submit
+              </Button>
+              <Button variant="outline-secondary">Cancel</Button>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
   }
 
   //InventoryUtility
@@ -59,6 +163,12 @@ export default function InventoryTable() {
 
   //testing editing of data only can edit name for now//
   const handleEditButtonClick = (data) => {
+    setShow(true);
+    console.log(show);
+    return <EditForm />;
+
+    console.log(editForm);
+
     let newName = prompt("Enter new name: ");
     if (newName === null) {
       newName = data.productName;
