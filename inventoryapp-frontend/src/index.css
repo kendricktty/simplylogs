@@ -294,6 +294,9 @@
   margin-top: 20px;
   position: relative;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .inventoryHeaderLogo {
@@ -313,7 +316,6 @@
   top: 5%;
   height: 80px;
   position: relative;
-  left: 5%;
   align-items: center;
   justify-content: space-around;
   background-color:#fff;
@@ -367,7 +369,6 @@ InventoryNav--catergoryBtn:hover {
 .inventoryTable {
   position: relative;
   width: 90%;
-  left: 5.5%;
   top: 10%;
   background-color: #fff;
   border-radius: 5px;
