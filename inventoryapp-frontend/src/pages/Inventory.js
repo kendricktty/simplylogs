@@ -16,6 +16,7 @@ function Inventory() {
                 <InventoryTable />
                 Generated Barcode:
                 <div id='barcode'></div>
+                <div id='editForm'></div>
             </div>
           </div>
         </div>
