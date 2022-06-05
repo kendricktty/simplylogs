@@ -1,115 +1,125 @@
 {
-    "inventory": [
-        {
-            "productId": 1,
-            "productName": "Beetlejuice",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 2,
-            "productName": "Apple Juice",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 3,
-            "productName": "Water",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 4,
-            "productName": "Sprite",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 5,
-            "productName": "Fanta Grape",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 6,
-            "productName": "Fanta Orange",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 7,
-            "productName": "Root Beer",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 8,
-            "productName": "Beetlejuice",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 9,
-            "productName": "Beetlejuice",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 10,
-            "productName": "Beetlejuice",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 11,
-            "productName": "Beetlejuice",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 12,
-            "productName": "Beetlejuice",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 13,
-            "productName": "Beetlejuice",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "Food"
-        },
-        {
-            "productId": 14,
-            "productName": "Spoon",
-            "supplier": "Coca Cola",
-            "quantity": 99,
-            "price": "$1.20",
-            "category": "KitchenWare"
-        }
-]}
+  "inventory": [
+    {
+      "productId": 1,
+      "productName": "Beetlejuice",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 2,
+      "productName": "Apple Juice",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 3,
+      "productName": "Water",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 4,
+      "productName": "Sprite",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 5,
+      "productName": "Fanta Grape",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 6,
+      "productName": "Fanta Orange",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 7,
+      "productName": "Root Beer",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 8,
+      "productName": "Beetlejuice",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 9,
+      "productName": "Beetlejuice",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 10,
+      "productName": "Beetlejuice",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 11,
+      "productName": "Beetlejuice",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 12,
+      "productName": "Beetlejuice",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 13,
+      "productName": "Beetlejuice",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "Food"
+    },
+    {
+      "productId": 14,
+      "productName": "Spoon",
+      "supplier": "Coca Cola",
+      "quantity": 99,
+      "price": "$1.20",
+      "category": "KitchenWare"
+    },
+    {
+      "productId": 24,
+      "productName": "dad",
+      "supplier": "dad",
+      "quantity": 12,
+      "price": "12",
+      "category": "food",
+      "id": 24
+    }
+  ]
+}

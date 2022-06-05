@@ -26,25 +26,34 @@ export default function InventoryUtilityBar(props) {
     supplier: "",
     quantity: "",
     price: "",
-    category: ""
-  })
+    category: "",
+  });
 
   function handleSubmit(e) {
-    e.preventDefault()
-    const submittingData = formData
-    submittingData.productId = parseInt(submittingData.productId)
-    submittingData.quantity = parseInt(submittingData.quantity)
-    console.log(submittingData)
-    props.addData(submittingData)
+    e.preventDefault();
+    const submittingData = formData;
+    submittingData.productId = parseInt(submittingData.productId);
+    submittingData.id = submittingData.productId;
+    submittingData.quantity = parseInt(submittingData.quantity);
+    console.log(submittingData);
+    props.addData(submittingData);
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(submittingData),
+    };
+    fetch("http://localhost:3000/inventory", requestOptions);
     setFormData({
       productId: "",
       productName: "",
       supplier: "",
       quantity: "",
       price: "",
-      category: ""
-    })
-    setShowForm(!showForm)
+      category: "",
+    });
+    setShowForm(!showForm);
   }
 
   function handleCancel() {
@@ -54,19 +63,19 @@ export default function InventoryUtilityBar(props) {
       supplier: "",
       quantity: "",
       price: "",
-      category: ""
-    })
-    setShowForm(!showForm)
+      category: "",
+    });
+    setShowForm(!showForm);
   }
 
   function handleChange(e) {
-    const {name, value} = e.target
-    setFormData(prevState => {
+    const { name, value } = e.target;
+    setFormData((prevState) => {
       return {
         ...prevState,
-        [name]: value
-      }
-    })
+        [name]: value,
+      };
+    });
   }
 
   function addButtonPressed() {
@@ -125,13 +134,14 @@ export default function InventoryUtilityBar(props) {
       {showForm && (
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
-            <Form.Label >ProductID</Form.Label>
+            <Form.Label>ProductID</Form.Label>
             <Form.Control
               type="number"
               placeholder="ProductId"
               name="productId"
-              value={formData.productId} 
-              onChange={handleChange}/>
+              value={formData.productId}
+              onChange={handleChange}
+            />
           </Form.Group>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>Product Name</Form.Label>
@@ -139,8 +149,9 @@ export default function InventoryUtilityBar(props) {
               type="text"
               placeholder="Product Name"
               name="productName"
-              value={formData.productName} 
-              onChange={handleChange}/>
+              value={formData.productName}
+              onChange={handleChange}
+            />
           </Form.Group>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>Supplier</Form.Label>
@@ -148,17 +159,19 @@ export default function InventoryUtilityBar(props) {
               type="text"
               placeholder="Product Supplier"
               name="supplier"
-              value={formData.supplier} 
-              onChange={handleChange}/>
+              value={formData.supplier}
+              onChange={handleChange}
+            />
           </Form.Group>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>Quanity</Form.Label>
-            <Form.Control 
-              type="number" 
-              placeholder="Quantity" 
+            <Form.Control
+              type="number"
+              placeholder="Quantity"
               name="quantity"
               onChange={handleChange}
-              value={formData.quantity} />
+              value={formData.quantity}
+            />
           </Form.Group>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>Price</Form.Label>
@@ -166,14 +179,16 @@ export default function InventoryUtilityBar(props) {
               // type="number"
               placeholder="Price($)"
               name="price"
-              value={formData.price} 
-              onChange={handleChange}/>
+              value={formData.price}
+              onChange={handleChange}
+            />
           </Form.Group>
           <Form.Label>Category</Form.Label>
           <Form.Select
             name="category"
             value={formData.category}
-            onChange={handleChange}>
+            onChange={handleChange}
+          >
             <option value="">Select Category</option>
             <option value="food">Food</option>
             <option value="kitchenware">KitchenWare</option>
@@ -182,10 +197,7 @@ export default function InventoryUtilityBar(props) {
           <Button type="submit" variant="primary">
             Submit
           </Button>
-          <Button
-            variant="outline-secondary"
-            onClick={handleCancel}
-          >
+          <Button variant="outline-secondary" onClick={handleCancel}>
             Cancel
           </Button>
         </Form>
