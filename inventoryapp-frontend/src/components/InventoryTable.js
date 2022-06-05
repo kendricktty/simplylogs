@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import DataTable from "react-data-table-component";
 import CustomMaterialPagination from "../materialui/CustomMaterialPagination";
 import data from "../data/data.json";
+import axios from './axios'
 import Barcode from "react-barcode";
 import InventoryUtilityBar from "./InventoryUtilityBar";
 
@@ -16,8 +17,21 @@ https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- 
 // !! moved in data.json !! //
 
 export default function InventoryTable() {
+  const [serverData, setServerData] = React.useState([])
   const [dynamicData, setDynamicData] = React.useState(data);
 
+
+  // Integrate backend to frontend
+  useEffect(() => {
+    axios.get("/inventory").then(res => {
+      setServerData(res.data)
+    })
+  }, [])
+
+  console.log(serverData[0].inventory)
+
+  
+  
   // filter function
   const [filterText, setFilterText] = React.useState("");
   const [resetPaginationToggle, setResetPaginationToggle] =

@@ -81,6 +81,7 @@ export default function InventoryUtilityBar(props) {
   function addButtonPressed() {
     setShowForm(!showForm);
   }
+  
 
   return (
     <div className="InventoryUtilityBar row">
