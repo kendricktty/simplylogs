@@ -8,9 +8,11 @@ const inventorySchema = mongoose.Schema({
             productName: String,
             supplier: String,
             quantity: Number,
-            price: String,
+            price: Number,
             category: String
         }]
 })
+
+
 
 export default mongoose.model('inventory', inventorySchema)

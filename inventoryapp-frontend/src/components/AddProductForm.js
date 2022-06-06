@@ -16,6 +16,7 @@ export default function AddProductForm(props) {
               type="number"
               placeholder="ProductId"
               name="productId"
+              min={0}
               value={props.formData.productId}
               onChange={props.handleChange}
             />
@@ -46,6 +47,7 @@ export default function AddProductForm(props) {
               type="number"
               placeholder="Quantity"
               name="quantity"
+              min={0}
               onChange={props.handleChange}
               value={props.formData.quantity}
             />
@@ -53,8 +55,10 @@ export default function AddProductForm(props) {
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>Price</Form.Label>
             <Form.Control
-              // type="number"
+              type="number"
               placeholder="Price($)"
+              step={0.01}
+              min={0}
               name="price"
               value={props.formData.price}
               onChange={props.handleChange}
@@ -67,9 +71,9 @@ export default function AddProductForm(props) {
             onChange={props.handleChange}
           >
             <option value="">Select Category</option>
-            <option value="food">Food</option>
-            <option value="kitchenware">KitchenWare</option>
-            <option value="furnishings">Furnishings</option>
+            <option value="Food">Food</option>
+            <option value="KitchenWare">KitchenWare</option>
+            <option value="Furnishings">Furnishings</option>
           </Form.Select>
           <Button type="submit" variant="primary">
             Submit

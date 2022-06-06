@@ -45,7 +45,7 @@ export default function InventoryTable(props) {
 
 
 
-  //InventoryUtility
+  //InventoryUtilityBar
   const subHeaderComponentMemo = React.useMemo(() => {
     const handleClear = () => {
       if (filterText) {
@@ -67,6 +67,7 @@ export default function InventoryTable(props) {
   //testing editing of data only can edit name for now//
   const handleEditButtonClick = (data) => {
     props.setShowEditProduct(prevState => !prevState)
+    props.setEditFormParams(data)
 
     // console.log(editForm);
 

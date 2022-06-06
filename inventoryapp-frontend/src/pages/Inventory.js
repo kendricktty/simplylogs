@@ -12,6 +12,7 @@ function Inventory() {
   //States
   const [showEditProduct, setShowEditProduct] = React.useState(false);
   const [dynamicData, setDynamicData] = React.useState(data);
+  const [editFormParam, setEditFormParams] = React.useState({})
 
    // Integrate backend to frontend
   React.useEffect(() => {
@@ -21,6 +22,31 @@ function Inventory() {
 
   }, [])
 
+
+
+  //editForm
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setEditFormParams((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  }
+
+  //editForm save
+  function handleSave() {
+    const id = editFormParam.productId
+    setDynamicData((prevState) => ({
+      inventory: prevState.inventory.map((el) =>
+        el.productId === id ? editFormParam : el
+      ),
+    }));
+
+    setShowEditProduct(false)
+  }
+
   return (
     <div className="inventory container-fluid">
       <SideNav />
@@ -29,12 +55,16 @@ function Inventory() {
         <div className="inventoryDisplay">
           <InventoryNav />
           <div className="inventoryTable">
-            <InventoryTable setShowEditProduct={setShowEditProduct} dynamicData={dynamicData} setDynamicData={setDynamicData} />
+            <InventoryTable setShowEditProduct={setShowEditProduct} dynamicData={dynamicData} setDynamicData={setDynamicData} setEditFormParams={setEditFormParams}/>
             Generated Barcode:
             <div id='barcode'></div>
             <EditProductForm
               showEditProduct={showEditProduct}
-              setShowEditProduct={setShowEditProduct} />
+              setShowEditProduct={setShowEditProduct}
+              editFormParam={editFormParam} 
+              setEditFormParams={setEditFormParams} 
+              handleChange={handleChange} 
+              handleSave={handleSave} />
           </div>
         </div>
       </div>

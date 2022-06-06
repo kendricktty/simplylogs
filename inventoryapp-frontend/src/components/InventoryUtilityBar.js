@@ -31,6 +31,7 @@ export default function InventoryUtilityBar(props) {
     submittingData.productId = parseInt(submittingData.productId);
     submittingData.id = submittingData.productId;
     submittingData.quantity = parseInt(submittingData.quantity);
+    submittingData.price = parseFloat(submittingData.price)
     console.log(submittingData);
     props.addData(submittingData);
     const requestOptions = {
