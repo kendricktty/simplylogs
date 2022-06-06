@@ -7,7 +7,7 @@ import {
     ControlLabel,
   } from "react-bootstrap";
 
-export default function ProductForm(props) {
+export default function AddProductForm(props) {
     return (
         <Form onSubmit={props.handleSubmit}>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">

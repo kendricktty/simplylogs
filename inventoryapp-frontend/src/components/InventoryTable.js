@@ -5,14 +5,7 @@ import CustomMaterialPagination from "../materialui/CustomMaterialPagination";
 import data from "../data/data.json";
 import Barcode from "react-barcode";
 import InventoryUtilityBar from "./InventoryUtilityBar";
-import {
-  Form,
-  Button,
-  FormGroup,
-  FormControl,
-  ControlLabel,
-  Modal,
-} from "react-bootstrap";
+
 
 
 /*
@@ -20,21 +13,10 @@ https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- 
   table  api
 */
 
-export default function InventoryTable() {
+export default function InventoryTable(props) {
 
   // States
-  const [dynamicData, setDynamicData] = React.useState(data);
   const [filterText, setFilterText] = React.useState("");
-  const [show, setShow] = React.useState(false);
-
-  // Integrate backend to frontend
-
-  React.useEffect(() => {
-    fetch('http://localhost:8001/inventory')
-      .then(res => res.json())
-      .then(data => setDynamicData(data[0]))
-
-  }, [])
 
 
 
@@ -44,7 +26,7 @@ export default function InventoryTable() {
   // const [editForm, setEditForm] = React.useState(false);
   const [resetPaginationToggle, setResetPaginationToggle] =
     React.useState(false);
-  const filteredItems = dynamicData.inventory.filter(
+  const filteredItems = props.dynamicData.inventory.filter(
     (item) =>
       item.productName &&
       item.productName.toLowerCase().includes(filterText.toLowerCase())
@@ -53,7 +35,7 @@ export default function InventoryTable() {
 
   //adds new item to the current data
   function handleAddData(data) {
-    setDynamicData((prevState) => {
+    props.setDynamicData((prevState) => {
       console.log(prevState);
       const newState = prevState;
       newState.inventory.push(data);
@@ -61,102 +43,7 @@ export default function InventoryTable() {
     });
   }
 
-  function toggleForm() {
-    setShow(prevState => !prevState)
-    console.log(show)
-  }
 
-  function EditForm() {
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    return (
-      <>
-        <Modal show={show} onHide={handleShow}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form>
-              <Form.Group
-                className="mb-1"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>ProductID</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="ProductId"
-                  name="productId"
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-1"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Product Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Product Name"
-                  name="productName"
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-1"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Supplier</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Product Supplier"
-                  name="supplier"
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-1"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Quanity</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="Quantity"
-                  name="quantity"
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-1"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Price</Form.Label>
-                <Form.Control
-                  placeholder="Price($)"
-                  name="price"
-                />
-              </Form.Group>
-              <Form.Label>Category</Form.Label>
-              <Form.Select name="category">
-                <option value="">Select Category</option>
-                <option value="food">Food</option>
-                <option value="kitchenware">KitchenWare</option>
-                <option value="furnishings">Furnishings</option>
-              </Form.Select>
-              <Button type="submit" variant="primary">
-                Submit
-              </Button>
-              <Button variant="outline-secondary">Cancel</Button>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-    );
-  }
 
   //InventoryUtility
   const subHeaderComponentMemo = React.useMemo(() => {
@@ -179,10 +66,7 @@ export default function InventoryTable() {
 
   //testing editing of data only can edit name for now//
   const handleEditButtonClick = (data) => {
-    toggleForm()
-    if (show) {
-      ReactDOM.render(<EditForm />, document.getElementById('editForm'))
-    }
+    props.setShowEditProduct(prevState => !prevState)
 
     // console.log(editForm);
 

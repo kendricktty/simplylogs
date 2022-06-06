@@ -1,5 +1,5 @@
 import React from "react";
-import ProductForm from "./ProductForm"
+import AddProductForm from "./AddProductForm"
 
 
 export default function InventoryUtilityBar(props) {
@@ -130,7 +130,7 @@ export default function InventoryUtilityBar(props) {
 
       {/* conditional rendering */}
       {showForm && (
-        <ProductForm
+        <AddProductForm
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
           handleChange={handleChange}
