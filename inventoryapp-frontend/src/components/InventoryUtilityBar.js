@@ -1,12 +1,6 @@
 import React from "react";
+import ProductForm from "./ProductForm"
 
-import {
-  Form,
-  Button,
-  FormGroup,
-  FormControl,
-  ControlLabel,
-} from "react-bootstrap";
 
 export default function InventoryUtilityBar(props) {
   // const handleSubmit = event => {
@@ -32,6 +26,8 @@ export default function InventoryUtilityBar(props) {
   function handleSubmit(e) {
     e.preventDefault();
     const submittingData = formData;
+
+    //need to change to Integer for productId and quantit and set id to productid
     submittingData.productId = parseInt(submittingData.productId);
     submittingData.id = submittingData.productId;
     submittingData.quantity = parseInt(submittingData.quantity);
@@ -79,9 +75,9 @@ export default function InventoryUtilityBar(props) {
   }
 
   function addButtonPressed() {
-    setShowForm(!showForm);
+    setShowForm(prevState => !prevState);
   }
-  
+
 
   return (
     <div className="InventoryUtilityBar row">
@@ -132,76 +128,13 @@ export default function InventoryUtilityBar(props) {
         Add +
       </button>
 
+      {/* conditional rendering */}
       {showForm && (
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
-            <Form.Label>ProductID</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="ProductId"
-              name="productId"
-              value={formData.productId}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
-            <Form.Label>Product Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Product Name"
-              name="productName"
-              value={formData.productName}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
-            <Form.Label>Supplier</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Product Supplier"
-              name="supplier"
-              value={formData.supplier}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
-            <Form.Label>Quanity</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Quantity"
-              name="quantity"
-              onChange={handleChange}
-              value={formData.quantity}
-            />
-          </Form.Group>
-          <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
-            <Form.Label>Price</Form.Label>
-            <Form.Control
-              // type="number"
-              placeholder="Price($)"
-              name="price"
-              value={formData.price}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Label>Category</Form.Label>
-          <Form.Select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-          >
-            <option value="">Select Category</option>
-            <option value="food">Food</option>
-            <option value="kitchenware">KitchenWare</option>
-            <option value="furnishings">Furnishings</option>
-          </Form.Select>
-          <Button type="submit" variant="primary">
-            Submit
-          </Button>
-          <Button variant="outline-secondary" onClick={handleCancel}>
-            Cancel
-          </Button>
-        </Form>
+        <ProductForm
+          handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
+          handleChange={handleChange}
+          formData={formData} />
       )}
     </div>
   );
