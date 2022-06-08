@@ -32,24 +32,24 @@ export default function InventoryUtilityBar(props) {
     submittingData.id = submittingData.productId;
     submittingData.quantity = parseInt(submittingData.quantity);
     submittingData.price = parseFloat(submittingData.price)
-    console.log(submittingData);
-    props.addData(submittingData);
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(submittingData),
-    };
-    fetch("http://localhost:3000/inventory", requestOptions);
-    setFormData({
-      productId: "",
-      productName: "",
-      supplier: "",
-      quantity: "",
-      price: "",
-      category: "",
-    });
+    
+    props.handleAddData(submittingData);
+    // const requestOptions = {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(submittingData),
+    // };
+    // fetch("http://localhost:3000/inventory", requestOptions);
+    // setFormData({
+    //   productId: "",
+    //   productName: "",
+    //   supplier: "",
+    //   quantity: "",
+    //   price: "",
+    //   category: "",
+    // });
     setShowForm(!showForm);
   }
 

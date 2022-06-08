@@ -11,17 +11,27 @@ function Inventory() {
 
   //States
   const [showEditProduct, setShowEditProduct] = React.useState(false);
-  const [dynamicData, setDynamicData] = React.useState(data);
+  //fetches data from server on load if there are saved cookies on browser load from browser
+  const [dynamicData, setDynamicData] = React.useState(JSON.parse(localStorage.getItem("inventory"))||fetch('http://localhost:8001/inventory')
+       .then(res => res.json())
+       .then(data => setDynamicData(data[0]))
+  );
   const [editFormParam, setEditFormParams] = React.useState({})
 
    // Integrate backend to frontend
+  // React.useEffect(() => {
+  //   fetch('http://localhost:8001/inventory')
+  //     .then(res => res.json())
+  //     .then(data => setDynamicData(data[0]))
+
+  // }, [])
+
+
+  //saves it back to the browser memory
   React.useEffect(() => {
-    fetch('http://localhost:8001/inventory')
-      .then(res => res.json())
-      .then(data => setDynamicData(data[0]))
-
-  }, [])
-
+    console.log("changed")
+    localStorage.setItem("inventory", JSON.stringify(dynamicData))
+  }, [dynamicData])
 
 
   //editForm
@@ -47,6 +57,20 @@ function Inventory() {
     setShowEditProduct(false)
   }
 
+
+  //handleAdd
+
+  function handleAddData(data) {
+    setDynamicData((prevState) => {
+      if (prevState.inventory === undefined) {
+        console.log("empty")
+        return {inventory: [data]}
+      }
+      return {inventory: [...prevState.inventory, data]}
+    
+    });
+  }
+
   return (
     <div className="inventory container-fluid">
       <SideNav />
@@ -55,7 +79,7 @@ function Inventory() {
         <div className="inventoryDisplay">
           <InventoryNav />
           <div className="inventoryTable">
-            <InventoryTable setShowEditProduct={setShowEditProduct} dynamicData={dynamicData} setDynamicData={setDynamicData} setEditFormParams={setEditFormParams}/>
+            <InventoryTable setShowEditProduct={setShowEditProduct} dynamicData={dynamicData} handleAddData={handleAddData} setEditFormParams={setEditFormParams}/>
             Generated Barcode:
             <div id='barcode'></div>
             <EditProductForm

@@ -9,7 +9,7 @@ import {
 
 export default function AddProductForm(props) {
     return (
-        <Form onSubmit={props.handleSubmit}>
+        <Form>
           <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
             <Form.Label>ProductID</Form.Label>
             <Form.Control
@@ -75,7 +75,7 @@ export default function AddProductForm(props) {
             <option value="KitchenWare">KitchenWare</option>
             <option value="Furnishings">Furnishings</option>
           </Form.Select>
-          <Button type="submit" variant="primary">
+          <Button variant="primary" onClick={props.handleSubmit}>
             Submit
           </Button>
           <Button variant="outline-secondary" onClick={props.handleCancel}>

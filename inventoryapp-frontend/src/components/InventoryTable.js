@@ -26,22 +26,27 @@ export default function InventoryTable(props) {
   // const [editForm, setEditForm] = React.useState(false);
   const [resetPaginationToggle, setResetPaginationToggle] =
     React.useState(false);
-  const filteredItems = props.dynamicData.inventory.filter(
+
+
+  //set filtered item to filtered array of items or empty array if inventory is undef
+  const filteredItems = props.dynamicData.inventory ? props.dynamicData.inventory.filter(
     (item) =>
       item.productName &&
       item.productName.toLowerCase().includes(filterText.toLowerCase())
-  );
+  ) : [];
 
 
   //adds new item to the current data
-  function handleAddData(data) {
-    props.setDynamicData((prevState) => {
-      console.log(prevState);
-      const newState = prevState;
-      newState.inventory.push(data);
-      return newState;
-    });
-  }
+  // function handleAddData(data) {
+  //   props.setDynamicData((prevState) => {
+  //     const newState = prevState;
+  //     if (newState.inventory === undefined) {
+  //       return {inventory: [data]}
+  //     }
+  //     newState.inventory.push(data);
+  //     return newState;
+  //   });
+  // }
 
 
 
@@ -59,7 +64,7 @@ export default function InventoryTable(props) {
         onFilter={(e) => setFilterText(e.target.value)}
         onClear={handleClear}
         filterText={filterText}
-        addData={(data) => handleAddData(data)}
+        handleAddData={props.handleAddData}
       />
     );
   }, [filterText, resetPaginationToggle]);
