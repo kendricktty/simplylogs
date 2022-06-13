@@ -1,12 +1,10 @@
 import React from "react";
 import ReactDOM, { render } from "react-dom";
 import DataTable from "react-data-table-component";
-import CustomMaterialPagination from "../materialui/CustomMaterialPagination";
-import data from "../data/data.json";
+import CustomMaterialPagination from "../../materialui/CustomMaterialPagination";
+import data from "../../data/data.json";
 import Barcode from "react-barcode";
 import InventoryUtilityBar from "./InventoryUtilityBar";
-
-
 
 /*
 https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- link to 
@@ -14,11 +12,8 @@ https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- 
 */
 
 export default function InventoryTable(props) {
-
   // States
   const [filterText, setFilterText] = React.useState("");
-
-
 
   // filter function
 
@@ -27,14 +22,14 @@ export default function InventoryTable(props) {
   const [resetPaginationToggle, setResetPaginationToggle] =
     React.useState(false);
 
-
   //set filtered item to filtered array of items or empty array if inventory is undef
-  const filteredItems = props.dynamicData.inventory ? props.dynamicData.inventory.filter(
-    (item) =>
-      item.productName &&
-      item.productName.toLowerCase().includes(filterText.toLowerCase())
-  ) : [];
-
+  const filteredItems = props.dynamicData.inventory
+    ? props.dynamicData.inventory.filter(
+        item =>
+          item.productName &&
+          item.productName.toLowerCase().includes(filterText.toLowerCase())
+      )
+    : [];
 
   //adds new item to the current data
   // function handleAddData(data) {
@@ -48,8 +43,6 @@ export default function InventoryTable(props) {
   //   });
   // }
 
-
-
   //InventoryUtilityBar
   const subHeaderComponentMemo = React.useMemo(() => {
     const handleClear = () => {
@@ -61,7 +54,7 @@ export default function InventoryTable(props) {
 
     return (
       <InventoryUtilityBar
-        onFilter={(e) => setFilterText(e.target.value)}
+        onFilter={e => setFilterText(e.target.value)}
         onClear={handleClear}
         filterText={filterText}
         handleAddData={props.handleAddData}
@@ -70,9 +63,9 @@ export default function InventoryTable(props) {
   }, [filterText, resetPaginationToggle]);
 
   //testing editing of data only can edit name for now//
-  const handleEditButtonClick = (data) => {
-    props.setShowEditProduct(prevState => !prevState)
-    props.setEditFormParams(data)
+  const handleEditButtonClick = data => {
+    props.setShowEditProduct(prevState => !prevState);
+    props.setEditFormParams(data);
 
     // console.log(editForm);
 
@@ -86,9 +79,9 @@ export default function InventoryTable(props) {
     //     el.productId === id ? { ...el, productName: newName } : el
     //   ),
     // }));
-  }
+  };
 
-  const handleGenerateButtonClick = (data) => {
+  const handleGenerateButtonClick = data => {
     const productName = data.productName;
     ReactDOM.render(
       <Barcode value={productName} />,
@@ -99,39 +92,39 @@ export default function InventoryTable(props) {
   const columns = [
     {
       name: "ProductID",
-      selector: (row) => row.productId,
+      selector: row => row.productId,
       sortable: true,
       sortField: "title",
       maxWidth: "120px",
     },
     {
       name: "ProductName",
-      selector: (row) => row.productName,
+      selector: row => row.productName,
       sortable: true,
       sortField: "title",
     },
     {
       name: "Supplier",
-      selector: (row) => row.supplier,
+      selector: row => row.supplier,
       sortable: true,
       sortField: "title",
     },
     {
       name: "Quantity",
-      selector: (row) => row.quantity,
+      selector: row => row.quantity,
       sortable: true,
       sortField: "title",
       maxWidth: "120px",
     },
     {
       name: "Price",
-      selector: (row) => row.price,
+      selector: row => row.price,
       sortable: true,
       sortField: "title",
       maxWidth: "120px",
     },
     {
-      cell: (data) => (
+      cell: data => (
         <button
           onClick={() => handleEditButtonClick(data)}
           className="btn btn-warning"
@@ -144,7 +137,7 @@ export default function InventoryTable(props) {
       button: true,
     },
     {
-      cell: (data) => (
+      cell: data => (
         <button
           onClick={() => handleGenerateButtonClick(data)}
           className="btn btn-success"

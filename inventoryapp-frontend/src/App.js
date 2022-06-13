@@ -1,14 +1,13 @@
-import React from 'react'
-import SideNav from './components/SideNav'
-import InventoryHeader from './components/InventoryHeader';
-import InventoryNav from './components/InventoryNav';
-import InventoryUtilityBar from './components/InventoryUtilityBar';
-import Login from './pages/Login';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Inventory from './pages/Inventory';
-import Dashboard from './pages/Dashboard';
-import Sales from './pages/Sales';
-
+import React from "react";
+import SideNav from "./components/SideNav";
+import InventoryHeader from "./components/Header";
+import InventoryNav from "./components/Inventory/InventoryNav";
+import InventoryUtilityBar from "./components/Inventory/InventoryUtilityBar";
+import Login from "./pages/Login";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Inventory from "./pages/Inventory";
+import Dashboard from "./pages/Dashboard";
+import Sales from "./pages/Sales";
 
 function App() {
   return (
@@ -20,7 +19,7 @@ function App() {
         <Route exact path="/sales" element={<Sales />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;

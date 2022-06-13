@@ -279,7 +279,7 @@
   padding: 20px;
 }
 
-.inventoryHeader {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -299,11 +299,11 @@
   align-items: center;
 }
 
-.inventoryHeaderLogo {
+.headerLogo {
   display: flex;
 }
 
-.inventoryHeaderLogo i{
+.headerLogo i{
   font-size: 30px;
   margin-right: 10px;
 }
