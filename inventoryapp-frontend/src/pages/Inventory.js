@@ -56,9 +56,6 @@ function Inventory() {
     setShowEditProduct(false);
   }
 
-<<<<<<< HEAD
-
-=======
   //handleAdd
 
   function handleAddData(data) {
@@ -70,7 +67,6 @@ function Inventory() {
       return { inventory: [...prevState.inventory, data] };
     });
   }
->>>>>>> 8750b421a5170b1b1405a3f060bb951e4e958fe6
 
   return (
     <div className="inventory container-fluid">
@@ -80,16 +76,12 @@ function Inventory() {
         <div className="inventoryDisplay">
           <InventoryNav />
           <div className="inventoryTable">
-<<<<<<< HEAD
-            <InventoryTable setShowEditProduct={setShowEditProduct} dynamicData={dynamicData} setDynamicData={setDynamicData} setEditFormParams={setEditFormParams}/>
-=======
             <InventoryTable
               setShowEditProduct={setShowEditProduct}
               dynamicData={dynamicData}
               handleAddData={handleAddData}
               setEditFormParams={setEditFormParams}
             />
->>>>>>> 8750b421a5170b1b1405a3f060bb951e4e958fe6
             Generated Barcode:
             <div id="barcode"></div>
             <EditProductForm
