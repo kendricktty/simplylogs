@@ -42,14 +42,14 @@ export default function InventoryUtilityBar(props) {
     //   body: JSON.stringify(submittingData),
     // };
     // fetch("http://localhost:3000/inventory", requestOptions);
-    // setFormData({
-    //   productId: "",
-    //   productName: "",
-    //   supplier: "",
-    //   quantity: "",
-    //   price: "",
-    //   category: "",
-    // });
+    setFormData({
+      productId: "",
+      productName: "",
+      supplier: "",
+      quantity: "",
+      price: "",
+      category: "",
+    });
     setShowForm(!showForm);
   }
 

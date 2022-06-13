@@ -58,18 +58,6 @@ function Inventory() {
   }
 
 
-  //handleAdd
-
-  function handleAddData(data) {
-    setDynamicData((prevState) => {
-      if (prevState.inventory === undefined) {
-        console.log("empty")
-        return {inventory: [data]}
-      }
-      return {inventory: [...prevState.inventory, data]}
-    
-    });
-  }
 
   return (
     <div className="inventory container-fluid">
@@ -79,7 +67,7 @@ function Inventory() {
         <div className="inventoryDisplay">
           <InventoryNav />
           <div className="inventoryTable">
-            <InventoryTable setShowEditProduct={setShowEditProduct} dynamicData={dynamicData} handleAddData={handleAddData} setEditFormParams={setEditFormParams}/>
+            <InventoryTable setShowEditProduct={setShowEditProduct} dynamicData={dynamicData} setDynamicData={setDynamicData} setEditFormParams={setEditFormParams}/>
             Generated Barcode:
             <div id='barcode'></div>
             <EditProductForm

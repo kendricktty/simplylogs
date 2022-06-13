@@ -6,7 +6,7 @@ import Inventory from "./dbInventory.js"
 //App Config
 const app = express()
 const port = process.env.PORT || 8001
-const connection_url = 'mongodb+srv://admin:hello123@cluster0.mhqjs.mongodb.net/?retryWrites=true&w=majority'
+const connection_url = 'mongodb://admin:hello123@cluster0-shard-00-00.mhqjs.mongodb.net:27017,cluster0-shard-00-01.mhqjs.mongodb.net:27017,cluster0-shard-00-02.mhqjs.mongodb.net:27017/?ssl=true&replicaSet=atlas-1bssey-shard-0&authSource=admin&retryWrites=true&w=majority'
 
 //Middleware
 app.use(express.json())

@@ -37,16 +37,15 @@ export default function InventoryTable(props) {
 
 
   //adds new item to the current data
-  // function handleAddData(data) {
-  //   props.setDynamicData((prevState) => {
-  //     const newState = prevState;
-  //     if (newState.inventory === undefined) {
-  //       return {inventory: [data]}
-  //     }
-  //     newState.inventory.push(data);
-  //     return newState;
-  //   });
-  // }
+  function handleAddData(data) {
+    props.setDynamicData((prevState) => {
+      const newState = prevState;
+      if (newState.inventory === undefined) {
+        return {inventory: [data]}
+      }
+      return {inventory: [...prevState.inventory, data]}
+    });
+  }
 
 
 
@@ -64,7 +63,7 @@ export default function InventoryTable(props) {
         onFilter={(e) => setFilterText(e.target.value)}
         onClear={handleClear}
         filterText={filterText}
-        handleAddData={props.handleAddData}
+        handleAddData={handleAddData}
       />
     );
   }, [filterText, resetPaginationToggle]);
