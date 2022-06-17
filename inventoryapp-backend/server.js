@@ -4,6 +4,9 @@ import Cors from "cors";
 import Inventory from "./dbInventory.js";
 import errorHandler from "./handlers/errorHandler.js";
 
+// Import routers
+import inventoryRouter from "./routers/InventoryRouter.js"
+
 //App Config
 const app = express();
 const PORT = process.env.PORT || 8001;
@@ -22,11 +25,14 @@ mongoose.connect(connection_url, {
   useUnifiedTopology: true,
 });
 
+// Initialise InventoryRouter
+app.use('/inventory', inventoryRouter);
+
 //API Endpoints
 app.get("/", (req, res) => res.status(200).send("Welcome"));
 
 // Creates the database entry
-app.post("/inventory", (req, res) => {
+inventoryRouter.post("/", (req, res) => {
   const dbInventory = req.body;
 
   Inventory.create(dbInventory, (err, data) => {
@@ -36,12 +42,12 @@ app.post("/inventory", (req, res) => {
 });
 
 // Posts a new database entry
-app.post("/inventory/:id", (req, res) => {
+inventoryRouter.post("/:id", (req, res) => {
   
 });
 
 // Retrieves the required database entry
-app.get("/inventory", (req, res) => {
+inventoryRouter.get("/", (req, res) => {
   Inventory.find((err, data) => {
     errorHandler(res, err, data);
   });
