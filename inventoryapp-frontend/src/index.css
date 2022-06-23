@@ -395,6 +395,12 @@ InventoryNav--catergoryBtn:hover {
   top: 10px;
   overflow: auto;
 }
+.display{
+  border-radius: 15px;
+  border: 2px black;
+  border-style: solid;
+
+}
 
 .v52_152 {
   width: 100%;
