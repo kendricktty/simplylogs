@@ -1,8 +1,12 @@
 import express from "express";
 import mongoose from "mongoose";
 import Cors from "cors";
-import Inventory from "./dbInventory.js";
+import dbInventory from "./model/dbInventory.js";
 import errorHandler from "./handlers/errorHandler.js";
+import connectDB from "./db/connect.js"
+import env from "dotenv"
+
+env.config()
 
 // Import routers
 import inventoryRouter from "./routers/InventoryRouter.js"
@@ -20,10 +24,7 @@ app.use(express.json());
 app.use(Cors());
 
 //DB Config
-mongoose.connect(connection_url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+connectDB(process.env.MONGO_URI)
 
 // Initialise InventoryRouter
 app.use('/inventory', inventoryRouter);
