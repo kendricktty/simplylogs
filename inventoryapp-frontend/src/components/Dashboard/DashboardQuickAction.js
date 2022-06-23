@@ -1,5 +1,6 @@
 import "../../index.css";
 import styles from "../../styles/dashboard.module.css";
+import calendar from "react-calendar";
 export default function DashboardQuickAction() {
   return (
     <div>
@@ -59,6 +60,7 @@ export default function DashboardQuickAction() {
           <div className="col-md-6  ">
             <div class={"dashboardDisplay" + " " + styles.events}>
               <i>Upcoming Events</i>
+              <calendar />
             </div>
             <div class={"dashboardDisplay mt-3" + " " + styles.analytics}>
               <i>Analytics</i>
