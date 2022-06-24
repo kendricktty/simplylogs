@@ -79,6 +79,7 @@ function Inventory() {
             <InventoryTable
               setShowEditProduct={setShowEditProduct}
               dynamicData={dynamicData}
+              setDynamicData={setDynamicData}
               handleAddData={handleAddData}
               setEditFormParams={setEditFormParams}
             />

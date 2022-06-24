@@ -1,8 +1,4 @@
 import React from "react";
-import SideNav from "./components/SideNav";
-import InventoryHeader from "./components/Header";
-import InventoryNav from "./components/Inventory/InventoryNav";
-import InventoryUtilityBar from "./components/Inventory/InventoryUtilityBar";
 import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Inventory from "./pages/Inventory";

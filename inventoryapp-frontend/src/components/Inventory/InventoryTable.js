@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM, { render } from "react-dom";
 import DataTable from "react-data-table-component";
 import CustomMaterialPagination from "../../materialui/CustomMaterialPagination";
-import data from "../../data/data.json";
 import Barcode from "react-barcode";
 import InventoryUtilityBar from "./InventoryUtilityBar";
 
