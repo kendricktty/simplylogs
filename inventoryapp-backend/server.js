@@ -1,11 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import Cors from "cors";
-import Inventory from "./dbInventory.js";
-import errorHandler from "./handlers/errorHandler.js";
 
 // Import routers
-import inventoryRouter from "./routers/InventoryRouter.js"
+import inventoryRouter from "./routes/inventory.js"
 
 //App Config
 const app = express();
@@ -31,26 +29,10 @@ app.use('/inventory', inventoryRouter);
 //API Endpoints
 app.get("/", (req, res) => res.status(200).send("Welcome"));
 
-// Creates the database entry
-inventoryRouter.post("/", (req, res) => {
-  const dbInventory = req.body;
-
-  Inventory.create(dbInventory, (err, data) => {
-    errorHandler(res, err, data);
-    console.log("post");
-  });
-});
-
-// Posts a new database entry
-inventoryRouter.post("/:id", (req, res) => {
-  
-});
-
-// Retrieves the required database entry
-inventoryRouter.get("/", (req, res) => {
-  Inventory.find((err, data) => {
-    errorHandler(res, err, data);
-  });
+// Error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Internal Server Error");
 });
 
 //Listener
