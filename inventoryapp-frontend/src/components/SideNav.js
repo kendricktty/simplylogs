@@ -31,8 +31,8 @@ export default function SideNav() {
         </li>
         <li>
           <a href="/cashier">
-            <i class="bx bx-stats"></i>
-            <span className="sideNav--tabs">Sales</span>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span className="sideNav--tabs">Cashier</span>
             {/* <span className="tooltip">Sales</span> */}
           </a>
         </li>
