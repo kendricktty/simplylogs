@@ -41,9 +41,11 @@ export default function Cashier() {
         <Header pageName="Cashier" />
         <div className="container mt-5"></div>
 
-        {ordersList.map((x, idx) =>
-          idx % 2 === 0 ? <div className="row"> : '' x idx %2 ===1 ? </div> : ""
-        )}
+        {ordersList.map((x, idx) =>(
+          idx % 2 === 0 ? <div className="row">{x} : ; 
+          
+           
+        ))}
         <button onClick={() => setForm(true)}>Add Item</button>
 
         {form && <InventoryForm setForm={setForm} addOrder={addOrder} />}

@@ -1,0 +1,12 @@
+.closeButton{
+    float:right;
+    
+}
+.cardButton{
+    border-radius: 20px;
+    width:30px;
+    height:auto;
+    background-color: green;
+    border:none;
+    margin-left:10px;
+}
