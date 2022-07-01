@@ -5,7 +5,6 @@ import styles from "../../styles/cashier.module.css";
 export default function OrderCard(props) {
   console.log(props);
   return (
-    <div className="col-md-6">
       <Card>
         <Card.Header>
           {props.name}
@@ -28,6 +27,5 @@ export default function OrderCard(props) {
           </Card.Text>
         </Card.Body>
       </Card>
-    </div>
   );
 }

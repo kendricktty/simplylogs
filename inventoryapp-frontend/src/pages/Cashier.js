@@ -34,18 +34,20 @@ export default function Cashier() {
     />
   ));
 
+
   return (
     <div className="dashboard container-fluid">
       <SideNav />
       <div className="salesMain">
         <Header pageName="Cashier" />
-        <div className="container mt-5"></div>
 
-        {ordersList.map((x, idx) =>(
-          idx % 2 === 0 ? <div className="row">{x} : ; 
-          
-           
-        ))}
+        <div className="container mt-5">
+          <div className='row'>
+          {ordersList.map((x) => <div className={"col-md-6"}>{x}</div>)}
+          </div>
+        </div>
+
+        
         <button onClick={() => setForm(true)}>Add Item</button>
 
         {form && <InventoryForm setForm={setForm} addOrder={addOrder} />}
