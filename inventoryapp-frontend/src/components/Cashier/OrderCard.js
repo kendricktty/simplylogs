@@ -8,7 +8,11 @@ export default function OrderCard(props) {
       <Card>
         <Card.Header>
           {props.name}
-          <CloseButton variant="green" className={styles.closeButton} />
+          <CloseButton
+            variant="green"
+            className={styles.closeButton}
+            onClick={(event) => props.deleteOrder(event, props.id)}
+          />
         </Card.Header>
         <Card.Body>
           <Card.Text>

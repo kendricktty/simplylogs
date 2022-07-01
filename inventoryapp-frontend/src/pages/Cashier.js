@@ -22,6 +22,14 @@ export default function Cashier() {
   function addOrder(item) {
     setOrder((order) => [...order, item]);
   }
+  function deleteOrder(event, id) {
+    event.stopPropagation();
+    console.log(id);
+    console.log(order);
+    setOrder((order) =>
+      order.filter((order_item) => order_item.productId !== id)
+    );
+  }
 
   const ordersList = order.map((order_item) => (
     <OrderCard
@@ -31,6 +39,7 @@ export default function Cashier() {
       quantity={order_item.quantity}
       key={order_item.productId}
       id={order_item.productId}
+      deleteOrder={deleteOrder}
     />
   ));
   function sliceOrderList(ordersList) {
