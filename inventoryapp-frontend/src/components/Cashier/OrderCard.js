@@ -3,7 +3,6 @@ import { Button, Card, CloseButton } from "react-bootstrap";
 import styles from "../../styles/cashier.module.css";
 
 export default function OrderCard(props) {
-  console.log(props);
   return (
     <div className="col-md-6">
       <Card>

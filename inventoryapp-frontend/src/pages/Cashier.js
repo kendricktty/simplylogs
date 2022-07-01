@@ -33,19 +33,30 @@ export default function Cashier() {
       id={order_item.productId}
     />
   ));
+  function sliceOrderList(ordersList) {
+    const newArray = [];
+    var startIndex = 0;
+    while (startIndex < ordersList.length) {
+      newArray.push(ordersList.slice(startIndex, startIndex + 2));
+      startIndex += 2;
+    }
+    return newArray;
+  }
+
+  const row_cols = sliceOrderList(ordersList);
+  console.log(row_cols);
 
   return (
     <div className="dashboard container-fluid">
       <SideNav />
       <div className="salesMain">
         <Header pageName="Cashier" />
-        <div className="container mt-5"></div>
+        <div className="container mt-5">
+          {row_cols.map((x) => (
+            <div className="row gx-2 gy-4">{x}</div>
+          ))}
+        </div>
 
-        {ordersList.map((x, idx) =>(
-          idx % 2 === 0 ? <div className="row">{x} : ; 
-          
-           
-        ))}
         <button onClick={() => setForm(true)}>Add Item</button>
 
         {form && <InventoryForm setForm={setForm} addOrder={addOrder} />}
