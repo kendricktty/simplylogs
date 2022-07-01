@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Inventory from "./pages/Inventory";
 import Dashboard from "./pages/Dashboard";
 import Sales from "./pages/Sales";
+import Cashier from "./pages/Sales";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/inventory" element={<Inventory />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/sales" element={<Sales />} />
+        <Route exact path="/sales" element={<Cashier />} />
       </Routes>
     </BrowserRouter>
   );
