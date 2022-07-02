@@ -1,5 +1,4 @@
 const express = require('express')
-const Inventory = require('../model/dbInventory')
 const { getAllProducts, addProduct } = require('../controllers/products')
 const inventoryRouter = express.Router();
 
