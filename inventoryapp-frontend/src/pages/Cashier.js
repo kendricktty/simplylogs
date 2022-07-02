@@ -3,6 +3,12 @@ import SideNav from "../components/SideNav";
 import Header from "../components/Header";
 import InventoryForm from "../components/Cashier/InventoryForm";
 import OrderCard from "../components/Cashier/OrderCard";
+import styles from "../styles/cashier.module.css";
+import Invoice from "../components/Cashier/Invoice";
+import html2canvas from "html2canvas";
+
+import { jsPDF } from "jspdf";
+
 export default function Cashier() {
   // Initialize the products to be empty at first
   const [products, setProducts] = React.useState({});
@@ -16,7 +22,7 @@ export default function Cashier() {
   React.useEffect(() => {
     fetch("http://localhost:8001/inventory")
       .then((res) => res.json())
-      .then((data) => setProducts(data['inventory']));
+      .then((data) => setProducts(data["inventory"]));
   }, []);
 
   function addOrder(item) {
@@ -26,6 +32,28 @@ export default function Cashier() {
     event.stopPropagation();
     setOrder((order) =>
       order.filter((order_item) => order_item.productId !== id)
+    );
+  }
+  function updateCount(event, id, status) {
+    event.stopPropagation();
+    setOrder(
+      order.map((order_item) => {
+        if (order_item.productId === id) {
+          if (status === "-") {
+            return {
+              ...order_item,
+              quantity: order_item.quantity - 1,
+            };
+          } else {
+            return {
+              ...order_item,
+              quantity: order_item.quantity + 1,
+            };
+          }
+        } else {
+          return order_item;
+        }
+      })
     );
   }
 
@@ -38,6 +66,7 @@ export default function Cashier() {
       key={order_item.productId}
       id={order_item.productId}
       deleteOrder={deleteOrder}
+      updateCount={updateCount}
     />
   ));
   function sliceOrderList(ordersList) {
@@ -52,6 +81,22 @@ export default function Cashier() {
 
   const row_cols = sliceOrderList(ordersList);
   console.log(row_cols);
+  const printRef = React.createRef();
+
+  const handleDownloadPdf = async () => {
+    const element = printRef.current;
+    console.log(element);
+    const canvas = await html2canvas(element);
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF();
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("invoice.pdf");
+  };
 
   return (
     <div className="dashboard container-fluid">
@@ -63,9 +108,13 @@ export default function Cashier() {
             <div className="row gx-2 gy-4">{x}</div>
           ))}
         </div>
-
-        <button onClick={() => setForm(true)}>Add Item</button>
-
+        <button className={styles.addItem} onClick={() => setForm(true)}>
+          Add Item
+        </button>
+        <Invoice order={order} ref={printRef} />
+        <button className={styles.generateInvoice} onClick={handleDownloadPdf}>
+          Generate Invoice
+        </button>
         {form && <InventoryForm setForm={setForm} addOrder={addOrder} />}
       </div>
     </div>
