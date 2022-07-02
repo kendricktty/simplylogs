@@ -111,7 +111,7 @@ export default function Cashier() {
         <button className={styles.addItem} onClick={() => setForm(true)}>
           Add Item
         </button>
-        <Invoice order={order} ref={printRef} />
+
         <button className={styles.generateInvoice} onClick={handleDownloadPdf}>
           Generate Invoice
         </button>

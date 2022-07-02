@@ -7,6 +7,7 @@ export default function DashboardQuickAction() {
     <div>
       <i>Welcome Back Store Manager !</i>
       <div className="container ">
+<<<<<<< HEAD
         <div className="row gx-5 ">
           <div class="v52_152 col-12">
             <img
@@ -85,6 +86,9 @@ export default function DashboardQuickAction() {
             </div>
           </div>
         </div>
+=======
+        
+>>>>>>> 9224a32a719ad25b9c2f69e144b7de8896f04096
       </div>
     </div>
   );
