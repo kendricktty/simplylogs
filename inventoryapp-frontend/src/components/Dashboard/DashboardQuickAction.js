@@ -1,7 +1,7 @@
 import "../../index.css";
 import styles from "../../styles/dashboard.module.css";
 import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css';
+import "react-calendar/dist/Calendar.css";
 export default function DashboardQuickAction() {
   return (
     <div>
@@ -52,6 +52,23 @@ export default function DashboardQuickAction() {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       Add Inventory
+                    </a>
+                  </b>
+                </span>
+              </div>
+              <div class="dashboard-icon mt-3">
+                <img
+                  src="../../../dashboardIcon.png"
+                  style={{ width: "20px" }}
+                  className="mt-1"
+                />
+                <span>
+                  <b className="ps-2 mt-5">
+                    <a
+                      href="/cashier"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Cashier
                     </a>
                   </b>
                 </span>

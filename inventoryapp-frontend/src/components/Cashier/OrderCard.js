@@ -26,7 +26,7 @@ export default function OrderCard(props) {
               <span style={{ marginLeft: "7px" }}>{props.quantity}</span>
               <button className={styles.cardButton}>-</button>
               <br />
-              Total Price : ${props.price * props.quantity}
+              Total Price : ${Math.round(props.price * props.quantity, 2)}
             </div>
           </Card.Text>
         </Card.Body>

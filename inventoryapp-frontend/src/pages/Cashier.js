@@ -24,8 +24,6 @@ export default function Cashier() {
   }
   function deleteOrder(event, id) {
     event.stopPropagation();
-    console.log(id);
-    console.log(order);
     setOrder((order) =>
       order.filter((order_item) => order_item.productId !== id)
     );
