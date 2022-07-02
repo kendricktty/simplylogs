@@ -15,7 +15,7 @@ function Inventory() {
     JSON.parse(localStorage.getItem("inventory")) ||
       fetch("http://localhost:8001/inventory")
         .then(res => res.json())
-        .then(data => setDynamicData(data[0]))
+        .then(data => setDynamicData(data))
   );
   const [editFormParam, setEditFormParams] = React.useState({});
 

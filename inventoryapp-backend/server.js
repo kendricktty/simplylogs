@@ -1,6 +1,10 @@
+require('dotenv').config()
+require('express-async-errors')
+
 const express = require('express')
 const connectDB = require('./db/connect')
-require('dotenv').config()
+const cors = require('cors')
+
 
 // Import routers
 const inventoryRouter = require('./routes/inventory')
@@ -13,7 +17,7 @@ const PORT = process.env.PORT || 8001;
 
 //Middleware
 app.use(express.json());
-
+app.use(cors())
 
 
 // Initialise InventoryRouter

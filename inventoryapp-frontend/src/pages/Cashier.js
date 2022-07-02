@@ -16,7 +16,7 @@ export default function Cashier() {
   React.useEffect(() => {
     fetch("http://localhost:8001/inventory")
       .then((res) => res.json())
-      .then((data) => setProducts(data[0]["inventory"]));
+      .then((data) => setProducts(data['inventory']));
   }, []);
 
   function addOrder(item) {
