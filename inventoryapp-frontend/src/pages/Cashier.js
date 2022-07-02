@@ -22,6 +22,14 @@ export default function Cashier() {
   function addOrder(item) {
     setOrder((order) => [...order, item]);
   }
+  function deleteOrder(event, id) {
+    event.stopPropagation();
+    console.log(id);
+    console.log(order);
+    setOrder((order) =>
+      order.filter((order_item) => order_item.productId !== id)
+    );
+  }
 
   const ordersList = order.map((order_item) => (
     <OrderCard
@@ -31,23 +39,33 @@ export default function Cashier() {
       quantity={order_item.quantity}
       key={order_item.productId}
       id={order_item.productId}
+      deleteOrder={deleteOrder}
     />
   ));
+  function sliceOrderList(ordersList) {
+    const newArray = [];
+    var startIndex = 0;
+    while (startIndex < ordersList.length) {
+      newArray.push(ordersList.slice(startIndex, startIndex + 2));
+      startIndex += 2;
+    }
+    return newArray;
+  }
 
+  const row_cols = sliceOrderList(ordersList);
+  console.log(row_cols);
 
   return (
     <div className="dashboard container-fluid">
       <SideNav />
       <div className="salesMain">
         <Header pageName="Cashier" />
-
         <div className="container mt-5">
-          <div className='row'>
-          {ordersList.map((x) => <div className={"col-md-6"}>{x}</div>)}
-          </div>
+          {row_cols.map((x) => (
+            <div className="row gx-2 gy-4">{x}</div>
+          ))}
         </div>
 
-        
         <button onClick={() => setForm(true)}>Add Item</button>
 
         {form && <InventoryForm setForm={setForm} addOrder={addOrder} />}

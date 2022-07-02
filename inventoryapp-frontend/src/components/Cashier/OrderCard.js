@@ -3,12 +3,16 @@ import { Button, Card, CloseButton } from "react-bootstrap";
 import styles from "../../styles/cashier.module.css";
 
 export default function OrderCard(props) {
-  console.log(props);
   return (
+    <div className="col-md-6">
       <Card>
         <Card.Header>
           {props.name}
-          <CloseButton variant="green" className={styles.closeButton} />
+          <CloseButton
+            variant="green"
+            className={styles.closeButton}
+            onClick={(event) => props.deleteOrder(event, props.id)}
+          />
         </Card.Header>
         <Card.Body>
           <Card.Text>
@@ -27,5 +31,6 @@ export default function OrderCard(props) {
           </Card.Text>
         </Card.Body>
       </Card>
+    </div>
   );
 }
