@@ -1,5 +1,5 @@
-import express from "express";
-import Inventory from "../dbInventory.js";
+const express = require('express')
+const Inventory = require('../model/dbInventory')
 
 const inventoryRouter = express.Router();
 
@@ -22,14 +22,16 @@ inventoryRouter.put("/", (req, res) => {
 });
 
 // Retrieves the required database entry
-inventoryRouter.get("/", (req, res) => {
-    Inventory.find((err, data) => {
-        if (err) {
-            res.status(404).send(err);
-        } else {
-            res.status(200).send(data);
-        }
-    });
+inventoryRouter.get("/", async (req, res) => {
+    // Inventory.find((err, data) => {
+    //     if (err) {
+    //         res.status(404).send(err);
+    //     } else {
+    //         res.status(200).send(data);
+    //     }
+    // });
+    const product = await Inventory.find({})
+    res.status(200).json({ product })
 });
 
-export default inventoryRouter;
+module.exports = inventoryRouter
