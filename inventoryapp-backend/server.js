@@ -1,27 +1,24 @@
-require('dotenv').config()
-require('express-async-errors')
+require("dotenv").config();
+require("express-async-errors");
 
-const express = require('express')
-const connectDB = require('./db/connect')
-const cors = require('cors')
-
+const express = require("express");
+const connectDB = require("./db/connect");
+const cors = require("cors");
 
 // Import routers
-const inventoryRouter = require('./routes/inventory')
+const inventoryRouter = require("./routes/inventory");
 
 //App Config
 const app = express();
 const PORT = process.env.PORT || 8001;
 
-//"mongodb+srv://admin:hello123@cluster0.mhqjs.mongodb.net/?retryWrites=true&w=majority&ssl=true";
 
 //Middleware
 app.use(express.json());
-app.use(cors())
-
+app.use(cors());
 
 // Initialise InventoryRouter
-app.use('/inventory', inventoryRouter);
+app.use("/inventory", inventoryRouter);
 
 //API Endpoints
 app.get("/", (req, res) => res.status(200).send("Welcome"));
@@ -33,13 +30,13 @@ app.use((err, req, res, next) => {
 });
 
 //connect to database
-const start = async() => {
+const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI)
+    await connectDB(process.env.MONGO_URI);
     app.listen(PORT, () => console.log(`Port ${PORT} li tia bo?`));
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-start()
+start();
