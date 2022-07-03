@@ -39,5 +39,7 @@
 
 }
 .invoice{
-    display:none;
+    visibility:visible;
+    position: absolute;
+    left:0;
 }
