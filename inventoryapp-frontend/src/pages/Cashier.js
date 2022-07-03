@@ -6,12 +6,6 @@ import OrderCard from "../components/Cashier/OrderCard";
 import styles from "../styles/cashier.module.css";
 import Invoice from "../components/Cashier/Invoice";
 import html2canvas from "html2canvas";
-<<<<<<< HEAD
-
-=======
-import { Col, Divider, Row, Table } from "antd";
-import "antd/dist/antd.css";
->>>>>>> 6d9c27325625f2a42bbc3ffc4a75be1961ace900
 import { jsPDF } from "jspdf";
 
 
