@@ -8,7 +8,6 @@ import Invoice from "../components/Cashier/Invoice";
 import html2canvas from "html2canvas";
 import { Col, Divider, Row, Table } from "antd";
 import "antd/dist/antd.css";
-
 import { jsPDF } from "jspdf";
 
 export default function Cashier() {
