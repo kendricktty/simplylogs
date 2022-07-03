@@ -6,8 +6,12 @@ import OrderCard from "../components/Cashier/OrderCard";
 import styles from "../styles/cashier.module.css";
 import Invoice from "../components/Cashier/Invoice";
 import html2canvas from "html2canvas";
+<<<<<<< HEAD
+
+=======
 import { Col, Divider, Row, Table } from "antd";
 import "antd/dist/antd.css";
+>>>>>>> 6d9c27325625f2a42bbc3ffc4a75be1961ace900
 import { jsPDF } from "jspdf";
 
 
@@ -118,6 +122,7 @@ export default function Cashier() {
         </button>
         {form && <InventoryForm setForm={setForm} addOrder={addOrder} />}
       </div>
+<<<<<<< HEAD
       {/* This is the code for the invoice template*/}
 
       <Invoice 
@@ -125,6 +130,8 @@ export default function Cashier() {
       showEditProduct={showEditProduct}
       handleDownloadPdf={handleDownloadPdf}
       />
+=======
+>>>>>>> b1fdd54d6142bdd402afb39ad7032801baf66620
     </div>
   );
 }
