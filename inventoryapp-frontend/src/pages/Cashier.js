@@ -6,7 +6,6 @@ import OrderCard from "../components/Cashier/OrderCard";
 import styles from "../styles/cashier.module.css";
 import Invoice from "../components/Cashier/Invoice";
 import html2canvas from "html2canvas";
-
 import { jsPDF } from "jspdf";
 
 export default function Cashier() {
