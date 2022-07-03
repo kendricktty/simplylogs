@@ -26,6 +26,7 @@ export default function Invoice(props) {
       price: props.product[order_item.productId - 1].price,
       supplier: props.product[order_item.productId - 1].supplier,
       name: props.product[order_item.productId - 1].productName,
+      total: formatter.format(order_item.quantity * props.product[order_item.productId - 1].price)
     };
   });
 
@@ -93,7 +94,7 @@ export default function Invoice(props) {
                 <Table.Column title="Supplier" dataIndex="supplier" />
                 <Table.Column title="Name" dataIndex="name" />
                 <Table.Column title="Price" dataIndex="price" />
-                <Table.Column title="Line Total" />
+                <Table.Column title="Total" dataIndex="total"/>
               </Table>
             </Row>
 
