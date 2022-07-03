@@ -7,8 +7,6 @@ import {
   ControlLabel,
   Modal,
 } from "react-bootstrap";
-import { Col, Divider, Row, Table } from "antd";
-import "antd/dist/antd.css";
 import styles from "../../styles/cashier.module.css";
 import { Col, Divider, Row, Table } from "antd";
 import "antd/dist/antd.css";
@@ -128,4 +126,4 @@ export default function Invoice(props) {
     </Modal>
   );
 }
-export default Invoice;
+
