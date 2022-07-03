@@ -10,17 +10,38 @@ import {
 import styles from "../../styles/cashier.module.css";
 import { Col, Divider, Row, Table } from "antd";
 import "antd/dist/antd.css";
+var formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+
+  // These options are needed to round to whole numbers if that's what you want.
+  //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+  //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+});
 
 export default function Invoice(props) {
+  const invoiceOrders = props.order.map((order_item) => {
+    return {
+      ...order_item,
+      price: props.product[order_item.productId - 1].price,
+      supplier: props.product[order_item.productId - 1].supplier,
+      name: props.product[order_item.productId - 1].productName,
+    };
+  });
+
+  var totalPrice = 0;
+
+  invoiceOrders.map((order) => {
+    totalPrice += order.price * order.quantity;
+  });
 
   const printRef = React.createRef();
-  
 
   const handleClose = () => props.setShowEditProduct(false);
   return (
-    <Modal size='lg' show={props.showEditProduct} onHide={handleClose}>
+    <Modal size="lg" show={props.showEditProduct} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Title>Invoice</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div ref={printRef} className={styles.invoice}>
@@ -33,11 +54,11 @@ export default function Invoice(props) {
 
             <Row gutter={24} style={{ marginTop: 32 }}>
               <Col span={8}>
-                <h3>Eco Haya</h3>
-                <div>#944/945, 4th Cross, 9th Main,</div>
-                <div>Vijaya Bank Layout,</div>
-                <div>Bannerghatta Road,</div>
-                <div>Bangalore - 560076</div>
+                <h3>Inventory Applicaiton</h3>
+                <div>81 Victoria St, Singapore 188065</div>
+                <div>Singapore Managament University</div>
+                <div></div>
+                <div>Singapore - 188065</div>
               </Col>
               <Col span={8} offset={8}>
                 <table>
@@ -47,11 +68,11 @@ export default function Invoice(props) {
                   </tr>
                   <tr>
                     <th>Invoice Date :</th>
-                    <td>10-01-2018</td>
+                    <td>04-07-2022</td>
                   </tr>
                   <tr>
                     <th>Due Date :</th>
-                    <td>10-01-2018</td>
+                    <td>04-07-2022</td>
                   </tr>
                 </table>
               </Col>
@@ -59,28 +80,18 @@ export default function Invoice(props) {
 
             <Row style={{ marginTop: 48 }}>
               <div>
-                Bill To: <strong>Strides Shasun Ltd</strong>
+                Bill To: <strong>Lazada</strong>
               </div>
-              <div>Bannerghatt Road,</div>
-              <div>Bangalore - 560076</div>
+              <div>51 Bras Basah Rd,</div>
+              <div>Singapore - 189554</div>
             </Row>
 
             <Row style={{ marginTop: 48 }}>
-              <Table
-                dataSource={[
-                  {
-                    id: 1,
-                    name: "Accommodation (Single Occupancy)",
-                    description: "Accommodation",
-                    price: 1599,
-                    quantity: 1,
-                  },
-                ]}
-                pagination={false}
-              >
-                <Table.Column title="Items" dataIndex="name" />
-                <Table.Column title="Description" dataIndex="description" />
+              <Table dataSource={invoiceOrders} pagination={false}>
+                <Table.Column title="ID" dataIndex="productId" />
                 <Table.Column title="Quantity" dataIndex="quantity" />
+                <Table.Column title="Supplier" dataIndex="supplier" />
+                <Table.Column title="Name" dataIndex="name" />
                 <Table.Column title="Price" dataIndex="price" />
                 <Table.Column title="Line Total" />
               </Table>
@@ -91,27 +102,21 @@ export default function Invoice(props) {
                 <table>
                   <tr>
                     <th>Gross Total :</th>
-                    <td>Rs. 1599</td>
+                    <td>{formatter.format(totalPrice)}</td>
                   </tr>
                   <tr>
-                    <th>IGST @6% :</th>
-                    <td>Rs. 95.94</td>
-                  </tr>
-                  <tr>
-                    <th>CGST @6% :</th>
-                    <td>Rs. 95.94</td>
+                    <th>GST @7% :</th>
+                    <td>{formatter.format(totalPrice * 0.07)}</td>
                   </tr>
                   <tr>
                     <th>Nett Total :</th>
-                    <td>Rs. 1790.88</td>
+                    <td>{formatter.format(totalPrice * 1.07)}</td>
                   </tr>
                 </table>
               </Col>
             </Row>
 
             <Row style={{ marginTop: 48, textAlign: "center" }}>notes</Row>
-
-            <Row style={{ marginTop: 48, textAlign: "center" }}>Footer</Row>
           </div>
         </div>
       </Modal.Body>
@@ -119,11 +124,13 @@ export default function Invoice(props) {
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={() => props.handleDownloadPdf(printRef)}>
-          Print
+        <Button
+          variant="primary"
+          onClick={() => props.handleDownloadPdf(printRef)}
+        >
+          Download PDF
         </Button>
       </Modal.Footer>
     </Modal>
   );
 }
-

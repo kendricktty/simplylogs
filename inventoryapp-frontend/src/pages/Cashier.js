@@ -8,7 +8,6 @@ import Invoice from "../components/Cashier/Invoice";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
-
 export default function Cashier() {
   // Initialize the products to be empty at first
   const [products, setProducts] = React.useState({});
@@ -40,12 +39,12 @@ export default function Cashier() {
     setOrder(
       order.map((order_item) => {
         if (order_item.productId === id) {
-          if (status === "-") {
+          if (status === "-" && order_item.quantity >= 1) {
             return {
               ...order_item,
               quantity: order_item.quantity - 1,
             };
-          } else {
+          } else if (status == "+") {
             return {
               ...order_item,
               quantity: order_item.quantity + 1,
@@ -82,8 +81,6 @@ export default function Cashier() {
 
   const row_cols = sliceOrderList(ordersList);
 
-
-
   const handleDownloadPdf = async (printRef) => {
     const element = printRef.current;
     console.log(element);
@@ -111,17 +108,22 @@ export default function Cashier() {
           Add Item
         </button>
 
-        <button className={styles.generateInvoice} onClick={() => setShowEditProduct(true)}>
+        <button
+          className={styles.generateInvoice}
+          onClick={() => setShowEditProduct(true)}
+        >
           Generate Invoice
         </button>
         {form && <InventoryForm setForm={setForm} addOrder={addOrder} />}
       </div>
       {/* This is the code for the invoice template*/}
 
-      <Invoice 
-      setShowEditProduct={setShowEditProduct}
-      showEditProduct={showEditProduct}
-      handleDownloadPdf={handleDownloadPdf}
+      <Invoice
+        setShowEditProduct={setShowEditProduct}
+        showEditProduct={showEditProduct}
+        handleDownloadPdf={handleDownloadPdf}
+        order={order}
+        product={productOrders}
       />
     </div>
   );
