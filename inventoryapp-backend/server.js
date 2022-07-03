@@ -12,7 +12,6 @@ const inventoryRouter = require("./routes/inventory");
 const app = express();
 const PORT = process.env.PORT || 8001;
 
-//"mongodb+srv://admin:hello123@cluster0.mhqjs.mongodb.net/?retryWrites=true&w=majority&ssl=true";
 
 //Middleware
 app.use(express.json());
