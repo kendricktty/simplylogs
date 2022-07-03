@@ -122,7 +122,6 @@ export default function Cashier() {
         </button>
         {form && <InventoryForm setForm={setForm} addOrder={addOrder} />}
       </div>
-<<<<<<< HEAD
       {/* This is the code for the invoice template*/}
 
       <Invoice 
@@ -130,8 +129,6 @@ export default function Cashier() {
       showEditProduct={showEditProduct}
       handleDownloadPdf={handleDownloadPdf}
       />
-=======
->>>>>>> b1fdd54d6142bdd402afb39ad7032801baf66620
     </div>
   );
 }
