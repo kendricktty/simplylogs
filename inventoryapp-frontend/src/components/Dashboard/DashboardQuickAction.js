@@ -7,13 +7,9 @@ export default function DashboardQuickAction() {
   return (
     <div>
       <i>Welcome Back Store Manager !</i>
-<<<<<<< HEAD
-      <div className="container "></div>
-=======
       <div className="container ">
         
       </div>
->>>>>>> 10d038f5b9ce02abd10d63a1b3d3bc4a3ff6dd08
     </div>
   );
 }
