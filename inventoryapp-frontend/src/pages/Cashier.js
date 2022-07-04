@@ -7,6 +7,7 @@ import styles from "../styles/cashier.module.css";
 import Invoice from "../components/Cashier/Invoice";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import { Alert } from "react-bootstrap";
 
 export default function Cashier() {
   // Initialize the products to be empty at first
@@ -16,7 +17,9 @@ export default function Cashier() {
   // This is the total number of items that the users hopes to purchase.
   const [order, setOrder] = React.useState([]);
   const [showEditProduct, setShowEditProduct] = React.useState(false);
+  const [error, setError] = React.useState("");
   const productOrders = products;
+  console.log(products);
 
   // Load the product when the page is rendered at first
   React.useEffect(() => {
@@ -26,12 +29,44 @@ export default function Cashier() {
   }, []);
 
   function addOrder(item) {
-    setOrder((order) => [...order, item]);
+    let addedBefore = false;
+    let notInProduct = true;
+    for (let i = 0; i < order.length; i++) {
+      if (order[i] != null) {
+        if (order[i].productId == item.productId) {
+          addedBefore = true;
+          setError("The Item has been added to the Basket previously");
+          break;
+        }
+      }
+    }
+    for (let i = 0; i < products.length; i++) {
+      if (item.productId == products[i].productId) {
+        notInProduct = false;
+        break;
+      }
+    }
+    if (notInProduct) {
+      setError("The Item is not in the Company's Product List");
+    }
+
+    if (!addedBefore && !notInProduct) {
+      setOrder((order) => [...order, item]);
+      setError("");
+    }
   }
   function deleteOrder(event, id) {
     event.stopPropagation();
     setOrder((order) =>
-      order.filter((order_item) => order_item.productId !== id)
+      order.filter((order_item) => {
+        if (order_item != null) {
+          if (order_item.productId !== id) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      })
     );
   }
   function updateCount(event, id, status) {
@@ -44,7 +79,9 @@ export default function Cashier() {
               ...order_item,
               quantity: order_item.quantity - 1,
             };
-          } else if (status == "+") {
+          } else if (status === "-" && order_item.quantity == 0) {
+            return null;
+          } else {
             return {
               ...order_item,
               quantity: order_item.quantity + 1,
@@ -57,18 +94,22 @@ export default function Cashier() {
     );
   }
 
-  const ordersList = order.map((order_item) => (
-    <OrderCard
-      price={productOrders[order_item.productId - 1].price}
-      supplier={productOrders[order_item.productId - 1].supplier}
-      name={productOrders[order_item.productId - 1].productName}
-      quantity={order_item.quantity}
-      key={order_item.productId}
-      id={order_item.productId}
-      deleteOrder={deleteOrder}
-      updateCount={updateCount}
-    />
-  ));
+  const ordersList = order.map((order_item) => {
+    if (order_item != null) {
+      return (
+        <OrderCard
+          price={productOrders[order_item.productId - 1].price}
+          supplier={productOrders[order_item.productId - 1].supplier}
+          name={productOrders[order_item.productId - 1].productName}
+          quantity={order_item.quantity}
+          key={order_item.productId}
+          id={order_item.productId}
+          deleteOrder={deleteOrder}
+          updateCount={updateCount}
+        />
+      );
+    }
+  });
   function sliceOrderList(ordersList) {
     const newArray = [];
     var startIndex = 0;
@@ -96,7 +137,13 @@ export default function Cashier() {
 
   return (
     <div className="dashboard container-fluid">
+      {error && (
+        <Alert variant="danger" className={styles.alertDanger}>
+          {error}
+        </Alert>
+      )}
       <SideNav />
+
       <div className="salesMain">
         <Header pageName="Cashier" />
         <div className="container mt-5">

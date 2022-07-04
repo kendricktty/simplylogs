@@ -21,19 +21,25 @@ var formatter = new Intl.NumberFormat("en-US", {
 
 export default function Invoice(props) {
   const invoiceOrders = props.order.map((order_item) => {
-    return {
-      ...order_item,
-      price: props.product[order_item.productId - 1].price,
-      supplier: props.product[order_item.productId - 1].supplier,
-      name: props.product[order_item.productId - 1].productName,
-      total: formatter.format(order_item.quantity * props.product[order_item.productId - 1].price)
-    };
+    if (order_item != null) {
+      return {
+        ...order_item,
+        price: props.product[order_item.productId - 1].price,
+        supplier: props.product[order_item.productId - 1].supplier,
+        name: props.product[order_item.productId - 1].productName,
+        total: formatter.format(
+          order_item.quantity * props.product[order_item.productId - 1].price
+        ),
+      };
+    }
   });
 
   var totalPrice = 0;
 
   invoiceOrders.map((order) => {
-    totalPrice += order.price * order.quantity;
+    if (order != null) {
+      totalPrice += order.price * order.quantity;
+    }
   });
 
   const printRef = React.createRef();
@@ -94,7 +100,7 @@ export default function Invoice(props) {
                 <Table.Column title="Supplier" dataIndex="supplier" />
                 <Table.Column title="Name" dataIndex="name" />
                 <Table.Column title="Price" dataIndex="price" />
-                <Table.Column title="Total" dataIndex="total"/>
+                <Table.Column title="Total" dataIndex="total" />
               </Table>
             </Row>
 

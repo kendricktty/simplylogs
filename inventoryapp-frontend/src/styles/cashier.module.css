@@ -38,6 +38,8 @@
 
 
 }
-.invoice{
-    visibility:visible;
+.alertDanger{
+    text-align: center;
+    z-index: 10000;
 }
+
