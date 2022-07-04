@@ -1,0 +1,17 @@
+.quickActionContainer {
+  margin: 10px;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(10, 10, 10, 10);
+  border-radius: 30px;
+}
+.smallerQuickActionContainer {
+  border-radius: 30px;
+}
+.errorIcon {
+  transform: scale(2);
+}
+.quickActionText {
+  margin: 10px;
+  font-size: large;
+  font-style: italic;
+}
