@@ -1,4 +1,5 @@
 import "./WidgetLarge.css";
+import React from "react";
 
 export default function WidgetLarge() {
   const Button = ({ type }) => {
