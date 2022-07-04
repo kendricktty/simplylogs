@@ -382,4 +382,12 @@ InventoryNav--catergoryBtn:hover {
 .TUEFO {
   border-radius: 5px;
 }
+.dashboardWelcomeBackMessage {
+  margin: 5px;
+  font-size: large;
+}
 
+.dashboardWidgets {
+  display: flex;
+  margin: 20px;
+}

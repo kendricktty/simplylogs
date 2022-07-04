@@ -1,7 +1,7 @@
 import React from "react";
-import "./featuredInfo.css";
+import "./FeaturedInfo.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
-
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 export default function featuredInfo() {
   return (
     <div className="featured">
@@ -10,7 +10,7 @@ export default function featuredInfo() {
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">$2,415</span>
           <span className="featuredMoneyRate">
-            -11.4
+            +51.4
             <ArrowUpward />
           </span>
         </div>
@@ -21,8 +21,8 @@ export default function featuredInfo() {
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">$2,222</span>
           <span className="featuredMoneyRate">
-            -11.4
-            <ArrowUpward />
+            -1.4
+            <ArrowDownward />
           </span>
         </div>
         <span className="featuredSub">Compared to last month</span>
@@ -33,11 +33,12 @@ export default function featuredInfo() {
           <span className="featuredMoney">$2,415</span>
           <span className="featuredMoneyRate">
             -11.4
-            <ArrowUpward />
+            <ArrowDownward />
           </span>
         </div>
         <span className="featuredSub">Compared to last month</span>
       </div>
+      <ToggleSwitch values={["Daily", "Weekly", "Monthly"]} selected="Daily" />
     </div>
   );
 }
