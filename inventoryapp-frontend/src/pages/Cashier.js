@@ -6,7 +6,6 @@ import OrderCard from "../components/Cashier/OrderCard";
 import styles from "../styles/cashier.module.css";
 import Invoice from "../components/Cashier/Invoice";
 import html2canvas from "html2canvas";
-
 import { jsPDF } from "jspdf";
 
 export default function Cashier() {
@@ -16,6 +15,7 @@ export default function Cashier() {
   const [form, setForm] = React.useState(false);
   // This is the total number of items that the users hopes to purchase.
   const [order, setOrder] = React.useState([]);
+  const [showEditProduct, setShowEditProduct] = React.useState(false);
   const productOrders = products;
 
   // Load the product when the page is rendered at first
@@ -39,12 +39,12 @@ export default function Cashier() {
     setOrder(
       order.map((order_item) => {
         if (order_item.productId === id) {
-          if (status === "-") {
+          if (status === "-" && order_item.quantity >= 1) {
             return {
               ...order_item,
               quantity: order_item.quantity - 1,
             };
-          } else {
+          } else if (status == "+") {
             return {
               ...order_item,
               quantity: order_item.quantity + 1,
@@ -80,20 +80,16 @@ export default function Cashier() {
   }
 
   const row_cols = sliceOrderList(ordersList);
-  console.log(row_cols);
-  const printRef = React.createRef();
 
-  const handleDownloadPdf = async () => {
+  const handleDownloadPdf = async (printRef) => {
     const element = printRef.current;
     console.log(element);
     const canvas = await html2canvas(element);
     const data = canvas.toDataURL("image/png");
-
     const pdf = new jsPDF();
     const imgProperties = pdf.getImageProperties(data);
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
-
     pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
     pdf.save("invoice.pdf");
   };
@@ -112,11 +108,23 @@ export default function Cashier() {
           Add Item
         </button>
 
-        <button className={styles.generateInvoice} onClick={handleDownloadPdf}>
+        <button
+          className={styles.generateInvoice}
+          onClick={() => setShowEditProduct(true)}
+        >
           Generate Invoice
         </button>
         {form && <InventoryForm setForm={setForm} addOrder={addOrder} />}
       </div>
+      {/* This is the code for the invoice template*/}
+
+      <Invoice
+        setShowEditProduct={setShowEditProduct}
+        showEditProduct={showEditProduct}
+        handleDownloadPdf={handleDownloadPdf}
+        order={order}
+        product={productOrders}
+      />
     </div>
   );
 }

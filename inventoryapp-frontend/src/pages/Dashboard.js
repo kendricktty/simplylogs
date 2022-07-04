@@ -14,9 +14,6 @@ export default function Dashboard() {
       <SideNav />
       <div className="dashboardMain">
         <Header pageName={"Dashboard"} />
-        <div className="dashboardWelcomeBackMessage">
-          <i>Welcome Back Store Manager!</i>
-        </div>
         <DashboardQuickAction />
         <FeaturedInfo />
         <Chart

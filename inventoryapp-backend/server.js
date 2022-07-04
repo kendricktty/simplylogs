@@ -7,6 +7,7 @@ const cors = require("cors");
 
 // Import routers
 const inventoryRouter = require("./routes/inventory");
+const orderRouter = require("./routes/order")
 
 //App Config
 const app = express();
@@ -19,6 +20,7 @@ app.use(cors());
 
 // Initialise InventoryRouter
 app.use("/inventory", inventoryRouter);
+app.use("/order", orderRouter)
 
 //API Endpoints
 app.get("/", (req, res) => res.status(200).send("Welcome"));
