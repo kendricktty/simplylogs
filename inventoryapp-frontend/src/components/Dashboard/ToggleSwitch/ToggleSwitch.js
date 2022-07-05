@@ -7,7 +7,6 @@ import {
   SwitchSelection,
 } from "./ToggleSwitchStyles.js";
 
-
 const ClickableLabel = ({ title, onChange, id }) => (
   <SwitchLabel onClick={() => onChange(title)} className={id}>
     {title}
@@ -23,6 +22,7 @@ class ToggleSwitch extends Component {
 
   handleChange = val => {
     this.setState({ selected: val });
+    this.props.changeSelected({ selected: val });
   };
 
   selectionStyle = () => {
@@ -37,7 +37,7 @@ class ToggleSwitch extends Component {
       <Switch>
         {this.props.values.map(val => {
           return (
-            <span>
+            <span style={{alignSelf:"end"}}>
               <ConcealedRadio value={val} selected={selected} />
               <ClickableLabel title={val} onChange={this.handleChange} />
             </span>

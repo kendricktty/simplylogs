@@ -2,7 +2,39 @@ import React from "react";
 import "./FeaturedInfo.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-export default function featuredInfo() {
+import { useState, useEffect } from "react";
+
+const revenueArr = [
+  {
+    daySalesRevenue: 2415,
+    daySalesRate: 51.4,
+  },
+  {
+    revenue: 2415,
+    rate: 51.4,
+  },
+  {
+    revenue: 2415,
+    rate: 51.4,
+  }
+];
+
+export default function FeaturedInfo() {
+  const [switchLogicState, setSwitchLogicState] = useState("Yesterday");
+  const [switchOutputState, setSwitchOutputState] = useState("Daily");
+
+  useEffect(() => {
+    console.log(switchOutputState);
+
+    if (switchOutputState.selected === "Daily") {
+      setSwitchLogicState("Yesterday");
+    } else if (switchOutputState.selected === "Weekly") {
+      setSwitchLogicState("Last Week");
+    } else if (switchOutputState.selected === "Monthly") {
+      setSwitchLogicState("Last Month");
+    }
+  }, [switchOutputState]);
+
   return (
     <div className="featured">
       <div className="featuredItem">
@@ -14,7 +46,7 @@ export default function featuredInfo() {
             <ArrowUpward />
           </span>
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Compared to {switchLogicState}</span>
       </div>
       <div className="featuredItem">
         <span className="featuredTitle">Cost</span>
@@ -25,7 +57,7 @@ export default function featuredInfo() {
             <ArrowDownward />
           </span>
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Compared to {switchLogicState}</span>
       </div>
       <div className="featuredItem">
         <span className="featuredTitle">Sales</span>
@@ -36,9 +68,13 @@ export default function featuredInfo() {
             <ArrowDownward />
           </span>
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Compared to {switchLogicState}</span>
       </div>
-      <ToggleSwitch values={["Daily", "Weekly", "Monthly"]} selected="Daily" />
+      <ToggleSwitch
+        values={["Daily", "Weekly", "Monthly"]}
+        selected={switchOutputState}
+        changeSelected={setSwitchOutputState}
+      />
     </div>
   );
 }

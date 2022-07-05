@@ -1,29 +1,15 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../styles/dashboard.module.css";
+import styles from "../../../styles/dashboard.module.css";
 import axios from "axios";
 
-const holidayAPI =
-  "https://rjchow.github.io/singapore_public_holidays/api/" +
-  Number(new Date().getFullYear());
-
-const client = axios.create({
-  baseURL: holidayAPI,
-});
+import holidayData from "../../../data/holidays2022.json";
 
 export default function Card() {
-  const [posts, setPosts] = useState([]);
+  const [holidays, setHolidays] = useState([]);
 
-  useEffect(() => {
-    async function fetchdata() {
-      const request = await axios.get("/data.json").catch(e => {
-        console.log(e);
-      });
-      setPosts(request?.data);
-    }
-    fetchdata();
-  }, []);
+  console.log(holidayData);
 
-  console.log(posts);
+
 
   return (
     <div class="row gx-4 gy-3 mt-2">
