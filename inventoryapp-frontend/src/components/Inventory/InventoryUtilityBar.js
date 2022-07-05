@@ -1,5 +1,6 @@
 import React from "react";
 import AddProductForm from "./AddProductForm"
+import axios from "../../axios/axios"
 
 
 export default function InventoryUtilityBar(props) {
@@ -23,15 +24,20 @@ export default function InventoryUtilityBar(props) {
     category: "",
   });
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const submittingData = formData;
 
     //need to change to Integer for productId and quantit and set id to productid
     submittingData.productId = parseInt(submittingData.productId);
-    submittingData.id = submittingData.productId;
+    // submittingData.id = submittingData.productId;
     submittingData.quantity = parseInt(submittingData.quantity);
-    submittingData.price = parseFloat(submittingData.price)
+    submittingData.price = parseInt(submittingData.price)
+    try {
+      await axios.post('/inventory', submittingData)
+    } catch (error) {
+      console.log(error)
+    }
     
     props.handleAddData(submittingData);
     // const requestOptions = {

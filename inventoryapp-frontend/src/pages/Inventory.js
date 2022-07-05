@@ -58,6 +58,7 @@ function Inventory() {
       }
       return { inventory: [...prevState.inventory, data] };
     });
+
   }
 
   return (
