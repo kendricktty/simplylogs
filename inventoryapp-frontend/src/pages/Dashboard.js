@@ -7,6 +7,7 @@ import Chart from "../components/Dashboard/Chart/Chart";
 import { salesData } from "../components/Dashboard/dummyData";
 import WidgetLarge from "../components/Dashboard/Widget/WidgetLarge";
 import WidgetSmall from "../components/Dashboard/Widget/WidgetSmall";
+import Card from "../components/Cards/Card"
 
 export default function Dashboard() {
   return (

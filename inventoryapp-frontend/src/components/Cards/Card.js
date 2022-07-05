@@ -15,10 +15,10 @@ export default function Card() {
 
   useEffect(() => {
     async function fetchdata() {
-      const request = await axios.get("/data.json").catch(e => {
+      const request = await client.get("/data.json").catch(e => {
         console.log(e);
       });
-      setPosts(request?.data);
+      setPosts(request.data);
     }
     fetchdata();
   }, []);
