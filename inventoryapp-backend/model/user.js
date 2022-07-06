@@ -21,5 +21,4 @@ const userSchema = mongoose.Schema({
     orders: []
 });
 
-
 module.exports = mongoose.model('user', userSchema)
