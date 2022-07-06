@@ -47,14 +47,6 @@ export default function Card() {
           </div>
         </div>
       </div>
-      <div className="col-md-6  ">
-        <div class={"dashboardDisplay" + " " + styles.events}>
-          <i>Upcoming Events</i>
-        </div>
-        <div class={"dashboardDisplay mt-3" + " " + styles.analytics}>
-          <i>Analytics</i>
-        </div>
-      </div>
     </div>
   );
 }
