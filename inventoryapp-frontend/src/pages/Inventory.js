@@ -4,34 +4,26 @@ import Header from "../components/Header";
 import InventoryNav from "../components/Inventory/InventoryNav";
 import InventoryTable from "../components/Inventory/InventoryTable";
 import EditProductForm from "../components/Inventory/EditProductForm";
-
-import data from "../data/data.json";
+import axios from "../axios/axios"
 
 function Inventory() {
   //States
   const [showEditProduct, setShowEditProduct] = React.useState(false);
-  //fetches data from server on load if there are saved cookies on browser load from browser
-  const [dynamicData, setDynamicData] = React.useState(
-    JSON.parse(localStorage.getItem("inventory")) ||
-      fetch("http://localhost:8001/inventory")
-        .then(res => res.json())
-        .then(data => setDynamicData(data))
-  );
+  const [dynamicData, setDynamicData] = React.useState([]);
   const [editFormParam, setEditFormParams] = React.useState({});
 
-  // Integrate backend to frontend
-  // React.useEffect(() => {
-  //   fetch('http://localhost:8001/inventory')
-  //     .then(res => res.json())
-  //     .then(data => setDynamicData(data[0]))
-
-  // }, [])
-
-  //saves it back to the browser memory
+  // fetches frontend data
   React.useEffect(() => {
-    console.log("changed");
-    localStorage.setItem("inventory", JSON.stringify(dynamicData));
-  }, [dynamicData]);
+    async function fetchData() {
+      try {
+        const res = await axios.get("/inventory")
+        setDynamicData(res.data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData()
+  },[])
 
   //editForm
   function handleChange(e) {
@@ -66,13 +58,14 @@ function Inventory() {
       }
       return { inventory: [...prevState.inventory, data] };
     });
+
   }
 
   return (
     <div className="inventory container-fluid">
       <SideNav />
       <div className="inventoryMain">
-        <Header pageName="Inventory"/>
+        <Header pageName="Inventory" />
         <div className="inventoryDisplay">
           <InventoryNav />
           <div className="inventoryTable">
