@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const {productSchema} = require('./product')
 
-const orderSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     userid: {
         type: String,
         required: [true, "Please enter a memorable user ID"]
@@ -17,5 +17,9 @@ const orderSchema = mongoose.Schema({
     passwordSalt: {
         type: String
     },
-    products: [productSchema]
+    inventory: [productSchema],
+    orders: []
 });
+
+
+module.exports = mongoose.model('user', userSchema)
