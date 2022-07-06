@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/dashboard.module.css";
-import axios from "axios";
 
 import holidayData from "../../../data/holidays2022.json";
 
 export default function Card() {
   const [holidays, setHolidays] = useState([]);
-
-  console.log(holidayData);
-
-
 
   return (
     <div class="row gx-4 gy-3 mt-2">

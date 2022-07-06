@@ -68,7 +68,7 @@ export default function FeaturedInfo() {
       <div className="featuredItem">
         <span className="featuredTitle">Revenue</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">${revenueMoneyState}</span>
+          <span className="featuredMoney">${revenueMoneyState.toFixed(2)}</span>
           <span className="featuredMoneyRate">
             {(revenueRateState >= 0 ? `+` : ``) + revenueRateState}
             {revenueRateState >= 0 ? <ArrowUpward /> : <ArrowDownward />}
@@ -79,7 +79,7 @@ export default function FeaturedInfo() {
       <div className="featuredItem">
         <span className="featuredTitle">Cost</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">${costMoneyState}</span>
+          <span className="featuredMoney">${costMoneyState.toFixed(2)}</span>
           <span className="featuredMoneyRate">
             {(costRateState >= 0 ? `+` : ``) + costRateState}
             {costRateState >= 0 ? <ArrowUpward /> : <ArrowDownward />}
@@ -90,7 +90,7 @@ export default function FeaturedInfo() {
       <div className="featuredItem">
         <span className="featuredTitle">Sales</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">${saleMoneyState}</span>
+          <span className="featuredMoney">${saleMoneyState.toFixed(2)}</span>
           <span className="featuredMoneyRate">
             {(salesRateState >= 0 ? `+` : ``) + salesRateState}
             {salesRateState >= 0 ? <ArrowUpward /> : <ArrowDownward />}
