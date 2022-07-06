@@ -42,8 +42,6 @@ export default function FeaturedInfo() {
   const [saleMoneyState, setSalesMoneyState] = useState(0);
   const [salesRateState, setSalesRateState] = useState(0);
 
-  const isMoneyPositive = money => {};
-
   useEffect(() => {
     if (switchOutputState.selected === "Daily") {
       setSwitchLogicState("Yesterday");
