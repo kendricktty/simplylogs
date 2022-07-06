@@ -13,11 +13,6 @@ https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- 
 export default function InventoryTable(props) {
   // States
   const [filterText, setFilterText] = React.useState("");
-
-  // filter function
-
-  // show Edit From
-  // const [editForm, setEditForm] = React.useState(false);
   const [resetPaginationToggle, setResetPaginationToggle] =
     React.useState(false);
 
@@ -60,23 +55,10 @@ export default function InventoryTable(props) {
     );
   }, [filterText, resetPaginationToggle]);
 
-  //testing editing of data only can edit name for now//
+  
   const handleEditButtonClick = (data) => {
     props.setShowEditProduct((prevState) => !prevState);
     props.setEditFormParams(data);
-
-    // console.log(editForm);
-    // console.log(data)
-    // let newName = prompt("Enter new name: ");
-    // if (newName === null) {
-    //   newName = data.productName;
-    // }
-    // const id = data.productId;
-    // setDynamicData((prevState) => ({
-    //   inventory: prevState.inventory.map((el) =>
-    //     el.productId === id ? { ...el, productName: newName } : el
-    //   ),
-    // }));
   };
 
   const handleGenerateButtonClick = (data) => {
