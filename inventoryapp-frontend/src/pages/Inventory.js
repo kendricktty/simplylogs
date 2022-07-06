@@ -37,13 +37,22 @@ function Inventory() {
   }
 
   //editForm save
-  function handleSave() {
+  async function handleSave() {
     const id = editFormParam.productId;
     setDynamicData(prevState => ({
       inventory: prevState.inventory.map(el =>
         el.productId === id ? editFormParam : el
       ),
     }));
+
+  
+
+    try {
+      console.log('trying')
+      await axios.patch(`/inventory/${editFormParam._id}`,editFormParam)
+    } catch (error) {
+      console.log(error)
+    }
 
     setShowEditProduct(false);
   }

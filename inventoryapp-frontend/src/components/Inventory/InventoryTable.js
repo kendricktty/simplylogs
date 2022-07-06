@@ -66,7 +66,7 @@ export default function InventoryTable(props) {
     props.setEditFormParams(data);
 
     // console.log(editForm);
-    console.log(data)
+    // console.log(data)
     // let newName = prompt("Enter new name: ");
     // if (newName === null) {
     //   newName = data.productName;

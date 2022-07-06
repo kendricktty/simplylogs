@@ -8,6 +8,8 @@ import { salesData } from "../components/Dashboard/dummyData";
 import WidgetLarge from "../components/Dashboard/Widget/WidgetLarge";
 import WidgetSmall from "../components/Dashboard/Widget/WidgetSmall";
 import Card from "../components/Dashboard/Cards/Card";
+import Carousel from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/lib/style.css";
 
 export default function Dashboard() {
   return (
@@ -17,17 +19,20 @@ export default function Dashboard() {
         <Header pageName={"Dashboard"} />
         <DashboardQuickAction />
         <FeaturedInfo />
-        <Chart
-          data={salesData}
-          title="Sales Analytics"
-          grid
-          dataKey="Active Sales"
-        />
+        <Carousel plugins={["arrows", "infinite"]}>
+          <Chart
+            data={salesData}
+            title="Sales Analytics"
+            grid
+            dataKey="Active Sales"
+          />
+          <Card />
+          <WidgetSmall />
+        </Carousel>
         <div className="dashboardWidgets">
           <WidgetLarge />
           <WidgetSmall />
         </div>
-        <Card />
       </div>
     </div>
   );

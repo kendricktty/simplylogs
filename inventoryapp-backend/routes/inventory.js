@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllProducts, addProduct } = require('../controllers/products')
+const { getAllProducts, addProduct, editProduct } = require('../controllers/products')
 const inventoryRouter = express.Router();
 
 // Creates the database entry
@@ -34,5 +34,6 @@ inventoryRouter.put("/", (req, res) => {
 // });
 
 inventoryRouter.route('/').get(getAllProducts).post(addProduct)
+inventoryRouter.route('/:id').patch(editProduct)
 
 module.exports = inventoryRouter

@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/dashboard.module.css";
-import axios from "axios";
 
 import holidayData from "../../../data/holidays2022.json";
 
 export default function Card() {
   const [holidays, setHolidays] = useState([]);
-
-  console.log(holidayData);
-
-
 
   return (
     <div class="row gx-4 gy-3 mt-2">
@@ -50,14 +45,6 @@ export default function Card() {
               </b>
             </span>
           </div>
-        </div>
-      </div>
-      <div className="col-md-6  ">
-        <div class={"dashboardDisplay" + " " + styles.events}>
-          <i>Upcoming Events</i>
-        </div>
-        <div class={"dashboardDisplay mt-3" + " " + styles.analytics}>
-          <i>Analytics</i>
         </div>
       </div>
     </div>
