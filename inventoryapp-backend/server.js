@@ -4,7 +4,7 @@ require("express-async-errors");
 const express = require("express");
 const connectDB = require("./db/connect");
 const cors = require("cors");
-const errorHandler = require('./middleware/error-handler');
+const notFound = require('./middleware/not-found');
 const genericError = require('./middleware/generic-error');
 
 // Import routers
@@ -28,7 +28,7 @@ app.use("/order", orderRouter)
 app.get("/", (req, res) => res.status(200).send("Welcome"));
 
 //error handler
-app.use(errorHandler);
+app.use(notFound);
 app.use(genericError);
 
 //connect to database

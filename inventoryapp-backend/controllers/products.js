@@ -12,7 +12,7 @@ const getProduct = async (req, res, next) => {
     if (!product) {
         const err = new Error(`No product with id ${id}`);
         err.status = 404;
-        next(err);
+        return next(err);
     }
     res.status(200).json({
         product
@@ -39,10 +39,27 @@ const editProduct = async (req, res, next) => {
     if (!product) {
         const err = new Error(`No product with id ${id}`);
         err.status = 404;
-        next(err);
+        return next(err);
     }
 
     res.status(200).json({ product })
 }
 
-module.exports = { getAllProducts, addProduct, editProduct, getProduct}
+const deleteProduct = async (req, res, next) => {
+    const { id } = req.params
+    // console.log(id)
+
+    const product = await Product.findOneAndDelete({ _id: id })
+    product[deleted] = Date.now();
+    console.log(product);
+
+    if (!product) {
+        const err = new Error(`No product with id ${id}`);
+        err.status = 404;
+        return next(err);
+    }
+
+    res.status(200).json({ product })
+}
+
+module.exports = { getAllProducts, addProduct, editProduct, getProduct, deleteProduct}

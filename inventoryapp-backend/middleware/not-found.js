@@ -1,4 +1,4 @@
-const errorHandler = async (err, req, res, next) => {
+const notFound = async (err, req, res, next) => {
     if (err.status === 404) {
         console.log(err.status);
         return res.json({
@@ -8,4 +8,4 @@ const errorHandler = async (err, req, res, next) => {
     next(err);
 }
 
-module.exports = errorHandler;
+module.exports = notFound;
