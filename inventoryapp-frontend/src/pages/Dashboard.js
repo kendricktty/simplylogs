@@ -16,7 +16,7 @@ export default function Dashboard() {
     <div className="dashboard container-fluid">
       <SideNav />
       <div className="dashboardMain">
-        <Header pageName={"Dashboard"} />
+        <Header pageName={"Dashboard"} logo="bx bxs-dashboard" />
         <DashboardQuickAction />
         <FeaturedInfo />
         <Carousel plugins={["arrows", "infinite"]}>

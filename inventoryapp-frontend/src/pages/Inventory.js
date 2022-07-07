@@ -74,7 +74,7 @@ function Inventory() {
     <div className="inventory container-fluid">
       <SideNav />
       <div className="inventoryMain">
-        <Header pageName="Inventory" />
+        <Header pageName="Inventory" logo="bx bx-package"/>
         <div className="inventoryDisplay">
           <InventoryNav />
           <div className="inventoryTable">

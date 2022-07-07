@@ -29,7 +29,7 @@ export default function Header(props) {
   return (
     <div className="header">
       <div className="headerLogo">
-        <i class="bx bx-package"></i>
+        <i class={props.logo}></i>
         <h4 className="header--name">{props.pageName}</h4>
       </div>
       <h6>{`${currentdate.getDate()}/${
