@@ -12,6 +12,7 @@ const validationError = require("./middleware/validationError");
 // Import routers
 const inventoryRouter = require("./routes/inventory");
 const orderRouter = require("./routes/order");
+const dashboardRouter = require("./routes/dashboard");
 
 //App Config
 const app = express();
@@ -25,6 +26,7 @@ app.use(cors());
 // Initialise InventoryRouter
 app.use("/inventory", inventoryRouter);
 app.use("/order", orderRouter)
+app.use("/dashboard", dashboardRouter);
 
 //API Endpoints
 app.get("/", (req, res) => res.status(200).send("Welcome"));
