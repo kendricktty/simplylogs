@@ -6,7 +6,7 @@ export default function Sales() {
     <div className="dashboard container-fluid">
       <SideNav />
       <div className="salesMain">
-        <Header pageName="Sales" />
+        <Header pageName="Sales" logo="bx bx-stats"/>
       </div>
     </div>
   );

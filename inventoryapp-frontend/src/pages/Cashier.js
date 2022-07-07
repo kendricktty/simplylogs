@@ -154,7 +154,7 @@ export default function Cashier() {
       <SideNav />
 
       <div className="salesMain">
-        <Header pageName="Cashier" />
+        <Header pageName="Cashier" logo="fa-solid fa-cart-shopping"/>
         <div className="container mt-5">
           {row_cols.map((x) => (
             <div className="row gx-2 gy-4">{x}</div>
