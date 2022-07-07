@@ -8,7 +8,7 @@ const getAllProducts = async (req, res, next) => {
 
 const getProduct = async (req, res, next) => {
     const { id } = req.params;
-    const product = await Product.findOne({ __id: id });
+    const product = await Product.findOne({ _id: id });
     if (!product) {
         const err = new Error(`No product with id ${id}`);
         err.status = 404;
