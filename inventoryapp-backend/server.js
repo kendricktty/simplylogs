@@ -1,15 +1,17 @@
 require("dotenv").config();
 require("express-async-errors");
 
+// Import error handlers
 const express = require("express");
 const connectDB = require("./db/connect");
 const cors = require("cors");
 const notFound = require('./middleware/not-found');
 const genericError = require('./middleware/generic-error');
+const validationError = require("./middleware/validationError");
 
 // Import routers
 const inventoryRouter = require("./routes/inventory");
-const orderRouter = require("./routes/order")
+const orderRouter = require("./routes/order");
 
 //App Config
 const app = express();
@@ -28,6 +30,7 @@ app.use("/order", orderRouter)
 app.get("/", (req, res) => res.status(200).send("Welcome"));
 
 //error handler
+app.use(validationError);
 app.use(notFound);
 app.use(genericError);
 

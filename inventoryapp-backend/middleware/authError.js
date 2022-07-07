@@ -3,7 +3,7 @@ const authError = async (err, req, res, next) => {
         return next(err);
     }
 
-    res.json({
+    res.status(err.status).json({
         msg: err.message
     });
 }
