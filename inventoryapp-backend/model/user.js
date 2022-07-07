@@ -14,9 +14,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, "Enter an email address"]
     },
-    passwordSalt: {
+    password: {
         type: String
+        required: [true, "Enter a password"]
     },
+    salt: String,
     inventory: [productSchema],
     orders: []
 });
