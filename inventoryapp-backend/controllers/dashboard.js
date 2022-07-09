@@ -24,6 +24,6 @@ const getOrdersFromPast12Months = async (req, res, next) => {
     }
     console.log('Dashboard refreshed');
     res.status(200).json(returnSalesValues);
-}
+} 
 
 module.exports = getOrdersFromPast12Months;
