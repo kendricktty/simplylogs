@@ -1,10 +1,14 @@
+const { Order } = require('../model/order');
+
 const getOrdersFromPastNMonths = async (req, res, next) => {
-    const since = req.query.since;
-    const upper = new Date();
-    const lower = new Date();
-    lower.setMonth(upper.getMonth() - since);
-    console.log(`Upper: ${upper}; Lower: ${lower}`);
-    res.status(400).send();
+    const returnSalesValues = {};
+    const today = new Date();
+
+    for (let i = 0; i <= 12; i++) {
+        const orderList = await Order.aggregate({});
+        today.setMonth(today.getMonth() - i);
+    }
+    res.status(200).json({ returnSalesValues });
 }
 
 module.exports = getOrdersFromPastNMonths;

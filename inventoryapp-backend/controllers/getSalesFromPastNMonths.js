@@ -5,5 +5,7 @@ const getSalesFromPastNMonths = () => {
     lower.setMonth(upper.getMonth() - months_before);
     console.log(upper >= lower)
     console.log(`Upper: ${upper}; Lower: ${lower}`)
+
+    
 }
 getSalesFromPastNMonths()

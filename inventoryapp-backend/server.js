@@ -13,6 +13,8 @@ const validationError = require("./middleware/validationError");
 const inventoryRouter = require("./routes/inventory");
 const orderRouter = require("./routes/order");
 const dashboardRouter = require("./routes/dashboard");
+const productFilterRouter = require("./routes/filter/product");
+const orderFilterRouter = require("./routes/filter/order");
 
 //App Config
 const app = express();
@@ -27,6 +29,9 @@ app.use(cors());
 app.use("/inventory", inventoryRouter);
 app.use("/order", orderRouter)
 app.use("/dashboard", dashboardRouter);
+
+app.use("/filter/inventory", productFilterRouter);
+app.use("/filter/order", orderFilterRouter);
 
 //API Endpoints
 app.get("/", (req, res) => res.status(200).send("Welcome"));
