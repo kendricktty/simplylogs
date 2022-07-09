@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
     },
     salt: String,
     inventory: [productSchema],
-    orders: []
+    orders: [orderSchema]
 });
 
 module.exports = mongoose.model('user', userSchema)

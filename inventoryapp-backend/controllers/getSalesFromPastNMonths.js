@@ -1,4 +1,4 @@
-const getSalesFromPastNMonths = () => {
+const getSalesFromPast12Months = () => {
     const months_before = 4
     const upper = new Date();
     const lower = new Date();
@@ -8,4 +8,4 @@ const getSalesFromPastNMonths = () => {
 
     
 }
-getSalesFromPastNMonths()
+getSalesFromPast12Months()
