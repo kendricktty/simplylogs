@@ -23,6 +23,7 @@ export default function InventoryUtilityBar(props) {
     price: "",
     category: "",
   });
+  const [errorMsg, setErrorMsg] = React.useState("")
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -36,18 +37,13 @@ export default function InventoryUtilityBar(props) {
     try {
       await axios.post('/inventory', submittingData)
     } catch (error) {
-      console.log(error)
+      setErrorMsg(error.response.data.msg)
+      return
     }
     
+    setErrorMsg("")
     props.handleAddData(submittingData);
-    // const requestOptions = {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(submittingData),
-    // };
-    // fetch("http://localhost:3000/inventory", requestOptions);
+   
     setFormData({
       productId: "",
       productName: "",
@@ -68,6 +64,7 @@ export default function InventoryUtilityBar(props) {
       price: "",
       category: "",
     });
+    setErrorMsg('')
     setShowForm(!showForm);
   }
 
@@ -141,7 +138,9 @@ export default function InventoryUtilityBar(props) {
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
           handleChange={handleChange}
-          formData={formData} />
+          formData={formData} 
+          errorMsg={errorMsg}
+        />
       )}
     </div>
   );

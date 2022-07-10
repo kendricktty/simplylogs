@@ -11,6 +11,7 @@ export default function AddProductForm(props) {
   return (
     <Form>
       <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
+        {props.errorMsg != "" && <div className='alert alert-danger'>{props.errorMsg}</div>}
         <Form.Label>ProductID</Form.Label>
         <Form.Control
           type="number"
