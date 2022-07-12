@@ -11,10 +11,19 @@ import Card from "../components/Dashboard/Cards/Card";
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
+
+  //handle logout
+  function handleLogout() {
+    console.log(props.setUser)
+    console.log(props.user);
+    localStorage.clear()
+    props.setUser(null)
+  }
+
   return (
     <div className="dashboard container-fluid">
-      <SideNav />
+      <SideNav handleLogout={handleLogout}/>
       <div className="dashboardMain">
         <Header pageName={"Dashboard"} logo="bx bxs-dashboard" />
         <DashboardQuickAction />

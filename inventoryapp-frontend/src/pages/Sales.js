@@ -1,10 +1,15 @@
 import React from "react";
 import SideNav from "../components/SideNav";
 import Header from "../components/Header";
-export default function Sales() {
+export default function Sales(props) {
+  //handle logout
+  function handleLogout() {
+    props.setUser(false)
+  }
+
   return (
     <div className="dashboard container-fluid">
-      <SideNav />
+      <SideNav handleLogout={handleLogout}/>
       <div className="salesMain">
         <Header pageName="Sales" logo="bx bx-stats"/>
       </div>

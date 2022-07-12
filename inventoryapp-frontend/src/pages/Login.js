@@ -3,7 +3,11 @@ import styles from "../styles/login.module.css";
 import Carousel from "react-bootstrap/Carousel";
 import "animate.css";
 
-export default function Login() {
+export default function Login(props) {
+  function handleLogin() {
+    localStorage.setItem("user", "john")
+    props.setUser(localStorage.getItem("user"))
+  }
   return (
     <div className={"container-fluid" + " " + styles.login}>
       <div className={"row" + " " + styles.login}>
@@ -98,7 +102,7 @@ export default function Login() {
                       placeholder="Password"
                     />
                   </div>
-                  <button type="button" className={styles.loginButton}>
+                  <button type="button" className={styles.loginButton} onClick={() => handleLogin()}>
                     LOGIN
                   </button>
                   <div className="message">

@@ -10,7 +10,7 @@ import { jsPDF } from "jspdf";
 import { Alert } from "react-bootstrap";
 import axios from '../axios/axios'
 
-export default function Cashier() {
+export default function Cashier(props) {
   // Initialize the products to be empty at first
   const [products, setProducts] = React.useState({});
   //
@@ -144,6 +144,12 @@ export default function Cashier() {
     pdf.save("invoice.pdf");
   };
 
+  //handle logout
+  function handleLogout() {
+    props.setUser(false)
+  }
+
+
   return (
     <div className="dashboard container-fluid">
       {error && (
@@ -151,7 +157,7 @@ export default function Cashier() {
           {error}
         </Alert>
       )}
-      <SideNav />
+      <SideNav handleLogout={handleLogout}/>
 
       <div className="salesMain">
         <Header pageName="Cashier" logo="fa-solid fa-cart-shopping"/>

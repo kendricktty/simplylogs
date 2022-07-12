@@ -6,7 +6,7 @@ import InventoryTable from "../components/Inventory/InventoryTable";
 import EditProductForm from "../components/Inventory/EditProductForm";
 import axios from "../axios/axios"
 
-function Inventory() {
+function Inventory(props) {
   //States
   const [showEditProduct, setShowEditProduct] = React.useState(false);
   const [dynamicData, setDynamicData] = React.useState([]);
@@ -71,9 +71,14 @@ function Inventory() {
 
   }
 
+  //handle logout
+  function handleLogout() {
+    props.setUser(false)
+  }
+
   return (
     <div className="inventory container-fluid">
-      <SideNav />
+      <SideNav handleLogout={handleLogout}/>
       <div className="inventoryMain">
         <Header pageName="Inventory" logo="bx bx-package"/>
         <div className="inventoryDisplay">
