@@ -86,4 +86,9 @@ cursor:pointer;
     width:65%;
     height: 50%;
 }
+.signUp{
+    text-decoration: none;
+    color:white;
+    font-weight: 800;
+}
 

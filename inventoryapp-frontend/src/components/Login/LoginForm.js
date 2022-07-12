@@ -38,6 +38,7 @@ export default function LoginForm(props) {
           <div className="message">
             <div>
               <a
+                className={styles.signUp}
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
