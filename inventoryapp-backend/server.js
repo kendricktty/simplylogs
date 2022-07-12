@@ -6,10 +6,12 @@ const connectDB = require("./db/connect");
 const cors = require("cors");
 const notFoundMiddleware = require('./middleware/not-found');
 const errorMiddleware = require('./middleware/error-handler');
+const authenticateUser = require('./middleware/authentication')
 
 // Import routers
 const inventoryRouter = require("./routes/inventory");
 const orderRouter = require("./routes/order")
+const authRouter = require("./routes/auth")
 
 //App Config
 const app = express();
@@ -21,9 +23,13 @@ app.use(express.json());
 app.use(cors());
 
 
+//localhost:8001/auth/register  axios.post('/auth/register', req.body)
+//
+
 // Initialise InventoryRouter
-app.use("/inventory", inventoryRouter);
-app.use("/order", orderRouter)
+app.use("/auth", authRouter)
+app.use("/inventory", authenticateUser,inventoryRouter);
+app.use("/order", authenticateUser,orderRouter)
 
 //API Endpoints
 app.get("/", (req, res) => res.status(200).send("Welcome"));

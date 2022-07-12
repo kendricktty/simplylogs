@@ -6,6 +6,8 @@ import Dashboard from "./pages/Dashboard";
 import Sales from "./pages/Sales";
 import Cashier from "./pages/Cashier";
 
+
+
 function App() {
   return (
     <BrowserRouter>

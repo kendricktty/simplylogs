@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const productSchema = mongoose.Schema({
+const productSchema = new mongoose.Schema({
     productId: {
         type: Number,
         required: [true, "ProductId must be provided"]
@@ -24,12 +24,18 @@ const productSchema = mongoose.Schema({
     category: {
         type: String,
         required: [true, "Category must be specified"]
+    },createdBy: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'Please provide user'],
+    },
+    company: {
+        type: String,
+        required: [true, 'Please provide company name']
     }
-
-})
+}, { timestamps: true }
+)
 
 const Product = mongoose.model('Product', productSchema)
 
-module.exports = {
-    Product, productSchema
-}
+module.exports = Product

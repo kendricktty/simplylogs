@@ -18,6 +18,7 @@ function Inventory() {
       try {
         const res = await axios.get("/inventory")
         setDynamicData(res.data)
+        
       } catch (error) {
         console.log(error);
       }
