@@ -27,7 +27,7 @@ export default function LoginForm(props) {
               </span>
             </div>
             <input
-              type="text"
+              type="password"
               className="form-control"
               placeholder="Password"
             />
