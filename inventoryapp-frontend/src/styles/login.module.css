@@ -1,15 +1,36 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 .login{
     margin:0;
     padding:0;
     height:100vh;
-    background-color: #E5E5E5;
+   
 
 
+}
+
+
+.leftSide{
+    height: 100%;
+    background-color:black ;
+    display:flex;
+    align-items: middle;
+    text-align: center;
+}
+.rightSide{
+    height: 100%;
+    text-align: center;
+}
+.carousellItem{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
 }
 .form{
     background-color:#E3C7FF ;
 
 
+}
+.logo{
+    font-weight: 700;
+    color: purple;
 }
