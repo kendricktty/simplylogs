@@ -10,4 +10,21 @@ const addProduct = async (req, res) => {
     res.status(201).json({ product })
 }
 
-module.exports = { getAllProducts, addProduct }
+const editProduct = async (req, res) => {
+    const { id } = req.params
+    // console.log(id)
+
+    const product = await Product.findOneAndUpdate({_id: id}, req.body, {
+        new: true,
+        runValidators: true
+    })
+
+
+    if (!product) {
+        throw new Error(`no product id with ${id}`)
+    }
+    
+    res.status(200).json({ product })
+}
+
+module.exports = { getAllProducts, addProduct, editProduct }

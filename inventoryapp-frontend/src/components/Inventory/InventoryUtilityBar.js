@@ -1,5 +1,6 @@
 import React from "react";
 import AddProductForm from "./AddProductForm"
+import axios from "../../axios/axios"
 
 
 export default function InventoryUtilityBar(props) {
@@ -22,26 +23,27 @@ export default function InventoryUtilityBar(props) {
     price: "",
     category: "",
   });
+  const [errorMsg, setErrorMsg] = React.useState("")
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const submittingData = formData;
 
     //need to change to Integer for productId and quantit and set id to productid
     submittingData.productId = parseInt(submittingData.productId);
-    submittingData.id = submittingData.productId;
+    // submittingData.id = submittingData.productId;
     submittingData.quantity = parseInt(submittingData.quantity);
-    submittingData.price = parseFloat(submittingData.price)
+    submittingData.price = parseInt(submittingData.price)
+    try {
+      await axios.post('/inventory', submittingData)
+    } catch (error) {
+      setErrorMsg(error.response.data.msg)
+      return
+    }
     
+    setErrorMsg("")
     props.handleAddData(submittingData);
-    // const requestOptions = {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(submittingData),
-    // };
-    // fetch("http://localhost:3000/inventory", requestOptions);
+   
     setFormData({
       productId: "",
       productName: "",
@@ -62,6 +64,7 @@ export default function InventoryUtilityBar(props) {
       price: "",
       category: "",
     });
+    setErrorMsg('')
     setShowForm(!showForm);
   }
 
@@ -135,7 +138,9 @@ export default function InventoryUtilityBar(props) {
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
           handleChange={handleChange}
-          formData={formData} />
+          formData={formData} 
+          errorMsg={errorMsg}
+        />
       )}
     </div>
   );

@@ -4,6 +4,8 @@ require("express-async-errors");
 const express = require("express");
 const connectDB = require("./db/connect");
 const cors = require("cors");
+const notFoundMiddleware = require('./middleware/not-found');
+const errorMiddleware = require('./middleware/error-handler');
 
 // Import routers
 const inventoryRouter = require("./routes/inventory");
@@ -18,6 +20,7 @@ const PORT = process.env.PORT || 8001;
 app.use(express.json());
 app.use(cors());
 
+
 // Initialise InventoryRouter
 app.use("/inventory", inventoryRouter);
 app.use("/order", orderRouter)
@@ -25,11 +28,9 @@ app.use("/order", orderRouter)
 //API Endpoints
 app.get("/", (req, res) => res.status(200).send("Welcome"));
 
-// Error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Internal Server Error");
-});
+//error handler
+app.use(notFoundMiddleware);
+app.use(errorMiddleware);
 
 //connect to database
 const start = async () => {
