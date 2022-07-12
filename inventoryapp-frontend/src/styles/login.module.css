@@ -32,5 +32,58 @@
 }
 .logo{
     font-weight: 700;
-    color: purple;
+    color: #CB6CE6;
 }
+
+.loginForm{
+
+background-color:#CB6CE6;
+border-radius: 15px;
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+.formBox{
+    width:380px;
+    height:340px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    border-radius:2%;
+}
+
+button{
+margin-top:40px;
+
+}
+.message{
+display:flex;
+justify-content:space-between
+}
+.social{
+display:flex;
+justify-content:space-around;
+padding:10px;
+}
+
+.social i{
+font-size:35px;
+}
+
+.social i:hover{
+color:red;
+cursor:pointer;
+}
+.loginButton{
+    margin-top: 5%;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    font-family:  'Montserrat', sans-serif;
+    font-weight:bold;
+    width:65%;
+    height: auto;
+}
+

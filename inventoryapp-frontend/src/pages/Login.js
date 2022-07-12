@@ -55,6 +55,53 @@ export default function Login() {
               style={{ width: "125px", height: "auto" }}
             />
           </div>
+          <div className={styles.loginForm + " " + "mx-4 mt-3"}>
+            <div className={styles.formBox}>
+              <div className={styles.headerForm + " " + "mt-4"}>
+                <h4 className="text-primary text-center"></h4>
+                <div className="image"></div>
+              </div>
+              <div className="body-form">
+                <form>
+                  <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">
+                        <i class="fa fa-user"></i>
+                      </span>
+                    </div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Username"
+                    />
+                  </div>
+                  <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">
+                        <i class="fa fa-lock"></i>
+                      </span>
+                    </div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <button type="button" className={styles.loginButton}>
+                    LOGIN
+                  </button>
+                  <div className="message">
+                    <div>
+                      <input type="checkbox" /> Remember ME
+                    </div>
+                    <div>
+                      <a href="#">Sign Up a New Account</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

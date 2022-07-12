@@ -19,6 +19,7 @@ export default function Dashboard() {
         <Header pageName={"Dashboard"} logo="bx bxs-dashboard" />
         <DashboardQuickAction />
         <FeaturedInfo />
+
         <Carousel plugins={["arrows", "infinite"]}>
           <Chart
             data={salesData}
