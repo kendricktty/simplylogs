@@ -40,7 +40,7 @@ export default function SideNav(props) {
           <div className="profile-details">
             <img src="../../logo192.png" alt="profileImg" />
             <div className="name_job">
-              <div className="name">Manager</div>
+              <div className="name">{JSON.parse(localStorage.getItem("user")).name.toUpperCase()}</div>
             </div>
             <a  onClick={() => props.handleLogout()}>
               <i class="bx bx-log-out" id="log_out"></i>

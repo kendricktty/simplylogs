@@ -44,16 +44,17 @@ export default function InventoryTable(props) {
         setFilterText("");
       }
     };
-
+    
     return (
       <InventoryUtilityBar
         onFilter={(e) => setFilterText(e.target.value)}
         onClear={handleClear}
         filterText={filterText}
         handleAddData={handleAddData}
+        productCount={props.dynamicData.count}
       />
     );
-  }, [filterText, resetPaginationToggle]);
+  }, [filterText, resetPaginationToggle, props]);
 
   
   const handleEditButtonClick = (data) => {

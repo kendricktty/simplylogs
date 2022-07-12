@@ -20,9 +20,9 @@ function App() {
           <Outlet />
         </ProtectedRoute>}>
           <Route index element={<Dashboard setUser={setUser} user={user}/>} />
-          <Route exact path="/inventory" element={<Inventory setUser={setUser}/>} />
-          <Route exact path="/sales" element={<Sales setUser={setUser}/>} />
-          <Route exact path="/cashier" element={<Cashier setUser={setUser}/>} />
+          <Route exact path="/inventory" element={<Inventory user={user} setUser={setUser}/>} />
+          <Route exact path="/sales" element={<Sales user={user} setUser={setUser}/>} />
+          <Route exact path="/cashier" element={<Cashier user={user} setUser={setUser}/>} />
         </Route>
       </Routes>
     </BrowserRouter>

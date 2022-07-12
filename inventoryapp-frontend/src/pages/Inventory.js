@@ -12,13 +12,12 @@ function Inventory(props) {
   const [dynamicData, setDynamicData] = React.useState([]);
   const [editFormParam, setEditFormParams] = React.useState({});
 
-  // fetches frontend data
+  // fetches backend data
   React.useEffect(() => {
     async function fetchData() {
       try {
         const res = await axios.get("/inventory")
         setDynamicData(res.data)
-        
       } catch (error) {
         console.log(error);
       }
@@ -54,7 +53,6 @@ function Inventory(props) {
     } catch (error) {
       console.log(error)
     }
-
     setShowEditProduct(false);
   }
 

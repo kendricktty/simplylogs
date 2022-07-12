@@ -21,7 +21,7 @@ export default function Dashboard(props) {
 
   return (
     <div className="dashboard container-fluid">
-      <SideNav handleLogout={handleLogout}/>
+      <SideNav handleLogout={handleLogout} user={props.user}/>
       <div className="dashboardMain">
         <Header pageName={"Dashboard"} logo="bx bxs-dashboard" />
         <DashboardQuickAction />
