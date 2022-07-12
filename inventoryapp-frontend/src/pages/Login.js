@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../styles/login.module.css";
 import Carousel from "react-bootstrap/Carousel";
+import "animate.css";
 
 export default function Login() {
   return (
@@ -49,7 +50,17 @@ export default function Login() {
         </div>
         <div className={"col-md-6" + " " + styles.rightSide}>
           <div>
-            <h1 className={styles.logo + " " + "mt-3"}>SIMPLY LOGS</h1>
+            <h1
+              className={
+                styles.logo +
+                " " +
+                "mt-3" +
+                " " +
+                " animate__animated animate__bounce"
+              }
+            >
+              SIMPLY LOGS
+            </h1>
             <img
               src="../../logo.jpg"
               style={{ width: "125px", height: "auto" }}
