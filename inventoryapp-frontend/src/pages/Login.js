@@ -1,13 +1,53 @@
 import React from "react";
 import styles from "../styles/login.module.css";
 import Carousel from "react-bootstrap/Carousel";
+import { useNavigate } from "react-router";
 import "animate.css";
+import LoginForm from "../components/Login/LoginForm";
+import RegisterForm from "../components/Login/RegisterForm";
+import axios from "../axios/axios"
+const initialState = {
+  name: '',
+  email: '',
+  password: '',
+  company:'',
+  isMember: true
+}
+
 
 export default function Login(props) {
-  function handleLogin() {
-    localStorage.setItem("user", "john")
-    props.setUser(localStorage.getItem("user"))
+  const navigate = useNavigate()
+  const [values, setValues] = React.useState(initialState);
+
+  async function handleLogin() {
+    try {
+      console.log(values);
+      const res = await axios.post('/auth/login', values)
+      console.log(res);
+      localStorage.setItem("user", JSON.stringify(res.data.user))
+      localStorage.setItem("token", JSON.stringify(res.data.token))
+      props.setUser(localStorage.getItem("user"))
+      navigate('/')
+    } catch (error) {
+      //add an error message
+      // console.log(error);
+      console.log(error.response.data.msg)
+    }
+    
   }
+
+  function handleRegister() {
+
+  }
+
+  function toggleMember() {
+    setValues({ ...values, isMember: !values.isMember })
+  }
+
+  function handleChange(e) {
+    setValues({ ...values, [e.target.name]: e.target.value })
+  }
+
   return (
     <div className={"container-fluid" + " " + styles.login}>
       <div className={"row" + " " + styles.login}>
@@ -71,51 +111,22 @@ export default function Login(props) {
             />
           </div>
           <div className={styles.loginForm + " " + "mx-4 mt-3"}>
-            <div className={styles.formBox}>
-              <div className={styles.headerForm + " " + "mt-4"}>
-                <h4 className="text-primary text-center"></h4>
-                <div className="image"></div>
-              </div>
-              <div className="body-form">
-                <form>
-                  <div className="input-group mb-3">
-                    <div className="input-group-prepend">
-                      <span className="input-group-text">
-                        <i class="fa fa-user"></i>
-                      </span>
-                    </div>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Username"
-                    />
-                  </div>
-                  <div className="input-group mb-3">
-                    <div className="input-group-prepend">
-                      <span className="input-group-text">
-                        <i class="fa fa-lock"></i>
-                      </span>
-                    </div>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Password"
-                    />
-                  </div>
-                  <button type="button" className={styles.loginButton} onClick={() => handleLogin()}>
-                    LOGIN
-                  </button>
-                  <div className="message">
-                    <div>
-                      <input type="checkbox" /> Remember ME
-                    </div>
-                    <div>
-                      <a href="#">Sign Up a New Account</a>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+            {values.isMember ? (
+              <LoginForm 
+                values={values} 
+                setValues={setValues}
+                toggleMember={toggleMember}
+                handleChange={handleChange}
+                handleLogin={handleLogin}
+              />
+            ) : (
+              <RegisterForm 
+                values={values} 
+                setValues={setValues} 
+                toggleMember={toggleMember}
+                handleChange={handleChange}
+              />
+            )}
           </div>
         </div>
       </div>

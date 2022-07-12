@@ -11,7 +11,6 @@ import ProtectedRoute from "./pages/ProtectedRoute"
 
 function App() {
   const [user, setUser] = React.useState(localStorage.getItem("user"))
-  console.log(user);
   return (
     <BrowserRouter>
       <Routes>

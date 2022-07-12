@@ -15,8 +15,6 @@ export default function Dashboard(props) {
 
   //handle logout
   function handleLogout() {
-    console.log(props.setUser)
-    console.log(props.user);
     localStorage.clear()
     props.setUser(null)
   }
