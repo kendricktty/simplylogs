@@ -75,7 +75,8 @@ function Inventory(props) {
 
   //handle logout
   function handleLogout() {
-    props.setUser(false)
+    localStorage.clear()
+    props.setUser(null)
   }
 
   return (

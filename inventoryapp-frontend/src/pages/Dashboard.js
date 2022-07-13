@@ -13,13 +13,16 @@ import "@brainhubeu/react-carousel/lib/style.css";
 import axios from '../axios/axios'
 
 export default function Dashboard(props) {
-
   const [data, setData] = React.useState({})
-
+  
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get("/order?get12MonthsData=true")
+        const res = await axios.get("/order?get12MonthsData=true", {
+          headers: {
+            "Authorization" : `Bearer ${localStorage.getItem('token')}`
+          }
+        })
         setData(res.data)
       } catch (error) {
         console.log(error);

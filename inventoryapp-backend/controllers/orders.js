@@ -26,7 +26,6 @@ function getTotal(orders) {
 
 const getAllOrders = async (req, res) => {
     const { period, get12MonthsData } = req.query
-    // console.log(req.query);
     const queryObject = {}
     queryObject.company = req.user.company
 
@@ -77,7 +76,7 @@ const getAllOrders = async (req, res) => {
 
         const EndMonth = addMonths(1, new Date(StartMonth.toISOString()))
 
-        const orders = await Order.find({createdAt : {$gte:StartMonth.toISOString(), $lt:EndMonth.toISOString()}})
+        const orders = await Order.find({createdAt : {$gte:StartMonth.toISOString(), $lt:EndMonth.toISOString()}, company: req.user.company})
 
         const dataObject = { name:month[StartMonth.getMonth()], "Revenue": getTotal(orders)}
 
@@ -89,7 +88,7 @@ const getAllOrders = async (req, res) => {
             
             const EndMonth = addMonths(1, new Date(StartMonth.toISOString()))
 
-            const orders = await Order.find({createdAt : {$gte:StartMonth.toISOString(), $lt:EndMonth.toISOString()}})
+            const orders = await Order.find({createdAt : {$gte:StartMonth.toISOString(), $lt:EndMonth.toISOString()}, company: req.user.company})
 
             
             const dataObject = { name:month[StartMonth.getMonth()], "Revenue": getTotal(orders)}

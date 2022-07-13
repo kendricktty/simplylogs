@@ -146,7 +146,8 @@ export default function Cashier(props) {
 
   //handle logout
   function handleLogout() {
-    props.setUser(false)
+    localStorage.clear()
+    props.setUser(null)
   }
 
 
