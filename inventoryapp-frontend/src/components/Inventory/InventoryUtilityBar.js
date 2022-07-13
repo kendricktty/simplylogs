@@ -1,5 +1,6 @@
 import React from "react";
 import AddProductForm from "./AddProductForm"
+import axios from "../../axios/axios"
 
 
 export default function InventoryUtilityBar(props) {
@@ -15,35 +16,47 @@ export default function InventoryUtilityBar(props) {
 
   const [showForm, setShowForm] = React.useState(false);
   const [formData, setFormData] = React.useState({
-    productId: "",
+    productId: "", 
     productName: "",
     supplier: "",
     quantity: "",
     price: "",
     category: "",
   });
+  const [errorMsg, setErrorMsg] = React.useState("")
 
-  function handleSubmit(e) {
+  React.useEffect(() => {
+    setFormData({
+      productId: props.productCount + 1, 
+      productName: "",
+      supplier: "",
+      quantity: "",
+      price: "",
+      category: "",
+    })
+  }, [props])
+
+  async function handleSubmit(e) {
     e.preventDefault();
     const submittingData = formData;
 
     //need to change to Integer for productId and quantit and set id to productid
     submittingData.productId = parseInt(submittingData.productId);
-    submittingData.id = submittingData.productId;
+    // submittingData.id = submittingData.productId;
     submittingData.quantity = parseInt(submittingData.quantity);
-    submittingData.price = parseFloat(submittingData.price)
+    submittingData.price = parseFloat(submittingData.price).toFixed(2)
+    try {
+      await axios.post('/inventory', submittingData)
+    } catch (error) {
+      setErrorMsg(error.response.data.msg)
+      return
+    }
     
+    setErrorMsg("")
     props.handleAddData(submittingData);
-    // const requestOptions = {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(submittingData),
-    // };
-    // fetch("http://localhost:3000/inventory", requestOptions);
+   
     setFormData({
-      productId: "",
+      productId: props.productCount + 1,
       productName: "",
       supplier: "",
       quantity: "",
@@ -55,13 +68,14 @@ export default function InventoryUtilityBar(props) {
 
   function handleCancel() {
     setFormData({
-      productId: "",
+      productId: props.productCount + 1,
       productName: "",
       supplier: "",
       quantity: "",
       price: "",
       category: "",
     });
+    setErrorMsg('')
     setShowForm(!showForm);
   }
 
@@ -135,7 +149,9 @@ export default function InventoryUtilityBar(props) {
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
           handleChange={handleChange}
-          formData={formData} />
+          formData={formData} 
+          errorMsg={errorMsg}
+        />
       )}
     </div>
   );

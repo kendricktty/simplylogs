@@ -8,8 +8,9 @@ import Invoice from "../components/Cashier/Invoice";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { Alert } from "react-bootstrap";
+import axios from '../axios/axios'
 
-export default function Cashier() {
+export default function Cashier(props) {
   // Initialize the products to be empty at first
   const [products, setProducts] = React.useState({});
   //
@@ -19,14 +20,22 @@ export default function Cashier() {
   const [showEditProduct, setShowEditProduct] = React.useState(false);
   const [error, setError] = React.useState("");
   const productOrders = products;
-  console.log(products);
+  
 
   // Load the product when the page is rendered at first
+  // React.useEffect(() => {
+  //   fetch("http://localhost:8001/inventory")
+  //     .then((res) => res.json())
+  //     .then((data) => setProducts(data["inventory"]));
+  // }, []);
+
   React.useEffect(() => {
-    fetch("http://localhost:8001/inventory")
-      .then((res) => res.json())
-      .then((data) => setProducts(data["inventory"]));
-  }, []);
+    async function fetchData() {
+      const res = await axios.get('/inventory')
+      setProducts(res.data.inventory)
+    }
+    fetchData()
+  }, [])
 
   function addOrder(item) {
     let addedBefore = false;
@@ -135,6 +144,12 @@ export default function Cashier() {
     pdf.save("invoice.pdf");
   };
 
+  //handle logout
+  function handleLogout() {
+    props.setUser(false)
+  }
+
+
   return (
     <div className="dashboard container-fluid">
       {error && (
@@ -142,10 +157,10 @@ export default function Cashier() {
           {error}
         </Alert>
       )}
-      <SideNav />
+      <SideNav handleLogout={handleLogout}/>
 
       <div className="salesMain">
-        <Header pageName="Cashier" />
+        <Header pageName="Cashier" logo="fa-solid fa-cart-shopping"/>
         <div className="container mt-5">
           {row_cols.map((x) => (
             <div className="row gx-2 gy-4">{x}</div>

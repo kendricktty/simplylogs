@@ -15,7 +15,7 @@ export default function EditProductForm(props) {
     <>
       <Modal show={props.showEditProduct} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Edit Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -91,7 +91,7 @@ export default function EditProductForm(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={props.handleSave}>
+          <Button variant="primary" onClick={() => props.handleSave()}>
             Save Changes
           </Button>
         </Modal.Footer>

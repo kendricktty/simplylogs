@@ -1,7 +1,8 @@
 .featured {
-  width: 80%;
+  width: 95%;
   display: flex;
   justify-content: space-around;
+  flex-direction: row;
   margin-top: 10px;
 }
 .featuredItem {
@@ -34,5 +35,3 @@
   align-items: center;
   margin-left: 20px;
 }
-
-

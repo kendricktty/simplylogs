@@ -4,34 +4,27 @@ import Header from "../components/Header";
 import InventoryNav from "../components/Inventory/InventoryNav";
 import InventoryTable from "../components/Inventory/InventoryTable";
 import EditProductForm from "../components/Inventory/EditProductForm";
+import axios from "../axios/axios"
 
-import data from "../data/data.json";
-
-function Inventory() {
+function Inventory(props) {
   //States
   const [showEditProduct, setShowEditProduct] = React.useState(false);
-  //fetches data from server on load if there are saved cookies on browser load from browser
-  const [dynamicData, setDynamicData] = React.useState(
-    JSON.parse(localStorage.getItem("inventory")) ||
-      fetch("http://localhost:8001/inventory")
-        .then(res => res.json())
-        .then(data => setDynamicData(data))
-  );
+  const [dynamicData, setDynamicData] = React.useState([]);
   const [editFormParam, setEditFormParams] = React.useState({});
+  const [category, setCategory] = React.useState("")
 
-  // Integrate backend to frontend
-  // React.useEffect(() => {
-  //   fetch('http://localhost:8001/inventory')
-  //     .then(res => res.json())
-  //     .then(data => setDynamicData(data[0]))
-
-  // }, [])
-
-  //saves it back to the browser memory
+  // fetches backend data
   React.useEffect(() => {
-    console.log("changed");
-    localStorage.setItem("inventory", JSON.stringify(dynamicData));
-  }, [dynamicData]);
+    async function fetchData() {
+      try {
+        const res = await axios.get("/inventory")
+        setDynamicData(res.data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData()
+  },[])
 
   //editForm
   function handleChange(e) {
@@ -45,14 +38,26 @@ function Inventory() {
   }
 
   //editForm save
-  function handleSave() {
-    const id = editFormParam.productId;
+  async function handleSave() {
+    const submittingData = editFormParam
+    const id = submittingData.productId;
+
+    //converts to appropriate datatypes
+    submittingData.quantity = parseInt(submittingData.quantity);
+    submittingData.price = parseFloat(submittingData.price).toFixed(2)
     setDynamicData(prevState => ({
       inventory: prevState.inventory.map(el =>
-        el.productId === id ? editFormParam : el
+        el.productId === id ? submittingData : el
       ),
     }));
 
+  
+
+    try {
+      await axios.patch(`/inventory/${submittingData._id}`,submittingData)
+    } catch (error) {
+      console.log(error)
+    }
     setShowEditProduct(false);
   }
 
@@ -61,20 +66,25 @@ function Inventory() {
   function handleAddData(data) {
     setDynamicData(prevState => {
       if (prevState.inventory === undefined) {
-        console.log("empty");
         return { inventory: [data] };
       }
       return { inventory: [...prevState.inventory, data] };
     });
+
+  }
+
+  //handle logout
+  function handleLogout() {
+    props.setUser(false)
   }
 
   return (
     <div className="inventory container-fluid">
-      <SideNav />
+      <SideNav handleLogout={handleLogout}/>
       <div className="inventoryMain">
-        <Header pageName="Inventory"/>
+        <Header pageName="Inventory" logo="bx bx-package"/>
         <div className="inventoryDisplay">
-          <InventoryNav />
+          <InventoryNav setCategory={setCategory}/>
           <div className="inventoryTable">
             <InventoryTable
               setShowEditProduct={setShowEditProduct}
@@ -82,6 +92,7 @@ function Inventory() {
               setDynamicData={setDynamicData}
               handleAddData={handleAddData}
               setEditFormParams={setEditFormParams}
+              category={category}
             />
             Generated Barcode:
             <div id="barcode"></div>

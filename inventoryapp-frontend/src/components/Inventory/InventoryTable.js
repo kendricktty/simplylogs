@@ -13,20 +13,16 @@ https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- 
 export default function InventoryTable(props) {
   // States
   const [filterText, setFilterText] = React.useState("");
-
-  // filter function
-
-  // show Edit From
-  // const [editForm, setEditForm] = React.useState(false);
   const [resetPaginationToggle, setResetPaginationToggle] =
     React.useState(false);
 
+  
   //set filtered item to filtered array of items or empty array if inventory is undef
   const filteredItems = props.dynamicData.inventory
     ? props.dynamicData.inventory.filter(
         (item) =>
           item.productName &&
-          item.productName.toLowerCase().includes(filterText.toLowerCase())
+          item.productName.toLowerCase().includes(filterText.toLowerCase()) && item.category.includes(props.category)
       )
     : [];
 
@@ -49,34 +45,22 @@ export default function InventoryTable(props) {
         setFilterText("");
       }
     };
-
+    
     return (
       <InventoryUtilityBar
         onFilter={(e) => setFilterText(e.target.value)}
         onClear={handleClear}
         filterText={filterText}
         handleAddData={handleAddData}
+        productCount={props.dynamicData.count}
       />
     );
-  }, [filterText, resetPaginationToggle]);
+  }, [filterText, resetPaginationToggle, props]);
 
-  //testing editing of data only can edit name for now//
+  
   const handleEditButtonClick = (data) => {
     props.setShowEditProduct((prevState) => !prevState);
     props.setEditFormParams(data);
-
-    // console.log(editForm);
-
-    // let newName = prompt("Enter new name: ");
-    // if (newName === null) {
-    //   newName = data.productName;
-    // }
-    // const id = data.productId;
-    // setDynamicData((prevState) => ({
-    //   inventory: prevState.inventory.map((el) =>
-    //     el.productId === id ? { ...el, productName: newName } : el
-    //   ),
-    // }));
   };
 
   const handleGenerateButtonClick = (data) => {
