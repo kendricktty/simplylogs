@@ -39,18 +39,22 @@ function Inventory(props) {
 
   //editForm save
   async function handleSave() {
-    const id = editFormParam.productId;
+    const submittingData = editFormParam
+    const id = submittingData.productId;
+
+    //converts to appropriate datatypes
+    submittingData.quantity = parseInt(submittingData.quantity);
+    submittingData.price = parseFloat(submittingData.price).toFixed(2)
     setDynamicData(prevState => ({
       inventory: prevState.inventory.map(el =>
-        el.productId === id ? editFormParam : el
+        el.productId === id ? submittingData : el
       ),
     }));
 
   
 
     try {
-      console.log('trying')
-      await axios.patch(`/inventory/${editFormParam._id}`,editFormParam)
+      await axios.patch(`/inventory/${submittingData._id}`,submittingData)
     } catch (error) {
       console.log(error)
     }
@@ -62,7 +66,6 @@ function Inventory(props) {
   function handleAddData(data) {
     setDynamicData(prevState => {
       if (prevState.inventory === undefined) {
-        console.log("empty");
         return { inventory: [data] };
       }
       return { inventory: [...prevState.inventory, data] };

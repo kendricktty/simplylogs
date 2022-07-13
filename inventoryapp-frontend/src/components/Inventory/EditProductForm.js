@@ -91,7 +91,7 @@ export default function EditProductForm(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={props.handleSave}>
+          <Button variant="primary" onClick={() => props.handleSave()}>
             Save Changes
           </Button>
         </Modal.Footer>

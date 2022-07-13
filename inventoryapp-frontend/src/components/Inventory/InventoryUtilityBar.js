@@ -44,7 +44,7 @@ export default function InventoryUtilityBar(props) {
     submittingData.productId = parseInt(submittingData.productId);
     // submittingData.id = submittingData.productId;
     submittingData.quantity = parseInt(submittingData.quantity);
-    submittingData.price = parseFloat(submittingData.price)
+    submittingData.price = parseFloat(submittingData.price).toFixed(2)
     try {
       await axios.post('/inventory', submittingData)
     } catch (error) {
@@ -56,7 +56,7 @@ export default function InventoryUtilityBar(props) {
     props.handleAddData(submittingData);
    
     setFormData({
-      productId: props.productCount,
+      productId: props.productCount + 1,
       productName: "",
       supplier: "",
       quantity: "",
