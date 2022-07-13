@@ -45,16 +45,16 @@ export default function Dashboard(props) {
         <DashboardQuickAction />
         <FeaturedInfo />
 
-        <Carousel plugins={["arrows", "infinite"]}>
+        {data.monthlyRevenue && <Carousel plugins={["arrows", "infinite"]}>
           <Chart
             data={data.monthlyRevenue}
             title="Sales Analytics"
             grid
-            dataKey="Active Sales"
+            dataKey="Revenue"
           />
           <Card />
           <WidgetSmall />
-        </Carousel>
+        </Carousel>}
         <div className="dashboardWidgets">
           <WidgetLarge />
           <WidgetSmall />
