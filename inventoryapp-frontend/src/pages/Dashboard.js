@@ -28,8 +28,6 @@ export default function Dashboard(props) {
     fetchData()
   },[])
 
-  console.log(data.monthlyRevenue);
-
 
   //handle logout
   function handleLogout() {
@@ -47,7 +45,7 @@ export default function Dashboard(props) {
 
         {data.monthlyRevenue && <Carousel plugins={["arrows", "infinite"]}>
           <Chart
-            data={data.monthlyRevenue}
+            data={data.monthlyRevenue.reverse()}
             title="Sales Analytics"
             grid
             dataKey="Revenue"
