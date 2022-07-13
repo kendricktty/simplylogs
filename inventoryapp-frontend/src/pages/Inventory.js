@@ -11,6 +11,7 @@ function Inventory(props) {
   const [showEditProduct, setShowEditProduct] = React.useState(false);
   const [dynamicData, setDynamicData] = React.useState([]);
   const [editFormParam, setEditFormParams] = React.useState({});
+  const [category, setCategory] = React.useState("")
 
   // fetches backend data
   React.useEffect(() => {
@@ -80,7 +81,7 @@ function Inventory(props) {
       <div className="inventoryMain">
         <Header pageName="Inventory" logo="bx bx-package"/>
         <div className="inventoryDisplay">
-          <InventoryNav />
+          <InventoryNav setCategory={setCategory}/>
           <div className="inventoryTable">
             <InventoryTable
               setShowEditProduct={setShowEditProduct}
@@ -88,6 +89,7 @@ function Inventory(props) {
               setDynamicData={setDynamicData}
               handleAddData={handleAddData}
               setEditFormParams={setEditFormParams}
+              category={category}
             />
             Generated Barcode:
             <div id="barcode"></div>

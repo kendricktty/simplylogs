@@ -22,21 +22,26 @@ export default function Login(props) {
   async function handleLogin() {
     try {
       const res = await axios.post('/auth/login', values)
-      console.log(res);
       localStorage.setItem("user", JSON.stringify(res.data.user))
       localStorage.setItem("token", res.data.token)
       props.setUser(JSON.parse(localStorage.getItem("user")))
       navigate('/')
     } catch (error) {
-      //add an error message
-      // console.log(error);
-      // console.log(error.response.data.msg)
+      console.log(error.response.data.msg)
     }
     
   }
 
-  function handleRegister() {
-
+  async function handleRegister() {
+    try {
+      const res = await axios.post('/auth/register', values)
+      localStorage.setItem("user", JSON.stringify(res.data.user))
+      localStorage.setItem("token", res.data.token)
+      props.setUser(JSON.parse(localStorage.getItem("user")))
+      navigate('/')
+    } catch (error) {
+      console.log(error.response.data.msg)
+    }
   }
 
   function toggleMember() {
@@ -124,6 +129,7 @@ export default function Login(props) {
                 setValues={setValues} 
                 toggleMember={toggleMember}
                 handleChange={handleChange}
+                handleRegister={handleRegister}
               />
             )}
           </div>

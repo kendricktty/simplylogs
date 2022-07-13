@@ -54,7 +54,7 @@ export default function RegisterForm(props) {
               onChange={(e) => props.handleChange(e)}
             />
           </div>
-          <button type="button" className={styles.loginButton}>
+          <button type="button" className={styles.loginButton} onClick={() => props.handleRegister()}>
             REGISTER
           </button>
           <div className="message">
