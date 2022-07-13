@@ -1,8 +1,31 @@
 const Order = require('../model/order')
 const { BadRequestError } = require('../errors')
 
+const month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+];
+
+function getTotal(orders) {
+    let total = 0
+    for (let index = 0; index < orders.length; index++) {
+        total += orders[index].grossTotal;
+    }
+    return total
+}
+
 const getAllOrders = async (req, res) => {
-    const { period } = req.query
+    const { period, get12MonthsData } = req.query
     // console.log(req.query);
     const queryObject = {}
     queryObject.company = req.user.company
@@ -32,15 +55,55 @@ const getAllOrders = async (req, res) => {
         queryObject.createdAt = { $gte: startOfMonth.toISOString()}
     }
 
+    //substract month function
+    function subtractMonths(numOfMonths, date) {
+        date.setMonth(date.getMonth() - numOfMonths);
+        return date;
+    }
+
+    //add month function
+    function addMonths(numOfMonths, date) {
+        const tempDate = date
+        tempDate.setMonth(date.getMonth() + numOfMonths);
+        return tempDate;
+    }
+
+
+
+    const monthlyRevenue = []
+    if(get12MonthsData) {
+
+        let StartMonth = startOfMonth
+
+        const EndMonth = addMonths(1, new Date(StartMonth.toISOString()))
+
+        const orders = await Order.find({createdAt : {$gte:StartMonth.toISOString(), $lt:EndMonth.toISOString()}})
+
+        const dataObject = { name:month[StartMonth.getMonth()], "Revenue": getTotal(orders)}
+
+        monthlyRevenue.push(dataObject)
+
+        for (let index = 1; index < 12; index++) {
+            
+            StartMonth = subtractMonths(1,StartMonth)
+            
+            const EndMonth = addMonths(1, new Date(StartMonth.toISOString()))
+
+            const orders = await Order.find({createdAt : {$gte:StartMonth.toISOString(), $lt:EndMonth.toISOString()}})
+
+            
+            const dataObject = { name:month[StartMonth.getMonth()], "Revenue": getTotal(orders)}
+
+            monthlyRevenue.push(dataObject)
+        }
+    }
 
 
     const orders = await Order.find(queryObject)
 
-    let total = 0
-    for (let index = 0; index < orders.length; index++) {
-        total += orders[index].grossTotal;
-    }
-    res.status(200).json({ orders, orderCount: orders.length, revenue: total })
+
+    
+    res.status(200).json({ orders, orderCount: orders.length, revenue: getTotal(orders),monthlyRevenue })
 }
 
 const createOrder = async (req, res) => {

@@ -10,8 +10,26 @@ import WidgetSmall from "../components/Dashboard/Widget/WidgetSmall";
 import Card from "../components/Dashboard/Cards/Card";
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
+import axios from '../axios/axios'
 
 export default function Dashboard(props) {
+
+  const [data, setData] = React.useState({})
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get("/order?get12MonthsData=true")
+        setData(res.data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData()
+  },[])
+
+  console.log(data.monthlyRevenue);
+
 
   //handle logout
   function handleLogout() {
@@ -29,7 +47,7 @@ export default function Dashboard(props) {
 
         <Carousel plugins={["arrows", "infinite"]}>
           <Chart
-            data={salesData}
+            data={data.monthlyRevenue}
             title="Sales Analytics"
             grid
             dataKey="Active Sales"
