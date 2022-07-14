@@ -16,7 +16,7 @@ export default function InventoryUtilityBar(props) {
 
   const [showForm, setShowForm] = React.useState(false);
   const [formData, setFormData] = React.useState({
-    productId: "",
+    productId: "", 
     productName: "",
     supplier: "",
     quantity: "",
@@ -24,6 +24,17 @@ export default function InventoryUtilityBar(props) {
     category: "",
   });
   const [errorMsg, setErrorMsg] = React.useState("")
+
+  React.useEffect(() => {
+    setFormData({
+      productId: props.productCount + 1, 
+      productName: "",
+      supplier: "",
+      quantity: "",
+      price: "",
+      category: "",
+    })
+  }, [props])
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -33,7 +44,7 @@ export default function InventoryUtilityBar(props) {
     submittingData.productId = parseInt(submittingData.productId);
     // submittingData.id = submittingData.productId;
     submittingData.quantity = parseInt(submittingData.quantity);
-    submittingData.price = parseInt(submittingData.price)
+    submittingData.price = parseFloat(submittingData.price).toFixed(2)
     try {
       await axios.post('/inventory', submittingData)
     } catch (error) {
@@ -45,7 +56,7 @@ export default function InventoryUtilityBar(props) {
     props.handleAddData(submittingData);
    
     setFormData({
-      productId: "",
+      productId: props.productCount + 1,
       productName: "",
       supplier: "",
       quantity: "",
@@ -57,7 +68,7 @@ export default function InventoryUtilityBar(props) {
 
   function handleCancel() {
     setFormData({
-      productId: "",
+      productId: props.productCount + 1,
       productName: "",
       supplier: "",
       quantity: "",

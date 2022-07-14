@@ -1,12 +1,57 @@
 import React from "react";
 import styles from "../styles/login.module.css";
 import Carousel from "react-bootstrap/Carousel";
+import { useNavigate } from "react-router";
 import "animate.css";
 import LoginForm from "../components/Login/LoginForm";
 import RegisterForm from "../components/Login/RegisterForm";
+import axios from "../axios/axios"
+const initialState = {
+  name: '',
+  email: '',
+  password: '',
+  company:'',
+  isMember: true
+}
 
-export default function Login() {
-  const [account, setAccount] = React.useState(true);
+
+export default function Login(props) {
+  const navigate = useNavigate()
+  const [values, setValues] = React.useState(initialState);
+
+  async function handleLogin() {
+    try {
+      const res = await axios.post('/auth/login', values)
+      localStorage.setItem("user", JSON.stringify(res.data.user))
+      localStorage.setItem("token", res.data.token)
+      props.setUser(JSON.parse(localStorage.getItem("user")))
+      navigate('/')
+    } catch (error) {
+      console.log(error.response.data.msg)
+    }
+    
+  }
+
+  async function handleRegister() {
+    try {
+      const res = await axios.post('/auth/register', values)
+      localStorage.setItem("user", JSON.stringify(res.data.user))
+      localStorage.setItem("token", res.data.token)
+      props.setUser(JSON.parse(localStorage.getItem("user")))
+      navigate('/')
+    } catch (error) {
+      console.log(error.response.data.msg)
+    }
+  }
+
+  function toggleMember() {
+    setValues({ ...values, isMember: !values.isMember })
+  }
+
+  function handleChange(e) {
+    setValues({ ...values, [e.target.name]: e.target.value })
+  }
+
   return (
     <div className={"container-fluid" + " " + styles.login}>
       <div className={"row" + " " + styles.login}>
@@ -70,10 +115,22 @@ export default function Login() {
             />
           </div>
           <div className={styles.loginForm + " " + "mx-4 mt-3"}>
-            {account ? (
-              <LoginForm setAccount={setAccount} />
+            {values.isMember ? (
+              <LoginForm 
+                values={values} 
+                setValues={setValues}
+                toggleMember={toggleMember}
+                handleChange={handleChange}
+                handleLogin={handleLogin}
+              />
             ) : (
-              <RegisterForm setAccount={setAccount} />
+              <RegisterForm 
+                values={values} 
+                setValues={setValues} 
+                toggleMember={toggleMember}
+                handleChange={handleChange}
+                handleRegister={handleRegister}
+              />
             )}
           </div>
         </div>

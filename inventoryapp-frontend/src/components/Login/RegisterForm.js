@@ -3,6 +3,7 @@ import styles from "../../styles/login.module.css";
 import "animate.css";
 
 import React from "react";
+
 export default function RegisterForm(props) {
   return (
     <div className={styles.formBox}>
@@ -18,7 +19,7 @@ export default function RegisterForm(props) {
                 <i class="fa fa-user"></i>
               </span>
             </div>
-            <input type="text" className="form-control" placeholder="Name" />
+            <input type="text" className="form-control" placeholder="Name" name="name" value={props.values.name} onChange={(e) => props.handleChange(e)}/>
           </div>
 
           <div className="input-group mb-3">
@@ -27,7 +28,7 @@ export default function RegisterForm(props) {
                 <i class="fa-solid fa-at"></i>
               </span>
             </div>
-            <input type="text" className="form-control" placeholder="Email" />
+            <input type="text" className="form-control" placeholder="Email" name="email" value={props.values.email} onChange={(e) => props.handleChange(e)}/>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
@@ -35,7 +36,7 @@ export default function RegisterForm(props) {
                 <i class="fa-solid fa-building"></i>
               </span>
             </div>
-            <input type="text" className="form-control" placeholder="Company" />
+            <input type="text" className="form-control" placeholder="Company" name="company" value={props.values.company} onChange={(e) => props.handleChange(e)}/>
           </div>
 
           <div className="input-group mb-3">
@@ -48,18 +49,28 @@ export default function RegisterForm(props) {
               type="password"
               className="form-control"
               placeholder="Password"
+              name="password"
+              value={props.values.password}
+              onChange={(e) => props.handleChange(e)}
             />
           </div>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              props.setAccount(true);
-            }}
-            className={styles.loginButton}
-          >
+          <button type="button" className={styles.loginButton} onClick={() => props.handleRegister()}>
             REGISTER
           </button>
+          <div className="message">
+            <div>
+              <a
+                className={styles.signUp}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  props.toggleMember()
+                }}
+              >
+                Login Here
+              </a>
+            </div>
+          </div>
         </form>
       </div>
     </div>

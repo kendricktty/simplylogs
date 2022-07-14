@@ -18,7 +18,7 @@ export default function LoginForm(props) {
                 <i class="fa-solid fa-at"></i>
               </span>
             </div>
-            <input type="text" className="form-control" placeholder="Email" />
+            <input type="text" className="form-control" placeholder="Email" name="email" value={props.values.email} onChange={(e) => props.handleChange(e)} />
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
@@ -30,9 +30,12 @@ export default function LoginForm(props) {
               type="password"
               className="form-control"
               placeholder="Password"
+              name="password"
+              value={props.values.password}
+              onChange={(e) => props.handleChange(e)}
             />
           </div>
-          <button type="button" className={styles.loginButton}>
+          <button type="button" className={styles.loginButton} onClick={() => props.handleLogin()}>
             LOGIN
           </button>
           <div className="message">
@@ -42,7 +45,7 @@ export default function LoginForm(props) {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  props.setAccount(false);
+                  props.toggleMember()
                 }}
               >
                 Sign Up a New Account

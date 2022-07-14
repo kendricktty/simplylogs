@@ -16,12 +16,13 @@ export default function InventoryTable(props) {
   const [resetPaginationToggle, setResetPaginationToggle] =
     React.useState(false);
 
+  
   //set filtered item to filtered array of items or empty array if inventory is undef
   const filteredItems = props.dynamicData.inventory
     ? props.dynamicData.inventory.filter(
         (item) =>
           item.productName &&
-          item.productName.toLowerCase().includes(filterText.toLowerCase())
+          item.productName.toLowerCase().includes(filterText.toLowerCase()) && item.category.includes(props.category)
       )
     : [];
 
@@ -44,16 +45,17 @@ export default function InventoryTable(props) {
         setFilterText("");
       }
     };
-
+    
     return (
       <InventoryUtilityBar
         onFilter={(e) => setFilterText(e.target.value)}
         onClear={handleClear}
         filterText={filterText}
         handleAddData={handleAddData}
+        productCount={props.dynamicData.count}
       />
     );
-  }, [filterText, resetPaginationToggle]);
+  }, [filterText, resetPaginationToggle, props]);
 
   
   const handleEditButtonClick = (data) => {

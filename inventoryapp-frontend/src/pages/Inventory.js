@@ -6,13 +6,14 @@ import InventoryTable from "../components/Inventory/InventoryTable";
 import EditProductForm from "../components/Inventory/EditProductForm";
 import axios from "../axios/axios"
 
-function Inventory() {
+function Inventory(props) {
   //States
   const [showEditProduct, setShowEditProduct] = React.useState(false);
   const [dynamicData, setDynamicData] = React.useState([]);
   const [editFormParam, setEditFormParams] = React.useState({});
+  const [category, setCategory] = React.useState("")
 
-  // fetches frontend data
+  // fetches backend data
   React.useEffect(() => {
     async function fetchData() {
       try {
@@ -38,22 +39,25 @@ function Inventory() {
 
   //editForm save
   async function handleSave() {
-    const id = editFormParam.productId;
+    const submittingData = editFormParam
+    const id = submittingData.productId;
+
+    //converts to appropriate datatypes
+    submittingData.quantity = parseInt(submittingData.quantity);
+    submittingData.price = parseFloat(submittingData.price).toFixed(2)
     setDynamicData(prevState => ({
       inventory: prevState.inventory.map(el =>
-        el.productId === id ? editFormParam : el
+        el.productId === id ? submittingData : el
       ),
     }));
 
   
 
     try {
-      console.log('trying')
-      await axios.patch(`/inventory/${editFormParam._id}`,editFormParam)
+      await axios.patch(`/inventory/${submittingData._id}`,submittingData)
     } catch (error) {
       console.log(error)
     }
-
     setShowEditProduct(false);
   }
 
@@ -62,7 +66,6 @@ function Inventory() {
   function handleAddData(data) {
     setDynamicData(prevState => {
       if (prevState.inventory === undefined) {
-        console.log("empty");
         return { inventory: [data] };
       }
       return { inventory: [...prevState.inventory, data] };
@@ -70,13 +73,19 @@ function Inventory() {
 
   }
 
+  //handle logout
+  function handleLogout() {
+    localStorage.clear()
+    props.setUser(null)
+  }
+
   return (
     <div className="inventory container-fluid">
-      <SideNav />
+      <SideNav handleLogout={handleLogout}/>
       <div className="inventoryMain">
         <Header pageName="Inventory" logo="bx bx-package"/>
         <div className="inventoryDisplay">
-          <InventoryNav />
+          <InventoryNav setCategory={setCategory}/>
           <div className="inventoryTable">
             <InventoryTable
               setShowEditProduct={setShowEditProduct}
@@ -84,6 +93,7 @@ function Inventory() {
               setDynamicData={setDynamicData}
               handleAddData={handleAddData}
               setEditFormParams={setEditFormParams}
+              category={category}
             />
             Generated Barcode:
             <div id="barcode"></div>

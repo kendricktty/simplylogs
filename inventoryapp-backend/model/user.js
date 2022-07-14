@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please provide password'],
         minLength: 6,
     },
+    company: {
+        type: String,
+        required: [true, 'Please provide company name']
+    }
 })
 
 userSchema.pre('save', async function (next) {
@@ -30,8 +34,9 @@ userSchema.pre('save', async function (next) {
     next()
 })
 
+
 userSchema.methods.createJWT = function () {
-    return jwt.sign({ userId: this._id, name: this.name }, process.env.JWT_SECRET, {
+    return jwt.sign({ userId: this._id, name: this.name, company: this.company }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_LIFETIME
     })
 }

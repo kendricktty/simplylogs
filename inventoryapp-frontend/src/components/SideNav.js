@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SideNav() {
+export default function SideNav(props) {
   return (
     <div className="sidebar">
       <div className="logo-details">
@@ -9,7 +9,7 @@ export default function SideNav() {
       </div>
       <ul className="nav-links">
         <li>
-          <a href="/dashboard">
+          <a href="/">
             <i class="bx bxs-dashboard"></i>
             <span className="sideNav--tabs">Dashboard</span>
             {/* <span className="tooltip">Dashboard</span> */}
@@ -40,9 +40,9 @@ export default function SideNav() {
           <div className="profile-details">
             <img src="../../logo192.png" alt="profileImg" />
             <div className="name_job">
-              <div className="name">Manager</div>
+              <div className="name">{JSON.parse(localStorage.getItem("user")).name.toUpperCase()}</div>
             </div>
-            <a href="/">
+            <a  onClick={() => props.handleLogout()}>
               <i class="bx bx-log-out" id="log_out"></i>
             </a>
           </div>

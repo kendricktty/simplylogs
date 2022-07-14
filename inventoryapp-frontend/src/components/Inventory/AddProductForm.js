@@ -19,7 +19,7 @@ export default function AddProductForm(props) {
           name="productId"
           min={0}
           value={props.formData.productId}
-          onChange={props.handleChange}
+          disabled
         />
       </Form.Group>
       <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
