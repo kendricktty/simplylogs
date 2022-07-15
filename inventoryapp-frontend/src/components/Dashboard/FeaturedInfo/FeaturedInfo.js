@@ -69,7 +69,7 @@ export default function FeaturedInfo() {
           <span className="featuredMoney">${revenueMoneyState.toFixed(2)}</span>
           <span className="featuredMoneyRate">
             {(revenueRateState >= 0 ? `+` : ``) + revenueRateState}
-            {revenueRateState >= 0 ? <ArrowUpward /> : <ArrowDownward />}
+            {revenueRateState >= 0 ? <ArrowUpward className="arrow"/> : <ArrowDownward className="arrow"/>}
           </span>
         </div>
         <span className="featuredSub">Compared to {switchLogicState}</span>
@@ -80,7 +80,7 @@ export default function FeaturedInfo() {
           <span className="featuredMoney">${costMoneyState.toFixed(2)}</span>
           <span className="featuredMoneyRate">
             {(costRateState >= 0 ? `+` : ``) + costRateState}
-            {costRateState >= 0 ? <ArrowUpward /> : <ArrowDownward />}
+            {costRateState >= 0 ? <ArrowUpward className="arrow"/> : <ArrowDownward className="arrow"/>}
           </span>
         </div>
         <span className="featuredSub">Compared to {switchLogicState}</span>
@@ -91,12 +91,13 @@ export default function FeaturedInfo() {
           <span className="featuredMoney">${saleMoneyState.toFixed(2)}</span>
           <span className="featuredMoneyRate">
             {(salesRateState >= 0 ? `+` : ``) + salesRateState}
-            {salesRateState >= 0 ? <ArrowUpward /> : <ArrowDownward />}
+            {salesRateState >= 0 ? <ArrowUpward className="arrow"/> : <ArrowDownward className="arrow"/>}
           </span>
         </div>
         <span className="featuredSub">Compared to {switchLogicState}</span>
       </div>
       <ToggleSwitch
+        styles={{ maxWidth: "25%" }}
         values={["Daily", "Weekly", "Monthly"]}
         selected={switchOutputState}
         changeSelected={setSwitchOutputState}
