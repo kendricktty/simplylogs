@@ -90,7 +90,6 @@ const getAllOrders = async (req, res) => {
 
             const orders = await Order.find({createdAt : {$gte:StartMonth.toISOString(), $lt:EndMonth.toISOString()}, company: req.user.company})
 
-            
             const dataObject = { name:month[StartMonth.getMonth()], "Revenue": getTotal(orders)}
 
             monthlyRevenue.push(dataObject)

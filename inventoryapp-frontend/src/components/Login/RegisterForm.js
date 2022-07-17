@@ -16,33 +16,41 @@ export default function RegisterForm(props) {
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">
-                <i class="fa fa-user"></i>
+                <span class="material-symbols-outlined">
+                  person
+                </span>
               </span>
             </div>
-            <input type="text" className="form-control" placeholder="Name" name="name" value={props.values.name} onChange={(e) => props.handleChange(e)}/>
+            <input type="text" className="form-control" placeholder="Name" name="name" value={props.values.name} onChange={(e) => props.handleChange(e)} />
           </div>
 
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">
-                <i class="fa-solid fa-at"></i>
+                <span class="material-symbols-outlined">
+                  mail
+                </span>
               </span>
             </div>
-            <input type="text" className="form-control" placeholder="Email" name="email" value={props.values.email} onChange={(e) => props.handleChange(e)}/>
+            <input type="text" className="form-control" placeholder="Email" name="email" value={props.values.email} onChange={(e) => props.handleChange(e)} />
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">
-                <i class="fa-solid fa-building"></i>
+                <span class="material-symbols-outlined">
+                  apartment
+                </span>
               </span>
             </div>
-            <input type="text" className="form-control" placeholder="Company" name="company" value={props.values.company} onChange={(e) => props.handleChange(e)}/>
+            <input type="text" className="form-control" placeholder="Company" name="company" value={props.values.company} onChange={(e) => props.handleChange(e)} />
           </div>
 
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">
-                <i class="fa fa-lock"></i>
+                <span class="material-symbols-outlined">
+                  password
+                </span>
               </span>
             </div>
             <input

@@ -7,6 +7,7 @@ import {
   SwitchSelection,
 } from "./ToggleSwitchStyles.js";
 
+
 const ClickableLabel = ({ title, onChange, id }) => (
   <SwitchLabel onClick={() => onChange(title)} className={id}>
     {title}
