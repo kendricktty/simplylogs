@@ -34,9 +34,24 @@ The backend and frontend servers are each located in its own namesake folder, an
 
     Alternatively, use the GitHub UI to download the repository to a directory of your choice.
 
-2. Run the following commands to install the NodeJS dependencies for the backend server
+2. From the working directory containing the cloned repository, `cd` into the `inventoryapp-backend` folder and install the NodeJS dependencies for the backend server:
+
+    `npm install`
+
+3. After setting up the backend server, `cd` into the `inventoryapp-frontend` folder and repeat Step 2.
+   
+4. Refer to the respective sections below to create a `.env` file and a database server.
 
 ### Windows ###
+
+### Creating your environment variables ###
+The backend application requires a custom-made `.env` file. Run the following command from inside `inventoryapp-backend` to create your new `.env` file:
+
+`touch .env`
+
+You may leave your `.env` file blank for now as we move on to the next section.
+
+### Setting up your database server ###
 
 
 ## Dependencies ##
