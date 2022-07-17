@@ -6,6 +6,7 @@ import React from "react";
 export default function LoginForm(props) {
   return (
     <div className={styles.formBox}>
+      {props.error && <div className="alert alert-danger">{props.error}</div>}
       <div className={styles.headerForm + " " + "mt-4"}>
         <h4 className="text-primary text-center"></h4>
         <div className="image"></div>

@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Sales from "./pages/Sales";
 import Cashier from "./pages/Cashier";
 import ProtectedRoute from "./pages/ProtectedRoute"
+import Error from "./pages/Error"
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/inventory" element={<Inventory user={user} setUser={setUser}/>} />
           <Route exact path="/sales" element={<Sales user={user} setUser={setUser}/>} />
           <Route exact path="/cashier" element={<Cashier user={user} setUser={setUser}/>} />
+          <Route path="*" element={<Error />}/>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -17,6 +17,7 @@ const initialState = {
 export default function Login(props) {
   const navigate = useNavigate();
   const [values, setValues] = React.useState(initialState);
+  const [error, setError] = React.useState(null)
 
   async function handleLogin() {
     try {
@@ -26,6 +27,8 @@ export default function Login(props) {
       props.setUser(JSON.parse(localStorage.getItem("user")));
       navigate("/");
     } catch (error) {
+      setError(error.response.data.msg)
+      setTimeout(()=>setError(null), 3000)
       console.log(error.response.data.msg);
     }
   }
@@ -38,6 +41,8 @@ export default function Login(props) {
       props.setUser(JSON.parse(localStorage.getItem("user")));
       navigate("/");
     } catch (error) {
+      setError(error.response.data.msg)
+      setTimeout(()=>setError(null), 3000)
       console.log(error.response.data.msg);
     }
   }
@@ -120,6 +125,8 @@ export default function Login(props) {
                 toggleMember={toggleMember}
                 handleChange={handleChange}
                 handleLogin={handleLogin}
+                error={error}
+                setError={setError}
               />
             ) : (
               <RegisterForm
@@ -128,6 +135,7 @@ export default function Login(props) {
                 toggleMember={toggleMember}
                 handleChange={handleChange}
                 handleRegister={handleRegister}
+                error={error}
               />
             )}
           </div>

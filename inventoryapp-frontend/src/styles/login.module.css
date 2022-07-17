@@ -46,7 +46,7 @@ justify-content:center;
 }
 .formBox{
     width:380px;
-    height:340px;
+    height:auto;
     padding:20px;
     display:flex;
     flex-direction:column;
