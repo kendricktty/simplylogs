@@ -57,7 +57,7 @@ export default function FeaturedInfo() {
         <div className="featuredContainer">
           <span className="featuredValue">${revenueMoneyState}</span>
           <span className="featuredRate">
-            {(revenueRateState >= 0 ? `+` : ``) + revenueRateState}
+            {(revenueRateState >= 0 ? `+` : ``) + revenueRateState.toFixed(2)}
             {revenueRateState >= 0 ? (
               <ArrowUpward className="arrow" />
             ) : (

@@ -24,16 +24,21 @@ export default function InventoryUtilityBar(props) {
     category: "",
   });
   const [errorMsg, setErrorMsg] = React.useState("")
+  
 
   React.useEffect(() => {
-    setFormData({
-      productId: props.productCount + 1, 
-      productName: "",
-      supplier: "",
-      quantity: "",
-      price: "",
-      category: "",
-    })
+    if(props.productCount !== undefined) {
+        setFormData({
+          productId: props.productCount + 1, 
+          productName: "",
+          supplier: "",
+          quantity: "",
+          price: "",
+          category: "",
+        })
+    }
+
+   
   }, [props])
 
   async function handleSubmit(e) {
@@ -55,27 +60,19 @@ export default function InventoryUtilityBar(props) {
     setErrorMsg("")
     props.handleAddData(submittingData);
    
-    setFormData({
-      productId: props.productCount + 1,
-      productName: "",
-      supplier: "",
-      quantity: "",
-      price: "",
-      category: "",
-    });
     setShowForm(!showForm);
   }
 
   function handleCancel() {
-    setFormData({
-      productId: props.productCount + 1,
-      productName: "",
-      supplier: "",
-      quantity: "",
-      price: "",
-      category: "",
-    });
-    setErrorMsg('')
+    // setFormData({
+    //   productId: productCount,
+    //   productName: "",
+    //   supplier: "",
+    //   quantity: "",
+    //   price: "",
+    //   category: "",
+    // });
+    setErrorMsg("")
     setShowForm(!showForm);
   }
 
@@ -90,6 +87,7 @@ export default function InventoryUtilityBar(props) {
   }
 
   function addButtonPressed() {
+    console.log(formData);
     setShowForm(prevState => !prevState);
   }
 
