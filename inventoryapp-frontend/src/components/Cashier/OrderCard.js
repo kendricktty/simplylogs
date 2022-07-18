@@ -37,12 +37,12 @@ export default function OrderCard(props) {
                 +
               </button>
               <span style={{ marginLeft: "7px" }}>{props.quantity}</span>
-              <button
+              {props.quantity > 1 && <button
                 className={styles.cardButton}
                 onClick={(event) => props.updateCount(event, props.id, "-")}
               >
                 -
-              </button>
+              </button>}
               <br />
               Total Price : {formatter.format(props.price * props.quantity)}
             </div>

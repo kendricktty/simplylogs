@@ -44,9 +44,9 @@ export default function Invoice(props) {
 
   const printRef = React.createRef();
 
-  const handleClose = () => props.setShowEditProduct(false);
+  const handleClose = () => props.setShowInvoice((prevState) => { return {... prevState, showInvoice : false}});
   return (
-    <Modal size="lg" show={props.showEditProduct} onHide={handleClose}>
+    <Modal size="lg" show={props.showInvoice} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Invoice</Modal.Title>
       </Modal.Header>
@@ -61,7 +61,7 @@ export default function Invoice(props) {
 
             <Row gutter={24} style={{ marginTop: 32 }}>
               <Col span={8}>
-                <h3>Inventory Applicaiton</h3>
+                <h3>SimplyLogs</h3>
                 <div>81 Victoria St, Singapore 188065</div>
                 <div>Singapore Managament University</div>
                 <div></div>
@@ -71,15 +71,15 @@ export default function Invoice(props) {
                 <table>
                   <tr>
                     <th>Invoice # :</th>
-                    <td>1</td>
+                    <td>{props.invoiceNo}</td>
                   </tr>
                   <tr>
                     <th>Invoice Date :</th>
-                    <td>04-07-2022</td>
+                    <td>{new Date().toDateString()}</td>
                   </tr>
                   <tr>
                     <th>Due Date :</th>
-                    <td>04-07-2022</td>
+                    <td>{new Date().toDateString()}</td>
                   </tr>
                 </table>
               </Col>

@@ -17,7 +17,7 @@ export default function Cashier(props) {
   const [form, setForm] = React.useState(false);
   // This is the total number of items that the users hopes to purchase.
   const [order, setOrder] = React.useState([]);
-  const [showEditProduct, setShowEditProduct] = React.useState(false);
+  const [showInvoice, setShowInvoice] = React.useState({ invoiceNo: 0, showInvoice: false});
   const [error, setError] = React.useState("");
   const productOrders = products;
   
@@ -28,6 +28,7 @@ export default function Cashier(props) {
   //     .then((res) => res.json())
   //     .then((data) => setProducts(data["inventory"]));
   // }, []);
+
 
   React.useEffect(() => {
     async function fetchData() {
@@ -45,6 +46,7 @@ export default function Cashier(props) {
         if (order[i].productId == item.productId) {
           addedBefore = true;
           setError("The Item has been added to the Basket previously");
+          setTimeout(()=>setError(null), 5000)
           break;
         }
       }
@@ -57,6 +59,7 @@ export default function Cashier(props) {
     }
     if (notInProduct) {
       setError("The Item is not in the Company's Product List");
+      setTimeout(()=>setError(null), 5000)
     }
 
     if (!addedBefore && !notInProduct) {
@@ -83,13 +86,13 @@ export default function Cashier(props) {
     setOrder(
       order.map((order_item) => {
         if (order_item.productId === id) {
-          if (status === "-" && order_item.quantity >= 1) {
+          if (status === "-" && order_item.quantity > 1) {
             return {
               ...order_item,
               quantity: order_item.quantity - 1,
             };
-          } else if (status === "-" && order_item.quantity == 0) {
-            return null;
+          } else if (status === "-" && order_item.quantity == 1) {
+            return order_item
           } else {
             return {
               ...order_item,
@@ -151,17 +154,64 @@ export default function Cashier(props) {
   }
 
 
+  //handle place order
+  async function placeOrder() {
+    
+    if(order.length === 0) {
+      setError('No item in basket, cannot place order')
+      setTimeout(()=>setError(null), 5000)
+      return
+    }
+    try {
+      const orderData = {}
+      const res2 = await axios.get('/order')
+      orderData.invoiceNo = res2.data.orderCount + 1
+      setShowInvoice((prevState) => { return {... prevState, invoiceNo : orderData.invoiceNo}})
+      orderData.products = []
+
+      order.map((order_item) => {
+        const product = {}
+        if (order_item != null) {
+          product.productName = productOrders[order_item.productId - 1].productName;
+          product.productRef = productOrders[order_item.productId - 1]._id;
+          product.productId = productOrders[order_item.productId - 1].productId;
+          product.supplier = productOrders[order_item.productId - 1].supplier;
+          product.quantity = order_item.quantity;
+          product.price = productOrders[order_item.productId - 1].price;
+          product.category = productOrders[order_item.productId - 1].category;
+        }
+        orderData.products.push(product)
+      })
+
+      console.log(orderData);
+      await axios.post('/order', orderData)
+      setShowInvoice((prevState) => { return {... prevState, showInvoice : true}})
+    } catch (error) {
+      setError(error.response.data.msg);
+      setTimeout(()=>setError(null), 5000);
+    }
+    
+  }
+
+  async function getInvoiceNo() {
+    const res2 = await axios.get('/order');
+    const invoiceNo = res2.data.orderCount + 1;
+    return invoiceNo;
+  }
+
   return (
     <div className="dashboard container-fluid">
-      {error && (
-        <Alert variant="danger" className={styles.alertDanger}>
-          {error}
-        </Alert>
-      )}
+      
       <SideNav handleLogout={handleLogout}/>
 
       <div className="salesMain">
+      
         <Header pageName="Cashier" logo="fa-solid fa-cart-shopping"/>
+        {error && (
+          <Alert variant="danger" className={styles.alertDanger}>
+            {error}
+          </Alert>
+        )}
         <div className="container mt-5">
           {row_cols.map((x) => (
             <div className="row gx-2 gy-4">{x}</div>
@@ -173,20 +223,21 @@ export default function Cashier(props) {
 
         <button
           className={styles.generateInvoice}
-          onClick={() => setShowEditProduct(true)}
+          onClick={() => placeOrder()}
         >
-          Generate Invoice
+          Place Order
         </button>
         {form && <InventoryForm setForm={setForm} addOrder={addOrder} />}
       </div>
       {/* This is the code for the invoice template*/}
 
       <Invoice
-        setShowEditProduct={setShowEditProduct}
-        showEditProduct={showEditProduct}
+        setShowInvoice={setShowInvoice}
+        showInvoice={showInvoice.showInvoice}
         handleDownloadPdf={handleDownloadPdf}
         order={order}
         product={productOrders}
+        invoiceNo={showInvoice.invoiceNo}
       />
     </div>
   );
