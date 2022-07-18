@@ -37,7 +37,7 @@ export const SwitchLabel = styled.label`
   float: left;
   width: 70px;
   line-height: 40px;
-  font-size: medium;
+  font-size: 0.8vw;
   color: rgba(0, 0, 0, 0.6);
   text-align: center;
   cursor: pointer;
@@ -47,7 +47,5 @@ export const SwitchLabel = styled.label`
     color: #fff;
   }
 
-  @media {
-    font-size: 0.8vw;
-  }
+
 `;
