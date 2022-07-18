@@ -40,20 +40,21 @@ const getAllOrders = async (req, res) => {
     const startOfMonth = new Date(sgtStartOfMonthISO)
     const day = new Date().getDay()
 
-    if(period === 'daily') {
-        queryObject.createdAt = { $gte: startOfDay.toISOString()}
-    }
+    if(period) {
+        if(period === 'daily') {
+            queryObject.createdAt = { $gte: startOfDay.toISOString()}
+        } else if (period === 'weekly') {
+            // console.log(startOfDay.toISOString())
+            // console.log(new Date(startOfDay.getTime() - (day - 1) * 86400000).toISOString());
+            queryObject.createdAt = { $gte: new Date(startOfDay.getTime() - (day - 1) * 86400000).toISOString()}
+        } else if(period === 'month') {
+            queryObject.createdAt = { $gte: startOfMonth.toISOString()}
+        } else {
+            throw new BadRequestError('Wrong value for period')
+        }
 
-    if(period === 'weekly') {
-        // console.log(startOfDay.toISOString())
-        // console.log(new Date(startOfDay.getTime() - (day - 1) * 86400000).toISOString());
-        queryObject.createdAt = { $gte: new Date(startOfDay.getTime() - (day - 1) * 86400000).toISOString()}
     }
-
-    if(period === 'month') {
-        queryObject.createdAt = { $gte: startOfMonth.toISOString()}
-    }
-
+    
     //substract month function
     function subtractMonths(numOfMonths, date) {
         date.setMonth(date.getMonth() - numOfMonths);

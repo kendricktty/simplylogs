@@ -28,7 +28,7 @@ export default function Login(props) {
       navigate("/");
     } catch (error) {
       setError(error.response.data.msg)
-      setTimeout(()=>setError(null), 3000)
+      setTimeout(()=>setError(null), 5000)
       console.log(error.response.data.msg);
     }
   }
@@ -42,7 +42,7 @@ export default function Login(props) {
       navigate("/");
     } catch (error) {
       setError(error.response.data.msg)
-      setTimeout(()=>setError(null), 3000)
+      setTimeout(()=>setError(null), 5000)
       console.log(error.response.data.msg);
     }
   }
