@@ -32,15 +32,13 @@ export default function FeaturedInfo() {
     }
 
     async function fetchData() {
-      console.log(apiRequestString);
       const req = await axios.get(apiRequestString, {
         headers: {
-          "Authorization" : `Bearer ${localStorage.getItem('token')}`
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
       const data = req.data;
 
-      console.log(data);
       setRevenueMoneyState(data.periodRevenue);
       setRevenueRateState(data.periodRevenueRate);
       setOrderState(data.periodOrder);
@@ -48,7 +46,7 @@ export default function FeaturedInfo() {
       setNumberOfProductState(data.periodNumberOfProducts);
       setNumberOfProductRateState(data.periodNumberOfProductsRate);
     }
-    
+
     fetchData();
   }, [switchOutputState]);
 
@@ -56,9 +54,9 @@ export default function FeaturedInfo() {
     <div className="featured">
       <div className="featuredItem">
         <span className="featuredTitle">Revenue</span>
-        <div className="featuredMoneyContainer">
-          <span className="featuredMoney">${revenueMoneyState.toFixed(2)}</span>
-          <span className="featuredMoneyRate">
+        <div className="featuredContainer">
+          <span className="featuredValue">${revenueMoneyState.toFixed(2)}</span>
+          <span className="featuredRate">
             {(revenueRateState >= 0 ? `+` : ``) + revenueRateState}
             {revenueRateState >= 0 ? (
               <ArrowUpward className="arrow" />
@@ -71,9 +69,9 @@ export default function FeaturedInfo() {
       </div>
       <div className="featuredItem">
         <span className="featuredTitle">Orders</span>
-        <div className="featuredMoneyContainer">
-          <span className="featuredMoney">{orderState}</span>
-          <span className="featuredMoneyRate">
+        <div className="featuredContainer">
+          <span className="featuredValue">{orderState}</span>
+          <span className="featuredRate">
             {(orderRateState >= 0 ? `+` : ``) + orderRateState}
             {orderRateState >= 0 ? (
               <ArrowUpward className="arrow" />
@@ -86,9 +84,9 @@ export default function FeaturedInfo() {
       </div>
       <div className="featuredItem">
         <span className="featuredTitle">Products Sold</span>
-        <div className="featuredMoneyContainer">
-          <span className="featuredMoney">{numberOfProductState}</span>
-          <span className="featuredMoneyRate">
+        <div className="featuredContainer">
+          <span className="featuredValue">{numberOfProductState}</span>
+          <span className="featuredRate">
             {(numberOfProductRateState >= 0 ? `+` : ``) +
               numberOfProductRateState}
             {numberOfProductRateState >= 0 ? (
