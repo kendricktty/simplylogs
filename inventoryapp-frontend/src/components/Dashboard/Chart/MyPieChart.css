@@ -1,0 +1,9 @@
+.myPieChart {
+  cursor: pointer;
+}
+
+.recharts-legend-wrapper {
+  right: 5vw !important;
+  font-size: large !important;
+  width: auto !important;
+}

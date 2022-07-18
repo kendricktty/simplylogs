@@ -39,8 +39,8 @@ export default function FeaturedInfo() {
       });
       const data = req.data;
 
-      setRevenueMoneyState(data.periodRevenue);
-      setRevenueRateState(data.periodRevenueRate);
+      setRevenueMoneyState(data.periodRevenue.toFixed(2));
+      setRevenueRateState(data.periodRevenueRate.toFixed(2));
       setOrderState(data.periodOrder);
       setOrderRateState(data.periodOrderRate);
       setNumberOfProductState(data.periodNumberOfProducts);
@@ -55,7 +55,7 @@ export default function FeaturedInfo() {
       <div className="featuredItem">
         <span className="featuredTitle">Revenue</span>
         <div className="featuredContainer">
-          <span className="featuredValue">${revenueMoneyState.toFixed(2)}</span>
+          <span className="featuredValue">${revenueMoneyState}</span>
           <span className="featuredRate">
             {(revenueRateState >= 0 ? `+` : ``) + revenueRateState}
             {revenueRateState >= 0 ? (
