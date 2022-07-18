@@ -9,15 +9,55 @@
 
 For HEAP 2022, SMU .Hack
 
+## Contents ##
+* Introduction
+* Installation
+* 
+
 
 ## Introduction ##
-SimplyLogs is our attempt at creating a more user-friendly and powerful inventory tracking application. Our prototype aims to improve the experience and accessibility of inventory/asset tracking by automating key processes like serialising, invoice generation and accounting, introducing a cleaner, more aesthetically pleasing user interface, and allowing for some level of customisation.
+SimplyLogs is our attempt at creating a more user-friendly and powerful inventory tracking application. Our prototype aims to improve the experience and accessibility of inventory/asset tracking by automating key processes like serialising, invoice generation and accounting, introducing a cleaner, more aesthetically pleasing user interface, and allowing for easy customisation of item serial numbers commonly used to organise inventory items.
 
-## Setup instructions ##
-Before cloning this repository, ensure that you have NodeJS installed on your machine. If you do not already have it installed, please visit this website for installation instructions: https://nodejs.org/en/download/
+## Key features ##
+
+
+## Installation ##
+
+Before cloning this repository, do ensure that you have NodeJS installed on your machine. If you do not already have it installed, please visit the official NodeJS website for installation instructions: https://nodejs.org/en/download/
+
+The backend and frontend servers are each located in its own namesake folder, and need to be built and activated separately, one after the other, for this application to run correctly. After installing the required dependencies, the backend application needs to be activated first, and then the frontend application.
 
 ### macOS and Linux ###
-1. 
-2. 
+1. Open a new Terminal window, `cd` into a directory of your choice, and clone the repository:
+
+    `git clone https://github.com/kendricktty/group17_projmamadiam`
+
+    Alternatively, use the GitHub UI to download the repository to a directory of your choice.
+
+2. From the working directory containing the cloned repository, `cd` into the `inventoryapp-backend` folder and install the NodeJS dependencies for the backend server:
+
+    `npm install`
+
+3. After setting up the backend server, `cd` into the `inventoryapp-frontend` folder and repeat Step 2.
+   
+4. Refer to the respective sections below to create a `.env` file and a database server.
+
+### Windows ###
+
+### Creating your environment variables ###
+The backend application requires a custom-made `.env` file. Run the following command from inside `inventoryapp-backend` to create your new `.env` file:
+
+`touch .env`
+
+You may leave your `.env` file blank for now as we move on to the next section.
+
+### Setting up your database server ###
+
+
+## Dependencies ##
+To build and run `SimplyLogs`, you will need:
+
+* NodeJS
+* A MongoDB 
 
 ## About us ##
