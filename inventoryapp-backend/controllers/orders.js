@@ -41,6 +41,7 @@ const getAllOrders = async (req, res) => {
   const startOfMonth = new Date(sgtStartOfMonthISO);
   const day = new Date().getDay();
 
+  const startOfWeek = new Date(startOfDay.getTime() - (day - 1) * 86400000);
   const previousDay = new Date(startOfDay.getTime() - (day - 1) * 86400000);
   const previousWeek = new Date(startOfDay.getTime() - (day + 6) * 86400000);
   
@@ -49,23 +50,24 @@ const getAllOrders = async (req, res) => {
     new Date().getMonth() - 1,
     1
   );
-  console.log(previousMonth);
-  console.log(previousWeek);
+ 
   previousMonth.setDate(previousMonth.getDate() + 1);
 
   const previousPreviousDay = new Date(previousDay);
   previousPreviousDay.setDate(previousDay.getDate() - 1);
 
   const previousPreviousWeek = new Date(previousWeek);
-  previousPreviousWeek.setDate(previousWeek.getDate() - 8);
+  previousPreviousWeek.setDate(previousWeek.getDate() - 7);
 
+  
   const previousPreviousMonth = new Date(
     previousMonth.getFullYear(),
     previousMonth.getMonth() - 1,
     1
   );
-  previousPreviousMonth.setDate(previousPreviousMonth.getDate() + 1);
+//   previousPreviousMonth.setDate(previousPreviousMonth.getDate() + 1);
 
+  
   if (
     period &&
     period !== "daily" &&
