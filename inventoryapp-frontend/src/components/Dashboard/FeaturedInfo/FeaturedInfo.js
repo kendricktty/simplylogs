@@ -16,24 +16,31 @@ export default function FeaturedInfo() {
   const [numberOfProductRateState, setNumberOfProductRateState] = useState(0);
 
   useEffect(() => {
-    let apiRequestString = "/order?period=";
+    let apiRequestString = "/order?period=daily";
     if (switchOutputState.selected === "Daily") {
       setSwitchLogicState("Yesterday");
-      apiRequestString += "daily";
+
+      apiRequestString = "/order?period=daily";
     } else if (switchOutputState.selected === "Weekly") {
       setSwitchLogicState("Last Week");
 
-      apiRequestString += "weekly";
+      apiRequestString = "/order?period=weekly";
     } else if (switchOutputState.selected === "Monthly") {
       setSwitchLogicState("Last Month");
 
-      apiRequestString += "monthly";
+      apiRequestString = "/order?period=monthly";
     }
 
     async function fetchData() {
-      const req = await axios.get(apiRequestString);
-      const data = await req.data;
+      console.log(apiRequestString);
+      const req = await axios.get(apiRequestString, {
+        headers: {
+          "Authorization" : `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      const data = req.data;
 
+      console.log(data);
       setRevenueMoneyState(data.periodRevenue);
       setRevenueRateState(data.periodRevenueRate);
       setOrderState(data.periodOrder);

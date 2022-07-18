@@ -91,6 +91,8 @@ const getAllOrders = async (req, res) => {
         }
     }
 
+
+    //This shows previous 12 months of sales inclusive of current month
     const monthlyRevenue = [];
     if (get12MonthsData) {
         //substract month function
@@ -148,8 +150,15 @@ const getAllOrders = async (req, res) => {
     }
 
     const orders = await Order.find(queryObject);
+
     {
-        const AllOrders = await Order.find();
+        const AllOrders = await Order.find({ company: req.user.company });
+        const currentPeriod =
+            period === "daily"
+                ? startOfDay
+                : period === "weekly"
+                    ? startOfWeek
+                    : startOfMonth;
         const previousPeriod =
             period === "daily"
                 ? previousDay
@@ -164,57 +173,92 @@ const getAllOrders = async (req, res) => {
                     ? previousPreviousWeek
                     : previousPreviousMonth;
 
+
+        //retrievs orders that are created this month/week/today
+        const filteredThisPeriodOrders = AllOrders.filter(
+            order => new Date(order.createdAt) >= currentPeriod
+        );
+
+        //retrieves orders that are created ytd/lastWeek/LastMonth
         const filteredPreviousPeriodOrders = AllOrders.filter(
-            order => new Date(order.createdAt) >= previousPeriod
+            order => new Date(order.createdAt) >= previousPeriod && new Date(order.createdAt) < currentPeriod
         );
 
         const filteredPreviousPreviousPeriodOrders = AllOrders.filter(order => {
             let orderDate = new Date(order.createdAt);
-            return orderDate <= previousPeriod && orderDate >= previousPreviousPeriod;
+            return orderDate < previousPeriod && orderDate >= previousPreviousPeriod;
         });
 
-        const currentPeriodNumberOfOrders = filteredPreviousPeriodOrders.length;
+        // const currentPeriodNumberOfOrders = filteredPreviousPeriodOrders.length;
+
+        const currentPeriodNumberOfOrders = filteredThisPeriodOrders.length;
+
+
+        // const currentPeriodNumberOfProducts =
+        //     filteredPreviousPeriodOrders.reduce(
+        //         (count, order) => (count += order.products.length),
+        //         0
+        //     );
 
         const currentPeriodNumberOfProducts =
+            filteredThisPeriodOrders.reduce(
+                (count, order) => (count += order.products.length),
+                0
+            );
+
+        // const currentPeriodRevenue = filteredPreviousPeriodOrders.reduce(
+        //     (totalRevenue, order) => (totalRevenue += order.grossTotal),
+        //     0
+        // );
+
+        const currentPeriodRevenue = filteredThisPeriodOrders.reduce(
+            (totalRevenue, order) => (totalRevenue += order.grossTotal),
+            0
+        );
+
+        // const previousPeriodNumberOfOrders = filteredPreviousPreviousPeriodOrders.length;
+        const previousPeriodNumberOfOrders = filteredPreviousPeriodOrders.length;
+
+        // const previousPeriodNumberOfProducts =
+        //     filteredPreviousPreviousPeriodOrders.reduce(
+        //         (count, order) => (count += order.products.length),
+        //         0
+        //     );
+
+        const previousPeriodNumberOfProducts =
             filteredPreviousPeriodOrders.reduce(
                 (count, order) => (count += order.products.length),
                 0
             );
 
-        const currentPeriodRevenue = filteredPreviousPeriodOrders.reduce(
-            (totalRevenue, order) => (totalRevenue += order.grossTotal),
-            0
-        );
-
-        const previousPeriodNumberOfOrders = filteredPreviousPreviousPeriodOrders.length;
-
-        const previousPeriodNumberOfProducts =
-            filteredPreviousPreviousPeriodOrders.reduce(
-                (count, order) => (count += order.products.length),
-                0
-            );
+        // const previousPeriodRevenue =
+        //     filteredPreviousPreviousPeriodOrders.reduce(
+        //         (totalRevenue, order) => (totalRevenue += order.grossTotal),
+        //         0
+        //     );
 
         const previousPeriodRevenue =
-            filteredPreviousPreviousPeriodOrders.reduce(
+            filteredPreviousPeriodOrders.reduce(
                 (totalRevenue, order) => (totalRevenue += order.grossTotal),
                 0
             );
-    
-    res.status(200).json({
-        orders,
 
-        periodRevenue: currentPeriodRevenue,
-        periodRevenueRate: currentPeriodRevenue - previousPeriodRevenue,
-        periodOrder: currentPeriodNumberOfOrders,
-        periodOrderRate: currentPeriodNumberOfOrders - previousPeriodNumberOfOrders,
-        periodNumberOfProducts: currentPeriodNumberOfProducts,
-        periodNumberOfProductsRate:
-            currentPeriodNumberOfProducts - previousPeriodNumberOfProducts,
+        res.status(200).json({
+            orders,
 
-        orderCount: orders.length,
-        revenue: getTotal(orders),
-        monthlyRevenue,
-    });}
+            periodRevenue: currentPeriodRevenue,
+            periodRevenueRate: currentPeriodRevenue - previousPeriodRevenue,
+            periodOrder: currentPeriodNumberOfOrders,
+            periodOrderRate: currentPeriodNumberOfOrders - previousPeriodNumberOfOrders,
+            periodNumberOfProducts: currentPeriodNumberOfProducts,
+            periodNumberOfProductsRate:
+                currentPeriodNumberOfProducts - previousPeriodNumberOfProducts,
+
+            orderCount: orders.length,
+            revenue: getTotal(orders),
+            monthlyRevenue,
+        });
+    }
 };
 
 const createOrder = async (req, res) => {
