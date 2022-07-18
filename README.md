@@ -49,7 +49,8 @@ The backend and frontend servers are each located in its own namesake folder, an
 ### Creating your environment variables ###
 The backend application requires a custom-made `.env` file. Run the following command from inside `inventoryapp-backend` to create your new `.env` file:
 
-`touch .env`
+* macOS/Linux: `touch .env`
+* Windows: `echo.> .env`
 
 You may leave your `.env` file blank for now as we move on to the next section.
 
