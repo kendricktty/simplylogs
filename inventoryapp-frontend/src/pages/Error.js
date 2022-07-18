@@ -1,21 +1,5 @@
 import styles from "../styles/error.module.css";
-<<<<<<< HEAD
 import React from "react";
-
-export default function Error() {
-  return (
-    <div className={"container-fluid" + " " + styles.background}>
-      <div className="row text-center">
-        <form action="/register">
-          <h2 className={styles.error}>Error 404</h2>
-          <p className={styles.textBody}>Please Redirect to our Main Page</p>
-          <div className={"col-12 text-center" + " " + styles.gif}></div>
-          <button className={styles.button} type="submit">
-            Return Back to HomePage
-          </button>
-        </form>
-=======
-import React from 'react'
 
 export default function Error() {
   return (
@@ -40,8 +24,7 @@ export default function Error() {
             </div>
           </div>
         </div>
->>>>>>> ceb853d167c93e79a609a9e5bf8d0217327af2af
       </div>
-    </div>
+    </section>
   );
 }
