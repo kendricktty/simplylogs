@@ -20,18 +20,18 @@
   font-size: 2vw;
 }
 
-.featuredMoneyContainer {
+.featuredContainer {
   margin: 10px 0px;
   display: flex;
   align-items: center;
 }
 
-.featuredMoney {
+.featuredValue {
   font-size: 2vw;
   font-weight: 600;
 }
 
-.featuredMoneyRate {
+.featuredRate {
   display: flex;
   align-items: center;
   font-size: 1.2vw;
@@ -40,5 +40,3 @@
 .arrow {
   font-size: 1rem !important;
 }
-
-
