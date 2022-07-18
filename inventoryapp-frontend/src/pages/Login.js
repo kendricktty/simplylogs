@@ -5,51 +5,54 @@ import { useNavigate } from "react-router";
 import "animate.css";
 import LoginForm from "../components/Login/LoginForm";
 import RegisterForm from "../components/Login/RegisterForm";
-import axios from "../axios/axios"
+import axios from "../axios/axios";
 const initialState = {
-  name: '',
-  email: '',
-  password: '',
-  company:'',
-  isMember: true
-}
-
+  name: "",
+  email: "",
+  password: "",
+  company: "",
+  isMember: true,
+};
 
 export default function Login(props) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [values, setValues] = React.useState(initialState);
+  const [error, setError] = React.useState(null)
 
   async function handleLogin() {
     try {
-      const res = await axios.post('/auth/login', values)
-      localStorage.setItem("user", JSON.stringify(res.data.user))
-      localStorage.setItem("token", res.data.token)
-      props.setUser(JSON.parse(localStorage.getItem("user")))
-      navigate('/')
+      const res = await axios.post("/auth/login", values);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("token", res.data.token);
+      props.setUser(JSON.parse(localStorage.getItem("user")));
+      navigate("/");
     } catch (error) {
-      console.log(error.response.data.msg)
+      setError(error.response.data.msg)
+      setTimeout(()=>setError(null), 5000)
+      console.log(error.response.data.msg);
     }
-    
   }
 
   async function handleRegister() {
     try {
-      const res = await axios.post('/auth/register', values)
-      localStorage.setItem("user", JSON.stringify(res.data.user))
-      localStorage.setItem("token", res.data.token)
-      props.setUser(JSON.parse(localStorage.getItem("user")))
-      navigate('/')
+      const res = await axios.post("/auth/register", values);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("token", res.data.token);
+      props.setUser(JSON.parse(localStorage.getItem("user")));
+      navigate("/");
     } catch (error) {
-      console.log(error.response.data.msg)
+      setError(error.response.data.msg)
+      setTimeout(()=>setError(null), 5000)
+      console.log(error.response.data.msg);
     }
   }
 
   function toggleMember() {
-    setValues({ ...values, isMember: !values.isMember })
+    setValues({ ...values, isMember: !values.isMember });
   }
 
   function handleChange(e) {
-    setValues({ ...values, [e.target.name]: e.target.value })
+    setValues({ ...values, [e.target.name]: e.target.value });
   }
 
   return (
@@ -116,20 +119,23 @@ export default function Login(props) {
           </div>
           <div className={styles.loginForm + " " + "mx-4 mt-3"}>
             {values.isMember ? (
-              <LoginForm 
-                values={values} 
+              <LoginForm
+                values={values}
                 setValues={setValues}
                 toggleMember={toggleMember}
                 handleChange={handleChange}
                 handleLogin={handleLogin}
+                error={error}
+                setError={setError}
               />
             ) : (
-              <RegisterForm 
-                values={values} 
-                setValues={setValues} 
+              <RegisterForm
+                values={values}
+                setValues={setValues}
                 toggleMember={toggleMember}
                 handleChange={handleChange}
                 handleRegister={handleRegister}
+                error={error}
               />
             )}
           </div>

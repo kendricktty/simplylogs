@@ -33,7 +33,7 @@ export default function InventoryTable(props) {
       if (newState.inventory === undefined) {
         return { inventory: [data] };
       }
-      return { inventory: [...prevState.inventory, data] };
+      return { inventory: [...prevState.inventory, data], count: prevState.inventory.length + 1 };
     });
   }
 
@@ -45,16 +45,20 @@ export default function InventoryTable(props) {
         setFilterText("");
       }
     };
+    console.log('changed');
+    console.log(props.dynamicData.count);
     
-    return (
-      <InventoryUtilityBar
-        onFilter={(e) => setFilterText(e.target.value)}
-        onClear={handleClear}
-        filterText={filterText}
-        handleAddData={handleAddData}
-        productCount={props.dynamicData.count}
-      />
-    );
+      return (
+        <InventoryUtilityBar
+          onFilter={(e) => setFilterText(e.target.value)}
+          onClear={handleClear}
+          filterText={filterText}
+          handleAddData={handleAddData}
+          productCount={props.dynamicData.count}
+        />
+      );
+    
+    
   }, [filterText, resetPaginationToggle, props]);
 
   

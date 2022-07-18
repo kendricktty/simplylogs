@@ -6,6 +6,7 @@ import React from "react";
 export default function LoginForm(props) {
   return (
     <div className={styles.formBox}>
+      {props.error && <div className="alert alert-danger">{props.error}</div>}
       <div className={styles.headerForm + " " + "mt-4"}>
         <h4 className="text-primary text-center"></h4>
         <div className="image"></div>
@@ -15,7 +16,9 @@ export default function LoginForm(props) {
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">
-                <i class="fa-solid fa-at"></i>
+                <span class="material-symbols-outlined">
+                  mail
+                </span>
               </span>
             </div>
             <input type="text" className="form-control" placeholder="Email" name="email" value={props.values.email} onChange={(e) => props.handleChange(e)} />
@@ -23,7 +26,9 @@ export default function LoginForm(props) {
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">
-                <i class="fa fa-lock"></i>
+                <span class="material-symbols-outlined">
+                  password
+                </span>
               </span>
             </div>
             <input
