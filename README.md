@@ -11,15 +11,20 @@ For HEAP 2022, SMU .Hack
 
 ## Contents ##
 * Introduction
-* Installation
+* Key features
+* Dependencies
 * 
-
 
 ## Introduction ##
 SimplyLogs is our attempt at creating a more user-friendly and powerful inventory tracking application. Our prototype aims to improve the experience and accessibility of inventory/asset tracking by automating key processes like serialising, invoice generation and accounting, introducing a cleaner, more aesthetically pleasing user interface, and allowing for easy customisation of item serial numbers commonly used to organise inventory items.
 
 ## Key features ##
 
+## Dependencies ##
+To build and run `SimplyLogs`, you will need:
+
+* NodeJS
+* A MongoDB account
 
 ## Installation ##
 
@@ -54,13 +59,39 @@ The backend application requires a custom-made `.env` file. Run the following co
 
 You may leave your `.env` file blank for now as we move on to the next section.
 
-### Setting up your database server ###
+### Setting up a database server ###
+SimplyLogs relies on MongoDB Atlas, the cloud database storage offered by MongoDB, to persist any data processed using the web app. As such, you will need to do the following for the app to work:  
 
+* Register for a MongoDB Atlas account,
+* Create and deploy a database cluster,
+* Create a database user so as to be able to access the cluster,
+* Connect this web app to your cluster.
 
-## Dependencies ##
-To build and run `SimplyLogs`, you will need:
+### Register for a MongoDB Atlas account ###
+1. Refer to this URL for considerations on setting up a new MongoDB Atlas account:   https://www.mongodb.com/docs/atlas/tutorial/create-atlas-account/  The instructions below are derived from the link above.
+2. Navigate to the MongoDB Atlas login page.
+3. Enter your email address.
+4. Click **Next**.
+5. Follow the prompts to log in to your account.
 
-* NodeJS
-* A MongoDB 
+### Create an Atlas Organization ###
+If you are setting up your MongoDB account for the first time, you might be asked to create a new Organization and Project. To do so:
+1. From the navigation bar, expand the **Organizations** menu, and click **View All Organizations**.
+2. Click ***New Organization***, and in the prompt that appears, enter the name for the new organization.
+3. Select **Atlas** and click ***Next***.
+4. (Optional) Add the usernames of existing Atlas users with whom you would would like to share your database, and specify access permissions for these users.
+5. Click ***Create Organization***.
+
+More information on Atlas Organizations: https://www.mongodb.com/docs/atlas/tutorial/manage-organizations/#std-label-create-organization
+
+#### Create a project ####
+1. Navigate to the ***Create a Project*** page. Select it from the Organization from which you would like the new project to be created, click the **Leaf** icon in the upper left corner of the page, and click **New Project** at the upper right corner of the page.   Alternatively, you may expand the Projects menu in the navigation bar, and then click **+ New Project**.
+2. Give your new project a name and click **Next**.
+3. (Optional) Add collaborators and specify access as per Step 4 of the previous section.
+4. Click ***Create Project***.
+
+More information on Projects: https://www.mongodb.com/docs/atlas/tutorial/manage-projects/#std-label-create-project
+
+## Running the program ##
 
 ## About us ##
