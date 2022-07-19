@@ -60,7 +60,7 @@ The backend application requires a custom-made `.env` file. Run the following co
 You may leave your `.env` file blank for now as we move on to the next section.
 
 ### Setting up a database server ###
-SimplyLogs relies on MongoDB Atlas, the cloud database storage offered by MongoDB, to persist any data processed using the web app. As such, you will need to do the following for the app to work:  
+SimplyLogs relies on MongoDB Atlas, the cloud database storage offered by MongoDB, to persist any data processed using the web app. This is achieved using MongooseJS, a schema-based object modelling module. As such, you will need to do the following for the app to work:  
 
 * Register for a MongoDB Atlas account,
 * Create and deploy a database cluster,
@@ -105,6 +105,22 @@ More information on Projects: https://www.mongodb.com/docs/atlas/tutorial/manage
 10. Create a new user using a username and password. It is strongly advised that your new username and password are different from that of your MongoDB cloud account. You may choose to **Autogenerate Secure Password**, if you like.
 11. Under "**Where would you like to connect from?**", select **My Local Environment**, and then select **Add My Current IP Address** to give your local machine access to the database.
 12. Click **Finish and Close**.
+
+#### Linking the backend server with MongoDB using Mongoose ####
+This step requires the use of the `.env` file created in an earlier section.
+
+1. Completing Step 12 in the previous section brings you back to the **Database Deployments** screen. Click **Connect**.
+2. Choose **Connect your application**.
+3. Under "**Select your driver and version**", select **Node.js**, and the version of NodeJS you have installed (it's most likely 4.1 or later)
+4. Take note of the connection string displayed under step 2 that should look something like this:   
+   
+   `mongodb+srv://<user>:<password>@cluster0.ykwkgt1.mongodb.net/?retryWrites=true&w=majority`  
+   
+   Replace the generic `<user>` and `<password>` placeholders with your database user ID and password. 
+5. In your `.env` file, add the following declaration:   
+   `MONGO_URI=`
+6. Copy and paste the connection string in Step 4 after the `=` sign at the end of the declaration. After that, remove `+srv` from the connection string. The result should look something like this:   `MONGO_URI=mongodb://<user>:<password>@cluster0.ykwkgt1.mongodb.net/?retryWrites=true&w=majority`
+7. You are now ready to start up the program!
 
 ## Running the program ##
 
