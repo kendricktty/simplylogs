@@ -67,14 +67,14 @@ SimplyLogs relies on MongoDB Atlas, the cloud database storage offered by MongoD
 * Create a database user so as to be able to access the cluster,
 * Connect this web app to your cluster.
 
-### Register for a MongoDB Atlas account ###
+#### Register for a MongoDB Atlas account ####
 1. Refer to this URL for considerations on setting up a new MongoDB Atlas account:   https://www.mongodb.com/docs/atlas/tutorial/create-atlas-account/  The instructions below are derived from the link above.
 2. Navigate to the MongoDB Atlas login page.
 3. Enter your email address.
 4. Click **Next**.
 5. Follow the prompts to log in to your account.
 
-### Create an Atlas Organization ###
+#### Create an Atlas Organization ####
 If you are setting up your MongoDB account for the first time, you might be asked to create a new Organization and Project. To do so:
 1. From the navigation bar, expand the **Organizations** menu, and click **View All Organizations**.
 2. Click ***New Organization***, and in the prompt that appears, enter the name for the new organization.
@@ -92,6 +92,21 @@ More information on Atlas Organizations: https://www.mongodb.com/docs/atlas/tuto
 
 More information on Projects: https://www.mongodb.com/docs/atlas/tutorial/manage-projects/#std-label-create-project
 
+#### Create a database ####
+1. Navigate into the project you have just created, and click **Build a Database**.
+2. Click **Shared**.
+3. Under **Cloud Provider & Region**, select a preferred region.
+4. Under **Cluster Tier**, select **M0 Sandbox**, which, at the time of writing, is **free forever**.
+5. Should you choose **M2** and above in Step 3, under **Additional Settings**, you may decide whether to back up your data.
+6. Under **Cluster Name**, give your cluster a name.
+7. Click **Create Cluster**.
+8. You will be redirected to the **Security Quickstart** screen.
+9. Under "**How would you like to authenticate your connection?**", select **Username and Password**.
+10. Create a new user using a username and password. It is strongly advised that your new username and password are different from that of your MongoDB cloud account. You may choose to **Autogenerate Secure Password**, if you like.
+11. Under "**Where would you like to connect from?**", select **My Local Environment**, and then select **Add My Current IP Address** to give your local machine access to the database.
+12. Click **Finish and Close**.
+
 ## Running the program ##
+
 
 ## About us ##
