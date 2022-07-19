@@ -23,8 +23,8 @@ SimplyLogs is our attempt at creating a more user-friendly and powerful inventor
 ## Dependencies ##
 To build and run `SimplyLogs`, you will need:
 
-* NodeJS
-* A MongoDB account
+* NodeJS.
+* A MongoDB account.
 
 ## Installation ##
 
