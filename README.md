@@ -123,6 +123,14 @@ This step requires the use of the `.env` file created in an earlier section.
 7. You are now ready to start up the program!
 
 ## Running the program ##
+### macOS and Linux ###
+You will need to start up the backend server first before starting up the frontend server for the data to persist.
 
+1. Open two terminal windows/sessions.
+2. In the first terminal window, `cd` to `inventoryapp-backend`, and then run the following command:
+   
+   `npm start`
+
+3. In the second terminal window, `cd` to `inventoryapp-frontend`, and then run `npm start`.
 
 ## About us ##
