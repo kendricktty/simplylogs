@@ -5,7 +5,7 @@ import "./MyPieChart.css";
 import { useState, useEffect } from "react";
 import axios from "../../../axios/axios";
 
-export default function MyPieChart(data) {
+export default function MyPieChart(props) {
   const testData = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -14,24 +14,13 @@ export default function MyPieChart(data) {
     { name: "Group E", value: 500 },
     { name: "Group F", value: 700 },
   ];
-  const [weekData, setWeekData] = React.useState({});
+  const [weekData, setWeekData] = React.useState([]);
 
   React.useEffect(() => {
-    async function fetchData() {
-      const header = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      };
-      try {
-        const res = await axios.get("/order?get7DaysData=true", header);
-        setWeekData(res.data);
-      } catch (error) {
-        console.log(error);
-      }
+    if (props.data !== undefined && props.data.length !== 0) {
+      setWeekData(props.data);
     }
-    fetchData();
-  }, []);
+  }, [props]);
 
   const COLORS = [
     "#0088FE",
@@ -73,7 +62,7 @@ export default function MyPieChart(data) {
   return (
     <div className="chart">
       <h3 className="chartTitle">Weekly Sales Analytics</h3>
-      {weekData && (
+      {props.data !== undefined && props.data.length !== 0 && (
         <ResponsiveContainer width="100%" aspect={4 / 1}>
           <PieChart className="myPieChart" width={1200} height={400}>
             <Legend
@@ -95,12 +84,13 @@ export default function MyPieChart(data) {
               labelLine={false}
               label={renderCustomizedLabel}
             >
-              {testData.map((entry, index) => (
+              {/* {weekData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={COLORS[index % COLORS.length]}
                 />
-              ))}
+              ))} */}
+              {console.log("hello")}
               {console.log(weekData)}
             </Pie>
           </PieChart>

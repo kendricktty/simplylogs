@@ -26,8 +26,8 @@ export default function Dashboard(props) {
       try {
         const res1 = await axios.get("/order?get12MonthsData=true", header);
         setYearData(res1.data);
-        // const res2 = await axios.get("/order?get7DaysData=true", header);
-        // setWeekData(res2.data.daysInAWeek);
+        const res2 = await axios.get("/order?get7DaysData=true", header);
+        setWeekData(res2.data.dayInAWeek);
       } catch (error) {
         console.log(error);
       }
