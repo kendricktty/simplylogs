@@ -5,6 +5,8 @@ import CustomMaterialPagination from "../../materialui/CustomMaterialPagination"
 import Barcode from "react-barcode";
 import InventoryUtilityBar from "./InventoryUtilityBar";
 
+
+
 /*
 https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- link to 
   table  api

@@ -1,6 +1,7 @@
 import React from "react";
 import AddProductForm from "./AddProductForm"
 import axios from "../../axios/axios"
+import { CsvBuilder } from 'filefy';
 
 
 export default function InventoryUtilityBar(props) {
@@ -100,7 +101,21 @@ export default function InventoryUtilityBar(props) {
         </div>
       </form>
       <div className="col-lg-4"></div>
-      <button class="btn btn-outline-primary col-lg-2 col-sm-6 utilityBtn my-3">
+      <button 
+        class="btn btn-outline-primary col-lg-2 col-sm-6 utilityBtn my-3"
+        onClick={() => {
+          const columnTitles = ['1','2','3']
+          
+          const csvData = [[1,2,3],[1,2,3]]
+        
+          const builder = new CsvBuilder(`Orders_.csv`)
+                .setColumns(columnTitles)
+                .addRows(csvData)
+                .exportFile();
+        
+          return builder;
+        }}
+      >
         Export
       </button>
       <button
