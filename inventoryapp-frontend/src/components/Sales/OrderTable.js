@@ -12,24 +12,11 @@ import {
 
 export default function OrderTable(props) {
 
-    console.log(props.order.rowData.products);
-
-    /*  category: "Food"
-        price: 1.25
-        productId: 1
-        productName: "CocoNut drink"
-        productRef: "62cb105d8f0e77758204eebf"
-        quantity: 2
-        supplier: "Coca Cola"
-        _id: "62cbaca196ea08a131795dcf"
-    */
-
     let formattedOrderData
     const products = props.order.rowData.products
 
     if (products) {
-        formattedOrderData = products.map(({productId,productName,price,quantity}) => ({productId,productName,price,quantity,total: quantity * price}))
-        console.log(formattedOrderData);
+        formattedOrderData = products.map(({productId,productName,price,quantity}) => ({productId,productName,price,quantity,total: quantity * price}));
     }
     
     
