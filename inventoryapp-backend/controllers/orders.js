@@ -179,6 +179,10 @@ const getAllOrders = async (req, res) => {
         }
       }
     }
+    res.status(200).json({
+      recentProducts: [],
+      orderDates: [],
+    });
   } else if (getRecentOrders == "true") {
     recentOrders = recentOrders.map(order => {
       const totalRevenue = order.products.reduce(
