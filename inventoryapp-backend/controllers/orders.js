@@ -197,11 +197,6 @@ const getAllOrders = async (req, res) => {
     var aWeekBefore = new Date();
     aWeekBefore.setDate(aWeekBefore.getDate() - 6);
 
-    let dayShift = day + 1;
-    while (dayShift--) {
-      dayInAWeek.push(dayInAWeek.shift());
-    }
-
     const AllOrders = await Order.find({ company: req.user.company });
     const filteredThisPeriodOrders = AllOrders.filter(
       order => new Date(order.createdAt) >= aWeekBefore
@@ -215,6 +210,10 @@ const getAllOrders = async (req, res) => {
       );
       dayInAWeek[idx].revenue += totalRevenue;
     });
+    let dayShift = day + 1;
+    while (dayShift--) {
+      dayInAWeek.push(dayInAWeek.shift());
+    }
     const dayInAWeekCopy = dayInAWeek;
     dayInAWeek = [
       { day: "Sunday", revenue: 0 },

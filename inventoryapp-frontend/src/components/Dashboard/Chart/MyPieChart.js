@@ -4,7 +4,6 @@ import { PieChart, Pie, ResponsiveContainer, Legend, Cell } from "recharts";
 import "./MyPieChart.css";
 
 export default function MyPieChart(props) {
-
   const COLORS = [
     "#0088FE",
     "#00C49F",
@@ -75,7 +74,6 @@ export default function MyPieChart(props) {
                 />
               ))}
             </Pie>
-            
           </PieChart>
         </ResponsiveContainer>
       )}
