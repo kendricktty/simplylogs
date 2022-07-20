@@ -13,17 +13,21 @@ import axios from "../axios/axios";
 import MyPieChart from "../components/Dashboard/Chart/MyPieChart";
 
 export default function Dashboard(props) {
-  const [data, setData] = React.useState({});
+  const [yearData, setYearData] = React.useState({});
+  const [weekData, setWeekData] = React.useState({});
 
   React.useEffect(() => {
     async function fetchData() {
+      const header = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
       try {
-        const res = await axios.get("/order?get12MonthsData=true", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        setData(res.data);
+        const res1 = await axios.get("/order?get12MonthsData=true", header);
+        setYearData(res1.data);
+        // const res2 = await axios.get("/order?get7DaysData=true", header);
+        // setWeekData(res2.data.daysInAWeek);
       } catch (error) {
         console.log(error);
       }
@@ -45,15 +49,15 @@ export default function Dashboard(props) {
         <DashboardQuickAction />
         <FeaturedInfo />
 
-        {data.monthlyRevenue && (
+        {yearData.monthlyRevenue && (
           <Carousel plugins={["arrows", "infinite"]}>
             <Chart
-              data={data.monthlyRevenue.reverse()}
+              data={yearData.monthlyRevenue.reverse()}
               title="Sales Analytics"
               grid
               dataKey="Revenue"
             />
-            <MyPieChart />
+            <MyPieChart data={weekData} />
           </Carousel>
         )}
         <div className="dashboardWidgets">

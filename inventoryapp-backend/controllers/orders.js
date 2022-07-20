@@ -16,6 +16,16 @@ const month = [
   "Dec",
 ];
 
+const dayInAWeek = [
+  { day: "Sunday", revenue: 0 },
+  { day: "Monday", revenue: 0 },
+  { day: "Tuesday", revenue: 0 },
+  { day: "Wednesday", revenue: 0 },
+  { day: "Thursday", revenue: 0 },
+  { day: "Friday", revenue: 0 },
+  { day: "Saturday", revenue: 0 },
+];
+
 function getTotal(orders) {
   //reduce the order array to a single value
   return orders.reduce((sum, order) => (sum += order.grossTotal), 0);
@@ -153,18 +163,29 @@ const getAllOrders = async (req, res) => {
   const orders = await Order.find(queryObject);
 
   if (get7DaysData === "true") {
-    const currentPeriod =
-      period === "daily"
-        ? startOfDay
-        : period === "weekly"
-        ? startOfWeek
-        : startOfMonth;
+    var aWeekBefore = new Date();
+    aWeekBefore.setDate(aWeekBefore.getDate() - 6);
+
+    let dayShift = day + 1;
+    while (dayShift--) {
+      dayInAWeek.push(dayInAWeek.shift());
+    }
+
     const AllOrders = await Order.find({ company: req.user.company });
     const filteredThisPeriodOrders = AllOrders.filter(
-      order => new Date(order.createdAt) >= currentPeriod
+      order => new Date(order.createdAt) >= aWeekBefore
     );
+
+    filteredThisPeriodOrders.forEach(order => {
+      const idx = new Date(order.createdAt).getDay();
+      const totalRevenue = order.products.reduce(
+        (sum, product) => (sum += product.price * product.quantity),
+        0
+      );
+      dayInAWeek[idx].revenue += totalRevenue;
+    });
     res.status(200).json({
-      filteredThisPeriodOrders,
+      dayInAWeek,
     });
     return;
   }
