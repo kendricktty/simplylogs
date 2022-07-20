@@ -12,7 +12,7 @@ export default function InventoryForm(props) {
   const [show, setShow] = React.useState(true);
   const handleClose = () => props.setForm(false);
   const [formData, setFormData] = React.useState({
-    productId: "",
+    productId: "",    "material-table": "^2.0.3",
     quantity: 1,
   });
   function handleChange(event) {
