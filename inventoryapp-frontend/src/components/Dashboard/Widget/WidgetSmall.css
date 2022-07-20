@@ -47,3 +47,32 @@
   text-align: center;
   margin-right: 2vw;
 }
+
+
+/* .widgetSmTr {
+  display: flex;
+  justify-content: spc;
+} */
+
+.widgetLgTh {
+  text-align: left;
+}
+
+/* .widgetLgDate {
+  font-weight: 300;
+} */
+
+
+.widgetSmRevenue {
+  font-weight: 300;
+  text-align: left;
+}
+
+.widgetSmTable {
+  width: 100%;
+  border-spacing:20px;
+}
+
+
+
+
