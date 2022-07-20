@@ -36,7 +36,7 @@ export default function MyPieChart(props) {
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
       >
-        {(percent * 100).toFixed(0)}%
+        {percent !== 0 ? (percent * 100).toFixed(0) + "%" : ""}
       </text>
     );
   };
@@ -44,10 +44,8 @@ export default function MyPieChart(props) {
   return (
     <div className="chart">
       <h3 className="chartTitle">Weekly Sales Analytics</h3>
-      {props.data.length !== 0 ? (
-        <ResponsiveContainer width="100%" aspect={4 / 1}>
-          
-        </ResponsiveContainer>
+      {props.data === undefined || props.data.length === 0 ? (
+        <div>No Data</div>
       ) : (
         <ResponsiveContainer width="100%" aspect={4 / 1}>
           <PieChart className="myPieChart" width={1200} height={400}>
