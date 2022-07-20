@@ -133,10 +133,10 @@ You will need to start up the backend server first before starting up the fronte
 
 3. In the second terminal window, `cd` to `inventoryapp-frontend`, and then run `npm start`.
 
-## About us #
+## About us ##
 
 
-### License ##
+## License ##
 MIT License
 
 Copyright (c) 2022 HEAP Group 17.
