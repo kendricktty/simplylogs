@@ -178,7 +178,6 @@ export default function Cashier(props) {
         orderData.products.push(product)
       })
 
-      console.log(orderData);
       await axios.post('/order', orderData)
       setShowInvoice((prevState) => { return {... prevState, showInvoice : true}})
     } catch (error) {
