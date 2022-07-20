@@ -227,6 +227,8 @@ const getAllOrders = async (req, res) => {
       dayInAWeek.push(dayInAWeek.shift());
     }
 
+    dayInAWeek = dayInAWeek.filter(day => day.revenue > 0);
+
     const dayInAWeekCopy = dayInAWeek;
     dayInAWeek = [
       { day: "Sunday", revenue: 0 },
