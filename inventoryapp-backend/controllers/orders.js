@@ -1,7 +1,7 @@
 const Order = require("../model/order");
 const { BadRequestError } = require("../errors");
 
-const dayInMs = 86400000
+const dayInMs = 86400000;
 
 const month = [
   "Jan",
@@ -34,7 +34,8 @@ function getTotal(orders) {
 }
 
 const getAllOrders = async (req, res) => {
-  const { period, get12MonthsData, get7DaysData } = req.query;
+  const { period, get12MonthsData, get7DaysData, getRecentProducts } =
+    req.query;
   const queryObject = {};
   queryObject.company = req.user.company;
 
@@ -76,7 +77,6 @@ const getAllOrders = async (req, res) => {
     previousMonth.getMonth() - 1,
     1
   );
-  
 
   if (period) {
     if (period === "daily") {
@@ -153,6 +153,43 @@ const getAllOrders = async (req, res) => {
 
   const orders = await Order.find(queryObject);
 
+  if (getRecentProducts == "true") {
+    let recentOrders = await Order.find(queryObject)
+      .sort({ createdAt: -1 })
+      .limit(5);
+    let recentProducts = [];
+    let datesOfPurchase = [];
+    for (const order of recentOrders) {
+      for (const product of order.products) {
+        recentProducts.push(product);
+        datesOfPurchase.push(order.createdAt);
+        if (recentProducts.length === 5) {
+          let tempRecentProduct = recentProducts;
+          recentProducts = [];
+          res.status(200).json({
+            recentProducts: tempRecentProduct,
+            orderDates: datesOfPurchase,
+          });
+          return;
+        }
+      }
+    }
+    // for (let idx = orders.length; idx >= 0; idx--) {
+    //   let currentOrder = orders[idx];
+    //   // currentProducts = currentProducts.products;
+    //   console.log(currentOrder);
+    //   console.log("okkk");
+    //   // for (const product of orders[idx].products) {
+    //   //   recentOrder.append(product);
+    //   //   if (recentOrder.length === 5) {
+    //   //     res.status(200).json({
+    //   //       recentOrder,
+    //   //     });
+    //   //   }
+    //   // }
+    // }
+  }
+
   if (get7DaysData === "true") {
     var aWeekBefore = new Date();
     aWeekBefore.setDate(aWeekBefore.getDate() - 6);
@@ -225,10 +262,8 @@ const getAllOrders = async (req, res) => {
         new Date(order.createdAt) < currentPeriod
     );
 
-    
     const currentPeriodNumberOfOrders = filteredThisPeriodOrders.length;
 
-    
     const currentPeriodNumberOfProducts = filteredThisPeriodOrders.reduce(
       (count, order) => (count += order.products.length),
       0
@@ -238,14 +273,13 @@ const getAllOrders = async (req, res) => {
       (totalRevenue, order) => (totalRevenue += order.grossTotal),
       0
     );
-  
+
     const previousPeriodNumberOfOrders = filteredPreviousPeriodOrders.length;
 
     const previousPeriodNumberOfProducts = filteredPreviousPeriodOrders.reduce(
       (count, order) => (count += order.products.length),
       0
     );
-
 
     const previousPeriodRevenue = filteredPreviousPeriodOrders.reduce(
       (totalRevenue, order) => (totalRevenue += order.grossTotal),

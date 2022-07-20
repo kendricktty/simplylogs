@@ -1,10 +1,54 @@
 import "./WidgetLarge.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "../../../axios/axios";
+
+const icons = [
+  <i class="bx bxs-bowl-rice"></i>, //food
+  <i class="bx bx-fridge"></i>, //kitchenware
+  <i class="bx bx-bed"></i>, //furnishing
+];
 
 export default function WidgetLarge() {
-  const Button = ({ type }) => {
-    return <button className={"widgetLgButton " + type}>{type}</button>;
-  };
+  const [data, setData] = useState([]);
+  const [dateOfPurchase, setDateOfPurchase] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const req = await axios.get("/order?getRecentProducts=true", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = req.data.recentProducts;
+      setData(data);
+      let orderDates = req.data.orderDates;
+      orderDates = orderDates.map(orderDate => orderDate.substring(0, 10));
+      console.log(orderDates);
+      setDateOfPurchase(orderDates);
+    }
+
+    fetchData();
+  }, []);
+
+  function outputData(data) {
+    return data.map((product, index) => {
+      return (
+        <tr className="widgetLgTr">
+          <td className="widgetLgUser">
+            {product.category === "Food"
+              ? icons[0]
+              : product.category === "KitchenWare"
+              ? icons[1]
+              : icons[2]}
+            <span className="widgetLgName">{product.productName}</span>
+          </td>
+          <td className="widgetLgDate">{dateOfPurchase[index]}</td>
+          <td className="widgetLgQuantity">{product.quantity}</td>
+          <td className="widgetLgRevenue">{product.price}</td>
+        </tr>
+      );
+    });
+  }
+
   return (
     <div className="widgetLg">
       <h3 className="widgetLgTitle">Recent Products Sold</h3>
@@ -15,71 +59,8 @@ export default function WidgetLarge() {
           <th className="widgetLgTH">Quantity</th>
           <th className="widgetLgTH">Revenue</th>
         </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-            <img
-              src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt=""
-              className="widgetLgImg"
-            />
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>
-          <td className="widgetLgQuantity">50</td>
-          <td className="widgetLgRevenue">$122.00</td>
-        </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-            <img
-              src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt=""
-              className="widgetLgImg"
-            />
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>
-          <td className="widgetLgQuantity">50</td>
-          <td className="widgetLgRevenue">$122.00</td>
-        </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-            <img
-              src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt=""
-              className="widgetLgImg"
-            />
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>{" "}
-          <td className="widgetLgQuantity">50</td>
-          <td className="widgetLgRevenue">$122.00</td>
-        </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-            <img
-              src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt=""
-              className="widgetLgImg"
-            />
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>{" "}
-          <td className="widgetLgQuantity">50</td>
-          <td className="widgetLgRevenue">$122.00</td>
-        </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-            <img
-              src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt=""
-              className="widgetLgImg"
-            />
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>{" "}
-          <td className="widgetLgQuantity">50</td>
-          <td className="widgetLgRevenue">$122.00</td>
-        </tr>
+
+        {data && outputData(data)}
       </table>
     </div>
   );

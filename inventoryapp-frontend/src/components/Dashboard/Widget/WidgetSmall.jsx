@@ -17,10 +17,7 @@ export default function WidgetSmall() {
             <span className="widgetSmUsername">Anna Keller</span>
             <span className="widgetSmUserTitle">Software Engineer</span>
           </div>
-          <button className="widgetSmButton">
-            <Visibility className="widgetSmIcon" />
-            Display
-          </button>
+          <div className="widgetSmOrder">hellooo</div>
         </li>
         <li className="widgetSmListItem">
           {/* <img
@@ -32,10 +29,7 @@ export default function WidgetSmall() {
             <span className="widgetSmUsername">Anna Keller</span>
             <span className="widgetSmUserTitle">Software Engineer</span>
           </div>
-          <button className="widgetSmButton">
-            <Visibility className="widgetSmIcon" />
-            Display
-          </button>
+          <div className="widgetSmOrder">hellooo</div>
         </li>
         <li className="widgetSmListItem">
           {/* <img
@@ -47,10 +41,7 @@ export default function WidgetSmall() {
             <span className="widgetSmUsername">Anna Keller</span>
             <span className="widgetSmUserTitle">Software Engineer</span>
           </div>
-          <button className="widgetSmButton">
-            <Visibility className="widgetSmIcon" />
-            Display
-          </button>
+          <div className="widgetSmOrder">hellooo</div>
         </li>
         <li className="widgetSmListItem">
           {/* <img
@@ -62,10 +53,7 @@ export default function WidgetSmall() {
             <span className="widgetSmUsername">Anna Keller</span>
             <span className="widgetSmUserTitle">Software Engineer</span>
           </div>
-          <button className="widgetSmButton">
-            <Visibility className="widgetSmIcon" />
-            Display
-          </button>
+          <div className="widgetSmOrder">hellooo</div>
         </li>
         <li className="widgetSmListItem">
           {/* <img
@@ -77,10 +65,7 @@ export default function WidgetSmall() {
             <span className="widgetSmUsername">Anna Keller</span>
             <span className="widgetSmUserTitle">Software Engineer</span>
           </div>
-          <button className="widgetSmButton">
-            <Visibility className="widgetSmIcon" />
-            Display
-          </button>
+          <div className="widgetSmOrder">hellooo</div>
         </li>
       </ul>
     </div>
