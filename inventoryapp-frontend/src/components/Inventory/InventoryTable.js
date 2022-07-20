@@ -55,6 +55,7 @@ export default function InventoryTable(props) {
           onClear={handleClear}
           filterText={filterText}
           handleAddData={handleAddData}
+          dynamicData={props.dynamicData}
           productCount={props.dynamicData.count}
         />
       );

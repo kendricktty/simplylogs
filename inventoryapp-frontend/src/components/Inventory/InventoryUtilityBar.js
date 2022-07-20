@@ -6,6 +6,7 @@ import { CsvBuilder } from 'filefy';
 
 export default function InventoryUtilityBar(props) {
 
+  console.log(props.dynamicData);
   const [showForm, setShowForm] = React.useState(false);
   const [formData, setFormData] = React.useState({
     productId: "", 
@@ -16,6 +17,7 @@ export default function InventoryUtilityBar(props) {
     category: "",
   });
   const [errorMsg, setErrorMsg] = React.useState("")
+  
   
 
   React.useEffect(() => {
@@ -76,6 +78,40 @@ export default function InventoryUtilityBar(props) {
   }
 
 
+  //set col/row fields for the csv
+  const columns=[
+    {title:"ProductID",field:"productId"},
+    {title:"ProductName",field:"productName"},
+    {title:"Supplier",field:"supplier"},
+    {title:"Quantity",field:"quantity"},
+    {title:"Price",field:"price"},
+  ]
+
+  //data for the csv
+  let formattedInventoryData = [];
+  if (props.dynamicData.inventory) {
+    formattedInventoryData = props.dynamicData.inventory.map( ({productId,productName,supplier,quantity,price}) => 
+    ({productId,productName,supplier,quantity,price}))
+  }
+  
+
+  //export to csv function
+  function exportCSV() {
+    const columnTitles = columns.map(columnDef => columnDef.title);
+    
+    const csvData = formattedInventoryData.map(rowData =>
+      columns.map(columnDef => rowData[columnDef.field]),
+    );
+  
+    
+    const builder = new CsvBuilder(`Inventory_${new Date().toDateString()}.csv`)
+          .setColumns(columnTitles)
+          .addRows(csvData)
+          .exportFile();
+  
+    return builder;
+  }
+
   return (
     <div className="InventoryUtilityBar row">
       <form
@@ -103,18 +139,7 @@ export default function InventoryUtilityBar(props) {
       <div className="col-lg-4"></div>
       <button 
         class="btn btn-outline-primary col-lg-2 col-sm-6 utilityBtn my-3"
-        onClick={() => {
-          const columnTitles = ['1','2','3']
-          
-          const csvData = [[1,2,3],[1,2,3]]
-        
-          const builder = new CsvBuilder(`Orders_.csv`)
-                .setColumns(columnTitles)
-                .addRows(csvData)
-                .exportFile();
-        
-          return builder;
-        }}
+        onClick={() => exportCSV()}
       >
         Export
       </button>

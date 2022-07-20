@@ -11,9 +11,9 @@ import "@brainhubeu/react-carousel/lib/style.css";
 import axios from "../axios/axios";
 import MyPieChart from "../components/Dashboard/Chart/MyPieChart";
 
+
 export default function Dashboard(props) {
-  const [data, setData] = React.useState({year: null, week: null});
-  
+  const [data, setData] = React.useState({ year: null, week: null });
 
   React.useEffect(() => {
     async function fetchData() {
@@ -25,7 +25,7 @@ export default function Dashboard(props) {
       try {
         const res1 = await axios.get("/order?get12MonthsData=true", header);
         const res2 = await axios.get("/order?get7DaysData=true", header);
-        setData({year: res1.data, week: res2.data.dayInAWeek})
+        setData({ year: res1.data, week: res2.data.dayInAWeek });
       } catch (error) {
         console.log(error);
       }

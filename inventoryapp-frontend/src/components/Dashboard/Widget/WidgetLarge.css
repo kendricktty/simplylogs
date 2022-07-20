@@ -51,3 +51,8 @@ thead,
 tr {
   margin: 10px;
 }
+
+.bx {
+  font-size: 30px;
+  padding-right: 5%;
+}

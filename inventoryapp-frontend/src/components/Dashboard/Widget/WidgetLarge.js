@@ -21,7 +21,9 @@ export default function WidgetLarge() {
       const data = req.data.recentProducts;
       setData(data);
       let orderDates = req.data.orderDates;
-      orderDates = orderDates.map(orderDate => orderDate.substring(0, 10));
+      if (orderDates.length !== 0) {
+        orderDates = orderDates.map(orderDate => orderDate.substring(0, 10));
+      }
       setDateOfPurchase(orderDates);
     }
 
