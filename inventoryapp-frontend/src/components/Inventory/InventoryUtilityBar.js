@@ -4,15 +4,6 @@ import axios from "../../axios/axios"
 
 
 export default function InventoryUtilityBar(props) {
-  // const handleSubmit = event => {
-  //     event.preventDefault();
-  //     alert('You have submitted the form.')
-  //     setSearch('')
-  // }
-
-  // const [search, setSearch] = React.useState('')
-  // This is the function when the button is pressed
-  // to add items to data.json
 
   const [showForm, setShowForm] = React.useState(false);
   const [formData, setFormData] = React.useState({
@@ -64,14 +55,6 @@ export default function InventoryUtilityBar(props) {
   }
 
   function handleCancel() {
-    // setFormData({
-    //   productId: productCount,
-    //   productName: "",
-    //   supplier: "",
-    //   quantity: "",
-    //   price: "",
-    //   category: "",
-    // });
     setErrorMsg("")
     setShowForm(!showForm);
   }
@@ -94,20 +77,6 @@ export default function InventoryUtilityBar(props) {
 
   return (
     <div className="InventoryUtilityBar row">
-      {/* <div class="row select-view col-lg-4 col-sm-12">
-                <div class="col-lg-12 my-3">
-                    <div class="pull-right">
-                        <div class="btn-group">
-                            <button class="btn btn-outline-primary" id="list">
-                                List View
-                            </button>
-                            <button class="btn btn-outline-secondary" id="grid">
-                                Grid View
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
       <form
         className="searchBar col-lg-4 col-sm-12 my-3"
       >

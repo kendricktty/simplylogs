@@ -45,8 +45,7 @@ export default function InventoryTable(props) {
         setFilterText("");
       }
     };
-    console.log('changed');
-    console.log(props.dynamicData.count);
+
     
       return (
         <InventoryUtilityBar
