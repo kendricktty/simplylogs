@@ -19,20 +19,27 @@ export default function WidgetSmall() {
   }, []);
 
   function outputData(data) {
-    return data.map(order => (
-      <li className="widgetSmListItem">
-        <div className="widgetSmUser">
-          <span className="widgetSmText">Invoice {order.invoiceNumber}</span>
-        </div>
-        <div className="widgetSmRevenue">${order.revenue.toFixed(2)}</div>
-      </li>
-    ));
+    return data.map((order, index) => {
+      return (
+        <tr className="widgetSmTr">
+          <td className="widgetSmInvoice">Invoice {order.invoiceNumber}</td>
+          {/* <td className="widgetLgQuantity">{product.quantity}</td> */}
+          <td className="widgetSmRevenue">${order.revenue.toFixed(2)}</td>
+        </tr>
+      );
+    });
   }
 
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">Recent Orders</span>
-      <ul className="widgetSmList">{data && outputData(data)}</ul>
+      <table className="widgetSmTable">
+        <tr className="widgetSmTr">
+          <th>Invoice Number</th>
+          <th>Revenue</th>
+        </tr>
+        {data && outputData(data)}
+      </table>
     </div>
   );
 }

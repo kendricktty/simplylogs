@@ -44,7 +44,7 @@ export default function WidgetLarge() {
           </td>
           <td className="widgetLgDate">{dateOfPurchase[index]}</td>
           <td className="widgetLgQuantity">{product.quantity}</td>
-          <td className="widgetLgRevenue">${product.price.toFixed(2)}</td>
+          <td className="widgetLgRevenue">${(product.price * product.quantity).toFixed(2)}</td>
         </tr>
       );
     });

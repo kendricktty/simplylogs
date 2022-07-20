@@ -6,7 +6,6 @@ import { CsvBuilder } from 'filefy';
 
 export default function InventoryUtilityBar(props) {
 
-  console.log(props.dynamicData);
   const [showForm, setShowForm] = React.useState(false);
   const [formData, setFormData] = React.useState({
     productId: "", 
