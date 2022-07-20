@@ -183,6 +183,7 @@ const getAllOrders = async (req, res) => {
       recentProducts: [],
       orderDates: [],
     });
+    return;
   } else if (getRecentOrders == "true") {
     recentOrders = recentOrders.map(order => {
       const totalRevenue = order.products.reduce(
@@ -202,6 +203,13 @@ const getAllOrders = async (req, res) => {
     aWeekBefore.setDate(aWeekBefore.getDate() - 6);
 
     const AllOrders = await Order.find({ company: req.user.company });
+
+    if (AllOrders.length === 0) {
+      res.status(200).json({
+        dayInAWeek: [],
+      });
+      return;
+    }
     const filteredThisPeriodOrders = AllOrders.filter(
       order => new Date(order.createdAt) >= aWeekBefore
     );
@@ -218,6 +226,7 @@ const getAllOrders = async (req, res) => {
     while (dayShift--) {
       dayInAWeek.push(dayInAWeek.shift());
     }
+
     const dayInAWeekCopy = dayInAWeek;
     dayInAWeek = [
       { day: "Sunday", revenue: 0 },

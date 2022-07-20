@@ -44,7 +44,7 @@ export default function MyPieChart(props) {
   return (
     <div className="chart">
       <h3 className="chartTitle">Weekly Sales Analytics</h3>
-      {props.data !== undefined && props.data.length !== 0 && (
+      {props.data.length !== 0 && (
         <ResponsiveContainer width="100%" aspect={4 / 1}>
           <PieChart className="myPieChart" width={1200} height={400}>
             <Legend
