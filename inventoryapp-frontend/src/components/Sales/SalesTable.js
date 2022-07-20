@@ -3,25 +3,23 @@ import MaterialTable from "material-table";
 import { CsvBuilder } from 'filefy';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import OrderTable from './OrderTable'
 
 export default function SalesTable(props) {
 
+    const [order, setOrder] = React.useState({show: false, rowData: {}})
 
     const orderData = props.data
-    console.log(orderData)
-    
-    const formattedOrderData = orderData.map( ({_id,invoiceNo,company,createdAt,updatedAt,grossTotal}) => 
-    ({_id,invoiceNo,company,createdAt,updatedAt,grossTotal}))
-
-
 
     
+    const formattedOrderData = orderData.map( ({_id,invoiceNo,company,createdAt,updatedAt,grossTotal,products}) => 
+    ({_id,invoiceNo,company,createdAt,updatedAt,grossTotal,products}))
+
+
     const columns=[
-        {title:"ID",field:"_id"},
         {title:"Invoice No",field:"invoiceNo"},
         {title:"Company",field:"company"},
         {title:"Created At",field:"createdAt"},
-        {title:"Updated At",field:"updatedAt"},
         {title:"Gross Amount",field:"grossTotal"}
     ]
 
@@ -33,6 +31,10 @@ export default function SalesTable(props) {
 
     return (
         <>
+            <OrderTable
+                order={order}
+                setOrder={setOrder}
+            />
             <MaterialTable 
                 title = "Sales"
                 data = {formattedOrderData}
@@ -79,13 +81,20 @@ export default function SalesTable(props) {
                             });
                           
                             doc.save(`Orders_${today}_.pdf`);
-                          }
-
+                          },
+                          actionsColumnIndex: -1
 
                 }
             }
                 onRowClick = {props.copy}
-                
+                actions={[
+                    {
+                      icon: 'search',
+                      tooltip: 'View Order',
+                      onClick: (event, rowData) => {
+                        setOrder({show:true, rowData:rowData})
+                      }  
+                    }]}
             /> 
         </>
     )

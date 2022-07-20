@@ -13,7 +13,6 @@ export default function WidgetSmall() {
       });
       const data = req.data.recentOrders;
       setData(data);
-      console.log(data);
     }
 
     fetchData();
