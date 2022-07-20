@@ -67,9 +67,15 @@ export default function InventoryTable(props) {
   };
 
   const handleGenerateButtonClick = (data) => {
-    const productName = data.productName;
+    const {productId, productName} = data
     ReactDOM.render(
-      <Barcode value={productName} />,
+      <>
+        <div class="alert alert-light" role="alert">
+          {productName}
+        </div>
+        <Barcode value={productId} />
+      </>
+      ,
       document.getElementById("barcode")
     );
   };
