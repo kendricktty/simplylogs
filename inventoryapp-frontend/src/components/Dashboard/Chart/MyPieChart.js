@@ -6,10 +6,7 @@ import { useState, useEffect } from "react";
 import axios from "../../../axios/axios";
 
 export default function MyPieChart(props) {
-<<<<<<< HEAD
-  
-=======
->>>>>>> 8edf54bb119eee6d6a0986d91cdf1fd9aa36ff61
+  console.log(props.data);
   const testData = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -18,37 +15,9 @@ export default function MyPieChart(props) {
     { name: "Group E", value: 500 },
     { name: "Group F", value: 700 },
   ];
-<<<<<<< HEAD
-  // const [weekData, setWeekData] = React.useState([]);
-
-
-  // React.useEffect(() => {
-  //   async function fetchData() {
-  //     const header = {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //       },
-  //     };
-  //     try {
-  //       const res2 = await axios.get("/order?get7DaysData=true", header);
-  //       setWeekData(res2.data.dayInAWeek);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
-
+  console.log(testData);
   
-=======
-  const [weekData, setWeekData] = React.useState([]);
-
-  React.useEffect(() => {
-    if (props.data !== undefined && props.data.length !== 0) {
-      setWeekData(props.data);
-    }
-  }, [props]);
->>>>>>> 8edf54bb119eee6d6a0986d91cdf1fd9aa36ff61
+  
 
   const COLORS = [
     "#0088FE",
@@ -101,8 +70,9 @@ export default function MyPieChart(props) {
               iconType="circle"
             />
             <Pie
-              data={weekData}
+              data={props.data}
               dataKey="revenue"
+              nameKey="day"
               cx={"25%"}
               cy={"50%"}
               outerRadius={"100%"}
@@ -112,15 +82,14 @@ export default function MyPieChart(props) {
               labelLine={false}
               label={renderCustomizedLabel}
             >
-              {/* {weekData.map((entry, index) => (
+              {props.data.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={COLORS[index % COLORS.length]}
                 />
-              ))} */}
-              {console.log("hello")}
-              {console.log(weekData)}
+              ))}
             </Pie>
+            
           </PieChart>
         </ResponsiveContainer>
       )}
