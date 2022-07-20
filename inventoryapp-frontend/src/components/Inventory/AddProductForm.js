@@ -2,9 +2,6 @@ import React from "react";
 import {
   Form,
   Button,
-  FormGroup,
-  FormControl,
-  ControlLabel,
 } from "react-bootstrap";
 
 export default function AddProductForm(props) {

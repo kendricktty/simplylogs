@@ -143,13 +143,9 @@ export default function InventoryTable(props) {
       data={filteredItems}
       fixedHeader={true}
       selectableRows
-      // actions={
-      //     (<InventoryUtilityBar />)
-      // }
       subHeader
       subHeaderComponent={subHeaderComponentMemo}
       //adding pagination to the table
-
       pagination
       paginationResetDefaultPage={resetPaginationToggle}
       paginationComponent={CustomMaterialPagination}

@@ -12,28 +12,24 @@ export default function SideNav(props) {
           <a href="/">
             <i class="bx bxs-dashboard"></i>
             <span className="sideNav--tabs">Dashboard</span>
-            {/* <span className="tooltip">Dashboard</span> */}
           </a>
         </li>
         <li>
           <a href="/inventory">
             <i class="bx bx-package"></i>
             <span className="sideNav--tabs">Inventory</span>
-            {/* <span className="tooltip">Inventory</span> */}
           </a>
         </li>
         <li>
           <a href="/sales">
             <i class="bx bx-stats"></i>
             <span className="sideNav--tabs">Sales</span>
-            {/* <span className="tooltip">Sales</span> */}
           </a>
         </li>
         <li>
           <a href="/cashier">
             <i class="fa-solid fa-cart-shopping"></i>
             <span className="sideNav--tabs">Cashier</span>
-            {/* <span className="tooltip">Sales</span> */}
           </a>
         </li>
         <li className="profile">

@@ -4,6 +4,8 @@ require("express-async-errors");
 const express = require("express");
 const connectDB = require("./db/connect");
 const cors = require("cors");
+
+//Import error handlers
 const notFoundMiddleware = require('./middleware/not-found');
 const errorMiddleware = require('./middleware/error-handler');
 const authenticateUser = require('./middleware/authentication')
@@ -23,8 +25,6 @@ app.use(express.json());
 app.use(cors());
 
 
-//localhost:8001/auth/register  axios.post('/auth/register', req.body)
-//
 
 // Initialise InventoryRouter
 app.use("/auth", authRouter)

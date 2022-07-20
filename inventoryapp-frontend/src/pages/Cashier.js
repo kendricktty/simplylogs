@@ -21,12 +21,7 @@ export default function Cashier(props) {
   const [error, setError] = React.useState("");
   const productOrders = products;
   
-  // Load the product when the page is rendered at first
-  // React.useEffect(() => {
-  //   fetch("http://localhost:8001/inventory")
-  //     .then((res) => res.json())
-  //     .then((data) => setProducts(data["inventory"]));
-  // }, []);
+ 
 
 
   React.useEffect(() => {

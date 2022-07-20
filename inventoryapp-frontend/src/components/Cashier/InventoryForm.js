@@ -2,9 +2,6 @@ import {
   Form,
   Button,
   Modal,
-  FormGroup,
-  FormControl,
-  ControlLabel,
 } from "react-bootstrap";
 import React from "react";
 

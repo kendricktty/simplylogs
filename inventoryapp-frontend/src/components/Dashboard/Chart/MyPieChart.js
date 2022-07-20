@@ -2,22 +2,8 @@ import React from "react";
 import "./chart.css";
 import { PieChart, Pie, ResponsiveContainer, Legend, Cell } from "recharts";
 import "./MyPieChart.css";
-import { useState, useEffect } from "react";
-import axios from "../../../axios/axios";
 
 export default function MyPieChart(props) {
-  console.log(props.data);
-  const testData = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 },
-    { name: "Group E", value: 500 },
-    { name: "Group F", value: 700 },
-  ];
-  console.log(testData);
-  
-  
 
   const COLORS = [
     "#0088FE",

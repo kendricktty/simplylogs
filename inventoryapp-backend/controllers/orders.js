@@ -1,6 +1,8 @@
 const Order = require("../model/order");
 const { BadRequestError } = require("../errors");
 
+const dayInMs = 86400000
+
 const month = [
   "Jan",
   "Feb",
@@ -51,9 +53,9 @@ const getAllOrders = async (req, res) => {
   const startOfMonth = new Date(sgtStartOfMonthISO);
   const day = new Date().getDay();
 
-  const startOfWeek = new Date(startOfDay.getTime() - (day - 1) * 86400000);
-  const previousDay = new Date(startOfDay.getTime() - (day - 1) * 86400000);
-  const previousWeek = new Date(startOfDay.getTime() - (day + 6) * 86400000);
+  const startOfWeek = new Date(startOfDay.getTime() - (day - 1) * dayInMs);
+  const previousDay = new Date(startOfDay.getTime() - (day - 1) * dayInMs);
+  const previousWeek = new Date(startOfDay.getTime() - (day + 6) * dayInMs);
 
   const previousMonth = new Date(
     new Date().getFullYear(),
@@ -74,26 +76,15 @@ const getAllOrders = async (req, res) => {
     previousMonth.getMonth() - 1,
     1
   );
-  //   previousPreviousMonth.setDate(previousPreviousMonth.getDate() + 1);
-
-  //   if (
-  //     period &&
-  //     period !== "daily" &&
-  //     period !== "weekly" &&
-  //     period !== "monthly"
-  //   ) {
-  //     throw new BadRequestError("Wrong value for period");
-  //   }
+  
 
   if (period) {
     if (period === "daily") {
       queryObject.createdAt = { $gte: startOfDay.toISOString() };
     } else if (period === "weekly") {
-      // console.log(startOfDay.toISOString())
-      // console.log(new Date(startOfDay.getTime() - (day - 1) * 86400000).toISOString());
       queryObject.createdAt = {
         $gte: new Date(
-          startOfDay.getTime() - (day - 1) * 86400000
+          startOfDay.getTime() - (day - 1) * dayInMs
         ).toISOString(),
       };
     } else if (period === "monthly") {
@@ -222,7 +213,7 @@ const getAllOrders = async (req, res) => {
         ? previousPreviousWeek
         : previousPreviousMonth;
 
-    //retrievs orders that are created this month/week/today
+    //retrieves orders that are created this month/week/today
     const filteredThisPeriodOrders = AllOrders.filter(
       order => new Date(order.createdAt) >= currentPeriod
     );
@@ -234,55 +225,27 @@ const getAllOrders = async (req, res) => {
         new Date(order.createdAt) < currentPeriod
     );
 
-    const filteredPreviousPreviousPeriodOrders = AllOrders.filter(order => {
-      let orderDate = new Date(order.createdAt);
-      return orderDate < previousPeriod && orderDate >= previousPreviousPeriod;
-    });
-
-    // const currentPeriodNumberOfOrders = filteredPreviousPeriodOrders.length;
-
+    
     const currentPeriodNumberOfOrders = filteredThisPeriodOrders.length;
 
-    // const currentPeriodNumberOfProducts =
-    //     filteredPreviousPeriodOrders.reduce(
-    //         (count, order) => (count += order.products.length),
-    //         0
-    //     );
-
+    
     const currentPeriodNumberOfProducts = filteredThisPeriodOrders.reduce(
       (count, order) => (count += order.products.length),
       0
     );
 
-    // const currentPeriodRevenue = filteredPreviousPeriodOrders.reduce(
-    //     (totalRevenue, order) => (totalRevenue += order.grossTotal),
-    //     0
-    // );
-
     const currentPeriodRevenue = filteredThisPeriodOrders.reduce(
       (totalRevenue, order) => (totalRevenue += order.grossTotal),
       0
     );
-
-    // const previousPeriodNumberOfOrders = filteredPreviousPreviousPeriodOrders.length;
+  
     const previousPeriodNumberOfOrders = filteredPreviousPeriodOrders.length;
-
-    // const previousPeriodNumberOfProducts =
-    //     filteredPreviousPreviousPeriodOrders.reduce(
-    //         (count, order) => (count += order.products.length),
-    //         0
-    //     );
 
     const previousPeriodNumberOfProducts = filteredPreviousPeriodOrders.reduce(
       (count, order) => (count += order.products.length),
       0
     );
 
-    // const previousPeriodRevenue =
-    //     filteredPreviousPreviousPeriodOrders.reduce(
-    //         (totalRevenue, order) => (totalRevenue += order.grossTotal),
-    //         0
-    //     );
 
     const previousPeriodRevenue = filteredPreviousPeriodOrders.reduce(
       (totalRevenue, order) => (totalRevenue += order.grossTotal),
@@ -320,7 +283,6 @@ const createOrder = async (req, res) => {
   await order.updateInventory();
 
   res.status(201).json({ order });
-  // res.send('added order')
 };
 
 module.exports = { getAllOrders, createOrder };

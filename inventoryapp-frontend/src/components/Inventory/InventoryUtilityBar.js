@@ -36,7 +36,7 @@ export default function InventoryUtilityBar(props) {
     e.preventDefault();
     const submittingData = formData;
 
-    //need to change to Integer for productId and quantit and set id to productid
+    //need to change to Integer for productId and quantity and set id to productid
     submittingData.productId = parseInt(submittingData.productId);
     // submittingData.id = submittingData.productId;
     submittingData.quantity = parseInt(submittingData.quantity);

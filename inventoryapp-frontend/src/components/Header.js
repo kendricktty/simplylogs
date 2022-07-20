@@ -13,8 +13,7 @@ export default function Header(props) {
   ];
   const [time, setTime] = React.useState(currentdate.toString().slice(15, 33));
 
-  // setTime(currentdate.toString().slice(15,33))
-  //Added clock for fun lmaos
+ 
   function refreshClock() {
     setTime(new Date().toString().slice(15, 33));
   }
