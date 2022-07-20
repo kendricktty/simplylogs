@@ -26,7 +26,6 @@ export default function MyPieChart(data) {
       try {
         const res = await axios.get("/order?get7DaysData=true", header);
         setWeekData(res.data);
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -74,36 +73,39 @@ export default function MyPieChart(data) {
   return (
     <div className="chart">
       <h3 className="chartTitle">Weekly Sales Analytics</h3>
-      <ResponsiveContainer width="100%" aspect={4 / 1}>
-        <PieChart className="myPieChart" width={1200} height={400}>
-          <Legend
-            layout="vertical"
-            verticalAlign="middle"
-            align="right"
-            iconSize={20}
-            iconType="circle"
-          />
-          <Pie
-            data={testData}
-            dataKey="value"
-            cx={"25%"}
-            cy={"50%"}
-            outerRadius={"100%"}
-            fill="#8884d8"
-            legendType="rect"
-            cursor={"pointer"}
-            labelLine={false}
-            label={renderCustomizedLabel}
-          >
-            {testData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
-      </ResponsiveContainer>
+      {weekData && (
+        <ResponsiveContainer width="100%" aspect={4 / 1}>
+          <PieChart className="myPieChart" width={1200} height={400}>
+            <Legend
+              layout="vertical"
+              verticalAlign="middle"
+              align="right"
+              iconSize={20}
+              iconType="circle"
+            />
+            <Pie
+              data={weekData}
+              dataKey="revenue"
+              cx={"25%"}
+              cy={"50%"}
+              outerRadius={"100%"}
+              fill="#8884d8"
+              legendType="rect"
+              cursor={"pointer"}
+              labelLine={false}
+              label={renderCustomizedLabel}
+            >
+              {testData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+              {console.log(weekData)}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 }
