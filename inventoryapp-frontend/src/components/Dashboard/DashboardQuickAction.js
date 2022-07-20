@@ -6,7 +6,7 @@ import React from "react";
 import "react-calendar/dist/Calendar.css";
 import axios from "../../axios/axios";
 
-export default function DashboardQuickAction() {
+export default function DashboardQuickAction(props) {
   const [data, setData] = React.useState(0);
 
   React.useEffect(() => {

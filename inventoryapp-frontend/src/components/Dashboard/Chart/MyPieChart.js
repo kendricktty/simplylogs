@@ -2,9 +2,12 @@ import React from "react";
 import "./chart.css";
 import { PieChart, Pie, ResponsiveContainer, Legend, Cell } from "recharts";
 import "./MyPieChart.css";
-import axios from "../../../axios/axios"
-export default function MyPieChart() {
-  const data = [
+import { useState, useEffect } from "react";
+import axios from "../../../axios/axios";
+
+export default function MyPieChart(props) {
+  
+  const testData = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
     { name: "Group C", value: 300 },
@@ -12,6 +15,28 @@ export default function MyPieChart() {
     { name: "Group E", value: 500 },
     { name: "Group F", value: 700 },
   ];
+  // const [weekData, setWeekData] = React.useState([]);
+
+
+  // React.useEffect(() => {
+  //   async function fetchData() {
+  //     const header = {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //     };
+  //     try {
+  //       const res2 = await axios.get("/order?get7DaysData=true", header);
+  //       setWeekData(res2.data.dayInAWeek);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
+
+  
+
   const COLORS = [
     "#0088FE",
     "#00C49F",
@@ -37,17 +62,15 @@ export default function MyPieChart() {
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
     return (
-      <g>
-        <text
-          x={x}
-          y={y}
-          fill="white"
-          textAnchor={x > cx ? "start" : "end"}
-          dominantBaseline="central"
-        >
-          {`${(percent * 100).toFixed(0)}%`}
-        </text>
-      </g>
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
+        {(percent * 100).toFixed(0)}%
+      </text>
     );
   };
 
@@ -57,7 +80,6 @@ export default function MyPieChart() {
       <ResponsiveContainer width="100%" aspect={4 / 1}>
         <PieChart className="myPieChart" width={1200} height={400}>
           <Legend
-            className="pieChartLegend"
             layout="vertical"
             verticalAlign="middle"
             align="right"
@@ -65,7 +87,7 @@ export default function MyPieChart() {
             iconType="circle"
           />
           <Pie
-            data={data}
+            data={testData}
             dataKey="value"
             cx={"25%"}
             cy={"50%"}
@@ -76,7 +98,7 @@ export default function MyPieChart() {
             labelLine={false}
             label={renderCustomizedLabel}
           >
-            {data.map((entry, index) => (
+            {testData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
