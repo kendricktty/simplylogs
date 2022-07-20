@@ -22,7 +22,6 @@ export default function WidgetLarge() {
       setData(data);
       let orderDates = req.data.orderDates;
       orderDates = orderDates.map(orderDate => orderDate.substring(0, 10));
-      console.log(orderDates);
       setDateOfPurchase(orderDates);
     }
 
@@ -43,7 +42,7 @@ export default function WidgetLarge() {
           </td>
           <td className="widgetLgDate">{dateOfPurchase[index]}</td>
           <td className="widgetLgQuantity">{product.quantity}</td>
-          <td className="widgetLgRevenue">{product.price}</td>
+          <td className="widgetLgRevenue">${product.price.toFixed(2)}</td>
         </tr>
       );
     });

@@ -34,8 +34,13 @@ function getTotal(orders) {
 }
 
 const getAllOrders = async (req, res) => {
-  const { period, get12MonthsData, get7DaysData, getRecentProducts } =
-    req.query;
+  const {
+    period,
+    get12MonthsData,
+    get7DaysData,
+    getRecentProducts,
+    getRecentOrders,
+  } = req.query;
   const queryObject = {};
   queryObject.company = req.user.company;
 
@@ -153,10 +158,10 @@ const getAllOrders = async (req, res) => {
 
   const orders = await Order.find(queryObject);
 
+  let recentOrders = await Order.find(queryObject)
+    .sort({ createdAt: -1 })
+    .limit(5);
   if (getRecentProducts == "true") {
-    let recentOrders = await Order.find(queryObject)
-      .sort({ createdAt: -1 })
-      .limit(5);
     let recentProducts = [];
     let datesOfPurchase = [];
     for (const order of recentOrders) {
@@ -174,20 +179,18 @@ const getAllOrders = async (req, res) => {
         }
       }
     }
-    // for (let idx = orders.length; idx >= 0; idx--) {
-    //   let currentOrder = orders[idx];
-    //   // currentProducts = currentProducts.products;
-    //   console.log(currentOrder);
-    //   console.log("okkk");
-    //   // for (const product of orders[idx].products) {
-    //   //   recentOrder.append(product);
-    //   //   if (recentOrder.length === 5) {
-    //   //     res.status(200).json({
-    //   //       recentOrder,
-    //   //     });
-    //   //   }
-    //   // }
-    // }
+  } else if (getRecentOrders == "true") {
+    recentOrders = recentOrders.map(order => {
+      const totalRevenue = order.products.reduce(
+        (sum, product) => (sum += product.quantity * product.price),
+        0
+      );
+      return { invoiceNumber: order.invoiceNo, revenue: totalRevenue };
+    });
+    res.status(200).json({
+      recentOrders,
+    });
+    return;
   }
 
   if (get7DaysData === "true") {
