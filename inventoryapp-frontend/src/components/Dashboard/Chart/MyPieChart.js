@@ -39,7 +39,7 @@ export default function MyPieChart(data) {
     "#00C49F",
     "#FFBB28",
     "#FF8042",
-    "#EA5F89",
+    "#BF42F5",
     "#F7B7A3",
     "#F44336",
   ];
