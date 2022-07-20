@@ -16,7 +16,7 @@ const month = [
   "Dec",
 ];
 
-const dayInAWeek = [
+let dayInAWeek = [
   { day: "Sunday", revenue: 0 },
   { day: "Monday", revenue: 0 },
   { day: "Tuesday", revenue: 0 },
@@ -184,8 +184,18 @@ const getAllOrders = async (req, res) => {
       );
       dayInAWeek[idx].revenue += totalRevenue;
     });
+    const dayInAWeekCopy = dayInAWeek;
+    dayInAWeek = [
+      { day: "Sunday", revenue: 0 },
+      { day: "Monday", revenue: 0 },
+      { day: "Tuesday", revenue: 0 },
+      { day: "Wednesday", revenue: 0 },
+      { day: "Thursday", revenue: 0 },
+      { day: "Friday", revenue: 0 },
+      { day: "Saturday", revenue: 0 },
+    ];
     res.status(200).json({
-      dayInAWeek,
+      dayInAWeek: dayInAWeekCopy,
     });
     return;
   }

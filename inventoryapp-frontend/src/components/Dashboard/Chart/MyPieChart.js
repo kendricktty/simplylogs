@@ -6,7 +6,10 @@ import { useState, useEffect } from "react";
 import axios from "../../../axios/axios";
 
 export default function MyPieChart(props) {
+<<<<<<< HEAD
   
+=======
+>>>>>>> 8edf54bb119eee6d6a0986d91cdf1fd9aa36ff61
   const testData = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -15,6 +18,7 @@ export default function MyPieChart(props) {
     { name: "Group E", value: 500 },
     { name: "Group F", value: 700 },
   ];
+<<<<<<< HEAD
   // const [weekData, setWeekData] = React.useState([]);
 
 
@@ -36,6 +40,15 @@ export default function MyPieChart(props) {
   // }, []);
 
   
+=======
+  const [weekData, setWeekData] = React.useState([]);
+
+  React.useEffect(() => {
+    if (props.data !== undefined && props.data.length !== 0) {
+      setWeekData(props.data);
+    }
+  }, [props]);
+>>>>>>> 8edf54bb119eee6d6a0986d91cdf1fd9aa36ff61
 
   const COLORS = [
     "#0088FE",
@@ -77,36 +90,40 @@ export default function MyPieChart(props) {
   return (
     <div className="chart">
       <h3 className="chartTitle">Weekly Sales Analytics</h3>
-      <ResponsiveContainer width="100%" aspect={4 / 1}>
-        <PieChart className="myPieChart" width={1200} height={400}>
-          <Legend
-            layout="vertical"
-            verticalAlign="middle"
-            align="right"
-            iconSize={20}
-            iconType="circle"
-          />
-          <Pie
-            data={testData}
-            dataKey="value"
-            cx={"25%"}
-            cy={"50%"}
-            outerRadius={"100%"}
-            fill="#8884d8"
-            legendType="rect"
-            cursor={"pointer"}
-            labelLine={false}
-            label={renderCustomizedLabel}
-          >
-            {testData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
-      </ResponsiveContainer>
+      {props.data !== undefined && props.data.length !== 0 && (
+        <ResponsiveContainer width="100%" aspect={4 / 1}>
+          <PieChart className="myPieChart" width={1200} height={400}>
+            <Legend
+              layout="vertical"
+              verticalAlign="middle"
+              align="right"
+              iconSize={20}
+              iconType="circle"
+            />
+            <Pie
+              data={weekData}
+              dataKey="revenue"
+              cx={"25%"}
+              cy={"50%"}
+              outerRadius={"100%"}
+              fill="#8884d8"
+              legendType="rect"
+              cursor={"pointer"}
+              labelLine={false}
+              label={renderCustomizedLabel}
+            >
+              {/* {weekData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))} */}
+              {console.log("hello")}
+              {console.log(weekData)}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 }
