@@ -32,12 +32,12 @@
 }
 .logo{
     font-weight: 700;
-    color: #CB6CE6;
+    color: #48447b;
 }
 
 .loginForm{
 
-background-color:#CB6CE6;
+background-color:#713681;
 border-radius: 15px;
 display:flex;
 align-items:center;

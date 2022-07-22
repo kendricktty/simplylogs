@@ -110,10 +110,17 @@ export default function Login(props) {
                 " animate__animated animate__bounce"
               }
             >
-              SIMPLY LOGS
+              SIMPLYLOGS
             </h1>
+            <p className={
+                styles.logo +
+                " " +
+                "mt-3" +
+                " " +
+                " animate__animated animate__bounce"
+              }>INVENTORY MANAGEMENT</p>
             <img
-              src="../../logo.jpg"
+              src="../../logo-rounded.png"
               style={{ width: "125px", height: "auto" }}
             />
           </div>
