@@ -4,8 +4,8 @@ export default function SideNav(props) {
   return (
     <div className="sidebar">
       <div className="logo-details">
-        <img src={"../../logo.jpg"} width="42" height="42" />
-        <div className="logo_name">Simply Logs</div>
+        <img src={"../../logo-rounded.png"} width="42" height="42" />
+        <div className="logo_name">SIMPLYLOGS</div>
       </div>
       <ul className="nav-links">
         <li>
