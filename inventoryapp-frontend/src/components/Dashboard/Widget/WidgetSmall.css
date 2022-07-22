@@ -46,7 +46,6 @@
   margin-right: 2vw;
 }
 
-
 .widgetSmRevenue {
   font-weight: 300;
   text-align: left;
@@ -56,13 +55,10 @@
   width: 100%;
   border-spacing: 20px;
   margin: 10px;
+  height: 90%;
+  font-style: italic;
 }
 
-.widgetSmTable tbody,
-.widgetSmTable td,
-.widgetSmTable tfoot,
-.widgetSmTable th,
-.widgetSmTable thead,
-.widgetSmTable tr {
-  margin: 10px;
+.widgetSmTable th {
+  font-style: normal;
 }
