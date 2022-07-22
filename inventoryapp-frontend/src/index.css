@@ -12,7 +12,7 @@
   left: 0;
   height: 100%;
   width: 260px;
-  background: #cb6be6;
+  background: #713681;
   color: #fff;
   z-index: 100;
   transition: all 0.5s ease;
@@ -30,11 +30,13 @@
 
 .sidebar .logo-details .logo_name {
   font-size: 22px;
-  color: #fff;
-  font-weight: bold;
+  color: #a1bcff;
+  font-weight: bolder;
   transition: 0.3s ease;
   transition-delay: 0.1s;
-  margin-left: 5px;
+  margin-left: 15px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }
 .sidebar.close .logo-details .logo_name {
   transition-delay: 0s;
@@ -170,7 +172,7 @@
   background: #1d1b31;
   padding: 12px 0;
   transition: all 0.5s ease;
-  background: #cb6be6;
+  background: #1d530e;
 }
 
 .sidebar.close .profile-details {
