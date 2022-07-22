@@ -49,19 +49,9 @@
 }
 
 
-/* .widgetSmTr {
-  display: flex;
-  justify-content: spc;
-} */
-
 .widgetLgTh {
   text-align: left;
 }
-
-/* .widgetLgDate {
-  font-weight: 300;
-} */
-
 
 .widgetSmRevenue {
   font-weight: 300;
