@@ -40,18 +40,12 @@
   font-weight: 600;
 }
 
-
-
 .widgetSmRevenue {
   font-weight: bold;
   text-align: center;
   margin-right: 2vw;
 }
 
-
-.widgetLgTh {
-  text-align: left;
-}
 
 .widgetSmRevenue {
   font-weight: 300;
@@ -60,9 +54,15 @@
 
 .widgetSmTable {
   width: 100%;
-  border-spacing:20px;
+  border-spacing: 20px;
+  margin: 10px;
 }
 
-
-
-
+.widgetSmTable tbody,
+.widgetSmTable td,
+.widgetSmTable tfoot,
+.widgetSmTable th,
+.widgetSmTable thead,
+.widgetSmTable tr {
+  margin: 10px;
+}
