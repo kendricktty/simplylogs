@@ -53,7 +53,7 @@ export default function LoginForm(props) {
                   props.toggleMember()
                 }}
               >
-                Sign Up a New Account
+                New user? Sign up
               </a>
             </div>
           </div>

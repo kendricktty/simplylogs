@@ -1,94 +1,121 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
-.login{
-    margin:0;
-    padding:0;
-    height:100vh;
-   
+.login {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+
 
 
 }
 
 
-.leftSide{
+.leftSide {
     height: 100%;
-    background-color:black ;
-    display:flex;
+    background-color: black;
+    display: flex;
     align-items: middle;
     text-align: center;
 }
-.rightSide{
+
+.rightSide {
     height: 100%;
     text-align: center;
 }
-.carousellItem{
+
+.carousellItem {
     font-family: 'Montserrat', sans-serif;
     color: white;
 }
-.form{
-    background-color:#E3C7FF ;
 
+.form {
+    background-color: #E3C7FF;
 
 }
-.logo{
+
+.logo-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+
+.logo {
     font-weight: 700;
     color: #48447b;
+    line-height: 15px;
+    font-family: "Poppins", sans-serif;
 }
 
-.loginForm{
-
-background-color:#713681;
-border-radius: 15px;
-display:flex;
-align-items:center;
-justify-content:center;
-
-}
-.formBox{
-    width:380px;
-    height:auto;
-    padding:20px;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-start;
-    border-radius:2%;
+.logo_subline {
+    font-weight: 700;
+    color: #48447b;
+    line-height: 15px;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    font-weight: lighter;
 }
 
-button{
-margin-top:40px;
+.loginForm {
 
-}
-.message{
-display:flex;
-justify-content:space-between
-}
-.social{
-display:flex;
-justify-content:space-around;
-padding:10px;
+    background-color: #713681;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.social i{
-font-size:35px;
+.formBox {
+    width: 380px;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 2%;
 }
 
-.social i:hover{
-color:red;
-cursor:pointer;
+button {
+    margin-top: 40px;
+
 }
-.loginButton{
+
+.message {
+    display: flex;
+    justify-content: space-between
+}
+
+.social {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.social i {
+    font-size: 35px;
+}
+
+.social i:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.loginButton {
     margin-top: 5%;
     border-radius: 10px;
-    background-color: black;
+    background-color: #1d530e;
     color: white;
-    font-family:  'Montserrat', sans-serif;
-    font-weight:bold;
-    width:65%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    width: 65%;
     height: 50%;
-}
-.signUp{
-    text-decoration: none;
-    color:white;
-    font-weight: 800;
+    margin-bottom: 4%;
 }
 
+.signUp {
+    /* text-decoration: none; */
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+}
