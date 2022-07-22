@@ -5,7 +5,7 @@ export default function SideNav(props) {
     <div className="sidebar">
       <div className="logo-details">
         <img src={"../../logo.jpg"} width="42" height="42" />
-        <div className="logo_name">InventoryApp</div>
+        <div className="logo_name">Simply Logs</div>
       </div>
       <ul className="nav-links">
         <li>
