@@ -12,7 +12,7 @@
   left: 0;
   height: 100%;
   width: 260px;
-  background: #11101d;
+  background: #cb6be6;
   color: #fff;
   z-index: 100;
   transition: all 0.5s ease;
@@ -25,21 +25,16 @@
   width: 100%;
   display: flex;
   align-items: center;
+  margin-left: 1vw;
 }
-.sidebar .logo-details i {
-  font-size: 30px;
-  color: #fff;
-  height: 50px;
-  min-width: 78px;
-  text-align: center;
-  line-height: 50px;
-}
+
 .sidebar .logo-details .logo_name {
   font-size: 22px;
   color: #fff;
-  font-weight: 600;
+  font-weight: bold;
   transition: 0.3s ease;
   transition-delay: 0.1s;
+  margin-left: 5px;
 }
 .sidebar.close .logo-details .logo_name {
   transition-delay: 0s;
@@ -53,6 +48,10 @@
 }
 .sidebar.close .nav-links {
   overflow: visible;
+}
+.sidebar .nav-links{
+  color: #fff;
+  font-weight: bold;
 }
 .sidebar .nav-links::-webkit-scrollbar {
   display: none;
@@ -171,7 +170,9 @@
   background: #1d1b31;
   padding: 12px 0;
   transition: all 0.5s ease;
+  background: #cb6be6;
 }
+
 .sidebar.close .profile-details {
   background: none;
 }
@@ -391,5 +392,3 @@ InventoryNav--catergoryBtn:hover {
   display: flex;
   margin: 20px;
 }
-
-

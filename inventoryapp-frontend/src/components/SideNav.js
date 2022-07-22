@@ -1,10 +1,10 @@
 import React from "react";
-
+import PersonIcon from "@mui/icons-material/Person";
 export default function SideNav(props) {
   return (
     <div className="sidebar">
       <div className="logo-details">
-        <i class="bx bxl-react"></i>
+        <img src={"../../logo.jpg"} width="42" height="42" />
         <div className="logo_name">InventoryApp</div>
       </div>
       <ul className="nav-links">
@@ -34,11 +34,13 @@ export default function SideNav(props) {
         </li>
         <li className="profile">
           <div className="profile-details">
-            <img src="../../logo192.png" alt="profileImg" />
+            <PersonIcon fontSize="large" style={{ marginLeft: "1.5vw" }} />
             <div className="name_job">
-              <div className="name">{JSON.parse(localStorage.getItem("user")).name.toUpperCase()}</div>
+              <div className="name">
+                {JSON.parse(localStorage.getItem("user")).name.toUpperCase()}
+              </div>
             </div>
-            <a  onClick={() => props.handleLogout()}>
+            <a onClick={() => props.handleLogout()}>
               <i class="bx bx-log-out" id="log_out"></i>
             </a>
           </div>
