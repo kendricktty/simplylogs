@@ -71,17 +71,6 @@ const getAllOrders = async (req, res) => {
 
   previousMonth.setDate(previousMonth.getDate() + 1);
 
-  const previousPreviousDay = new Date(previousDay);
-  previousPreviousDay.setDate(previousDay.getDate() - 1);
-
-  const previousPreviousWeek = new Date(previousWeek);
-  previousPreviousWeek.setDate(previousWeek.getDate() - 7);
-
-  const previousPreviousMonth = new Date(
-    previousMonth.getFullYear(),
-    previousMonth.getMonth() - 1,
-    1
-  );
 
   if (period) {
     if (period === "daily") {
@@ -259,13 +248,6 @@ const getAllOrders = async (req, res) => {
         : period === "weekly"
         ? previousWeek
         : previousMonth;
-
-    const previousPreviousPeriod =
-      period === "daily"
-        ? previousPreviousDay
-        : period === "weekly"
-        ? previousPreviousWeek
-        : previousPreviousMonth;
 
     //retrieves orders that are created this month/week/today
     const filteredThisPeriodOrders = AllOrders.filter(
