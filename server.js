@@ -25,9 +25,8 @@ app.use(express.json());
 app.use(cors());
 
 
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'))
-}
+
+app.use("/", express.static('client/build'))
 
 
 
@@ -35,6 +34,7 @@ if(process.env.NODE_ENV === 'production') {
 app.use("/auth", authRouter)
 app.use("/inventory", authenticateUser,inventoryRouter);
 app.use("/order", authenticateUser,orderRouter) 
+
 
 //API Endpoints
 // app.get("/", (req, res) => res.status(200).send("Welcome"));
