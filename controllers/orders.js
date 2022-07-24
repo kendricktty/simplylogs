@@ -1,4 +1,4 @@
-const Order = require("../model/order");
+const Order = require("../model/Order");
 const { BadRequestError } = require("../errors");
 
 const dayInMs = 86400000;
