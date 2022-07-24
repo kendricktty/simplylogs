@@ -34,7 +34,7 @@ if(process.env.NODE_ENV === 'production') {
 // Initialise InventoryRouter
 app.use("/auth", authRouter)
 app.use("/inventory", authenticateUser,inventoryRouter);
-app.use("/order", authenticateUser,orderRouter)
+app.use("/order", authenticateUser,orderRouter) 
 
 //API Endpoints
 // app.get("/", (req, res) => res.status(200).send("Welcome"));
