@@ -40,19 +40,19 @@
 .widgetLgQuantity,
 .widgetLgRevenue {
   font-weight: 300;
-  text-align: left;
+  text-align: center;
 }
 
-tbody,
-td,
-tfoot,
-th,
-thead,
-tr {
-  padding-bottom: 15px;
+.widgetLgTr tbody,
+.widgetLgTr td,
+.widgetLgTr tfoot,
+.widgetLgTr th,
+.widgetLgTr thead,
+.widgetLgTr tr {
+  margin: 10px;
 }
 
-.bx {
+.widgetLgTr .bx {
   font-size: 30px;
   padding-right: 5%;
 }

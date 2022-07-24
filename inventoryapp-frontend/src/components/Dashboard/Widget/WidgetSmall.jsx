@@ -23,7 +23,6 @@ export default function WidgetSmall() {
       return (
         <tr className="widgetSmTr">
           <td className="widgetSmInvoice">Invoice No.{order.invoiceNumber}</td>
-          {/* <td className="widgetLgQuantity">{product.quantity}</td> */}
           <td className="widgetSmRevenue">${order.revenue.toFixed(2)}</td>
         </tr>
       );

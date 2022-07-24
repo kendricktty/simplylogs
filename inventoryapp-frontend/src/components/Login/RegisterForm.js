@@ -76,7 +76,7 @@ export default function RegisterForm(props) {
                   props.toggleMember()
                 }}
               >
-                Login Here
+                Existing user? Log in
               </a>
             </div>
           </div>

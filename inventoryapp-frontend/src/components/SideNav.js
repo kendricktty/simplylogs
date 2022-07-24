@@ -1,11 +1,12 @@
 import React from "react";
-
+import PersonIcon from "@mui/icons-material/Person";
+import logo from "../logo/4.png"
 export default function SideNav(props) {
   return (
     <div className="sidebar">
       <div className="logo-details">
-        <i class="bx bxl-react"></i>
-        <div className="logo_name">InventoryApp</div>
+        <img className="logo" src={logo} width="42" height="42" />
+        <div className="logo_name">SIMPLYLOGS</div>
       </div>
       <ul className="nav-links">
         <li>
@@ -28,17 +29,19 @@ export default function SideNav(props) {
         </li>
         <li>
           <a href="/cashier">
-            <i class="fa-solid fa-cart-shopping"></i>
+            <i class='bx bx-cart-alt'></i>
             <span className="sideNav--tabs">Cashier</span>
           </a>
         </li>
         <li className="profile">
           <div className="profile-details">
-            <img src="../../logo192.png" alt="profileImg" />
+            <PersonIcon fontSize="large" style={{ marginLeft: "1.5vw" }} />
             <div className="name_job">
-              <div className="name">{JSON.parse(localStorage.getItem("user")).name.toUpperCase()}</div>
+              <div className="name">
+                {JSON.parse(localStorage.getItem("user")).name.toUpperCase()}
+              </div>
             </div>
-            <a  onClick={() => props.handleLogout()}>
+            <a onClick={() => props.handleLogout()}>
               <i class="bx bx-log-out" id="log_out"></i>
             </a>
           </div>

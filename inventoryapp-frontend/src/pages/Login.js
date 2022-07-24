@@ -28,7 +28,7 @@ export default function Login(props) {
       navigate("/");
     } catch (error) {
       setError(error.response.data.msg)
-      setTimeout(()=>setError(null), 5000)
+      setTimeout(() => setError(null), 5000)
       console.log(error.response.data.msg);
     }
   }
@@ -42,7 +42,7 @@ export default function Login(props) {
       navigate("/");
     } catch (error) {
       setError(error.response.data.msg)
-      setTimeout(()=>setError(null), 5000)
+      setTimeout(() => setError(null), 5000)
       console.log(error.response.data.msg);
     }
   }
@@ -101,23 +101,34 @@ export default function Login(props) {
         </div>
         <div className={"col-md-6" + " " + styles.rightSide}>
           <div>
+            <img
+              className={
+                styles.logo_image +
+                " " +
+                "mt-5"}
+              src="../../logo-rounded.png"
+              style={{ width: "125px", height: "auto" }}
+            />
             <h1
               className={
                 styles.logo +
                 " " +
-                "mt-3" +
+                "mt-4" +
                 " " +
                 " animate__animated animate__bounce"
               }
             >
-              SIMPLY LOGS
+              SIMPLYLOGS
             </h1>
-            <img
-              src="../../logo.jpg"
-              style={{ width: "125px", height: "auto" }}
-            />
+            <p className={
+              styles.logo_subline +
+              " " +
+              "mt-3" +
+              " " +
+              " animate__animated animate__bounce"
+            }>INVENTORY MANAGEMENT</p>
           </div>
-          <div className={styles.loginForm + " " + "mx-4 mt-3"}>
+          <div className={styles.loginForm + " " + "mx-4 mt-5"}>
             {values.isMember ? (
               <LoginForm
                 values={values}
