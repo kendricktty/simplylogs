@@ -37,7 +37,7 @@ app.use("/inventory", authenticateUser,inventoryRouter);
 app.use("/order", authenticateUser,orderRouter)
 
 //API Endpoints
-app.get("/", (req, res) => res.status(200).send("Welcome"));
+// app.get("/", (req, res) => res.status(200).send("Welcome"));
 
 //error handler
 app.use(notFoundMiddleware);
