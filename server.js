@@ -40,14 +40,17 @@ app.use("/order", authenticateUser,orderRouter)
 // app.get("/", (req, res) => res.status(200).send("Welcome"));
 
 //error handler
-// app.use(notFoundMiddleware);
+
 app.use(errorMiddleware);
 
+// if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('client/build'))
+  app.get('*', (req, res)=>{
+      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+  })
+// }
 
-app.use(express.static('client/build'))
-app.get('*', (req, res)=>{
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-})
+app.use(notFoundMiddleware);
 
 
 //connect to database
