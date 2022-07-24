@@ -1,5 +1,5 @@
 {
-  "name": "inventoryapp-backend",
+  "name": "simplylogs-app",
   "version": "1.0.0",
   "description": "The inventory app backend",
   "main": "server.js",
