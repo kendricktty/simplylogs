@@ -6,8 +6,8 @@ import DashboardQuickAction from "../components/Dashboard/DashboardQuickAction";
 import Chart from "../components/Dashboard/Chart/Chart";
 import WidgetLarge from "../components/Dashboard/Widget/WidgetLarge";
 import WidgetSmall from "../components/Dashboard/Widget/WidgetSmall";
-import Carousel from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/lib/style.css";
+// import Carousel from "@brainhubeu/react-carousel";
+// import "@brainhubeu/react-carousel/lib/style.css";
 import axios from "../axios/axios";
 import MyPieChart from "../components/Dashboard/Chart/MyPieChart";
 
