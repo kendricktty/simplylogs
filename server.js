@@ -37,11 +37,8 @@ app.use("/order", authenticateUser,orderRouter)
 
 
 //API Endpoints
-// app.get("/", (req, res) => res.status(200).send("Welcome"));
 
-//error handler
 
-app.use(errorMiddleware);
 
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static('client/build'))
@@ -50,6 +47,9 @@ if(process.env.NODE_ENV === 'production'){
   })
 }
 
+//error handler
+
+app.use(errorMiddleware);
 app.use(notFoundMiddleware);
 
 
