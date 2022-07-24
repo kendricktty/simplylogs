@@ -4,6 +4,7 @@ require("express-async-errors");
 const express = require("express");
 const connectDB = require("./db/connect");
 const cors = require("cors");
+const path = require('path');
 
 //Import error handlers
 const notFoundMiddleware = require('./middleware/not-found');
@@ -26,7 +27,6 @@ app.use(cors());
 
 
 
-app.use("/", express.static('client/build'))
 
 
 
@@ -40,8 +40,15 @@ app.use("/order", authenticateUser,orderRouter)
 // app.get("/", (req, res) => res.status(200).send("Welcome"));
 
 //error handler
-app.use(notFoundMiddleware);
+// app.use(notFoundMiddleware);
 app.use(errorMiddleware);
+
+
+app.use(express.static('client/build'))
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+})
+
 
 //connect to database
 const start = async () => {
