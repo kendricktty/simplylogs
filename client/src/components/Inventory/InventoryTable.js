@@ -85,7 +85,7 @@ export default function InventoryTable(props) {
     submittingData.quantity = parseInt(submittingData.quantity);
     submittingData.price = parseFloat(submittingData.price).toFixed(2)
     try {
-      await axios.post('/inventory', submittingData)
+      await axios.post('/products', submittingData)
     } catch (error) {
       setErrorMsg(error.response.data.msg)
       return
