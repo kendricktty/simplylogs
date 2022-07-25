@@ -47,7 +47,7 @@ export default function Dashboard(props) {
         <DashboardQuickAction />
         <FeaturedInfo />
 
-        {data.year !== null && (
+        {/* {data.year !== null && (
           <Carousel plugins={["arrows", "infinite"]}>
             <Chart
               data={data.year.monthlyRevenue.reverse()}
@@ -57,7 +57,7 @@ export default function Dashboard(props) {
             />
             <MyPieChart data={data.week} />
           </Carousel>
-        )}
+        )} */}
         <div className="dashboardWidgets">
           <WidgetLarge />
           <WidgetSmall />
