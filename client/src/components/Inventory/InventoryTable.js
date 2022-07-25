@@ -61,7 +61,6 @@ export default function InventoryTable(props) {
   
 
   React.useEffect(() => {
-    console.log('changed');
     if(props.dynamicData.inventory !== undefined) {
         setFormData({
           productId: props.dynamicData.inventory.length + 1, 

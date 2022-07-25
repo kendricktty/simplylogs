@@ -42,7 +42,6 @@ export default function Login(props) {
     } catch (error) {
       setError(error.response.data.msg)
       setTimeout(() => setError(null), 5000)
-      console.log(error.response.data.msg);
     }
   }
 
