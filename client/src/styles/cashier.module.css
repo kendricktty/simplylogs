@@ -1,0 +1,45 @@
+.closeButton{
+    float:right;
+    
+}
+.cardButton{
+    border-radius: 20px;
+    width:30px;
+    height:auto;
+    background-color: green;
+    border:none;
+    margin-left:10px;
+}
+
+
+
+.addItem{
+    background-color:#006E18 ;
+    border-radius: 20px;
+    width:10%;
+    height: 5%;
+    position:absolute;
+    left :35px;
+    bottom:80px;
+    color:white;
+
+
+}
+
+.generateInvoice{
+    background-color:#006E18 ;
+    border-radius: 20px;
+    width:15%;
+    height: 5%;
+    position:absolute;
+    right :35px;
+    bottom:80px;
+    color:white;
+
+
+}
+.alertDanger{
+    text-align: center;
+    z-index: 10000;
+}
+

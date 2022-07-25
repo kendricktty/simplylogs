@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+.login{
+    margin:0;
+    padding:0;
+    height:100vh;
+   
+
+
+}
+
+
+.leftSide{
+    height: 100%;
+    background-color:black ;
+    display:flex;
+    align-items: middle;
+    text-align: center;
+}
+.rightSide{
+    height: 100%;
+    text-align: center;
+}
+.carousellItem{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+.form{
+    background-color:#E3C7FF ;
+
+
+}
+.logo{
+    font-weight: 700;
+    color: #CB6CE6;
+}
+
+.loginForm{
+
+background-color:#CB6CE6;
+border-radius: 15px;
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+.formBox{
+    width:380px;
+    height:auto;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    border-radius:2%;
+}
+
+button{
+margin-top:40px;
+
+}
+.message{
+display:flex;
+justify-content:space-between
+}
+.social{
+display:flex;
+justify-content:space-around;
+padding:10px;
+}
+
+.social i{
+font-size:35px;
+}
+
+.social i:hover{
+color:red;
+cursor:pointer;
+}
+.loginButton{
+    margin-top: 5%;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    font-family:  'Montserrat', sans-serif;
+    font-weight:bold;
+    width:65%;
+    height: 50%;
+}
+.signUp{
+    text-decoration: none;
+    color:white;
+    font-weight: 800;
+}
+
