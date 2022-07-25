@@ -6,6 +6,7 @@ import DashboardQuickAction from "../components/Dashboard/DashboardQuickAction";
 import Chart from "../components/Dashboard/Chart/Chart";
 import WidgetLarge from "../components/Dashboard/Widget/WidgetLarge";
 import WidgetSmall from "../components/Dashboard/Widget/WidgetSmall";
+import '../styles/dashboard.css'
 // import Carousel from "@brainhubeu/react-carousel";
 // import "@brainhubeu/react-carousel/lib/style.css";
 import Carousel from "react-bootstrap/Carousel";
@@ -48,7 +49,7 @@ export default function Dashboard(props) {
         <FeaturedInfo />
 
         {data.year !== null && (
-          <Carousel variant="dark" interval="2000">
+          <Carousel variant="dark" interval={null}>
             <Carousel.Item>
               <Chart
                 data={data.year.monthlyRevenue.reverse()}

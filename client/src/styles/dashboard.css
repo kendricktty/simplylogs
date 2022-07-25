@@ -7,3 +7,9 @@
 .actions {
     background-color: #E5E5E5;
 }
+
+.carousel-control-prev,
+.carousel-control-next{
+    top: 50%;
+    bottom: 50%;
+}
