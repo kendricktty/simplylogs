@@ -1,69 +1,32 @@
 import React from "react";
-import ReactDOM, { render } from "react-dom";
-import DataTable from "react-data-table-component";
-import CustomMaterialPagination from "../../materialui/CustomMaterialPagination";
+import ReactDOM from "react-dom";
 import Barcode from "react-barcode";
-import InventoryUtilityBar from "./InventoryUtilityBar";
+import axios from "../../axios/axios"
+import AddProductForm from "./AddProductForm"
+import MaterialTable from "material-table";
+import { CsvBuilder } from 'filefy';
 
 
-
-/*
-https://react-data-table-component.netlify.app/?path=/docs/api-columns--page -- link to 
-  table  api
-*/
 
 export default function InventoryTable(props) {
-  // States
-  const [filterText, setFilterText] = React.useState("");
-  const [resetPaginationToggle, setResetPaginationToggle] =
-    React.useState(false);
+
+  const [inventoryData, setInventoryData] = React.useState(props.dynamicData.inventory)
 
   
-  //set filtered item to filtered array of items or empty array if inventory is undef
-  const filteredItems = props.dynamicData.inventory
-    ? props.dynamicData.inventory.filter(
-        (item) =>
-          item.productName &&
-          item.productName.toLowerCase().includes(filterText.toLowerCase()) && item.category.includes(props.category)
-      )
-    : [];
+  React.useEffect(() => {
+      const filteredItems = props.dynamicData.inventory
+      ? props.dynamicData.inventory.filter((item) => item.category.includes(props.category)) : []
+      setInventoryData(filteredItems) 
+  },[props.category, props.dynamicData.inventory])
 
-  //adds new item to the current data
-  function handleAddData(data) {
-    props.setDynamicData((prevState) => {
-      const newState = prevState;
-      if (newState.inventory === undefined) {
-        return { inventory: [data] };
-      }
-      return { inventory: [...prevState.inventory, data], count: prevState.inventory.length + 1 };
-    });
-  }
+  const columns=[
+    {title:"ProductID",field:"productId"},
+    {title:"Product Name",field:"productName"},
+    {title:"Supplier",field:"supplier"},
+    {title:"Quantity",field:"quantity"},
+    {title:"Price",field:"price"},
+  ]
 
-  //InventoryUtilityBar
-  const subHeaderComponentMemo = React.useMemo(() => {
-    const handleClear = () => {
-      if (filterText) {
-        setResetPaginationToggle(!resetPaginationToggle);
-        setFilterText("");
-      }
-    };
-
-    
-      return (
-        <InventoryUtilityBar
-          onFilter={(e) => setFilterText(e.target.value)}
-          onClear={handleClear}
-          filterText={filterText}
-          handleAddData={handleAddData}
-          dynamicData={props.dynamicData}
-          productCount={props.dynamicData.count}
-        />
-      );
-    
-    
-  }, [filterText, resetPaginationToggle, props]);
-
-  
   const handleEditButtonClick = (data) => {
     props.setShowEditProduct((prevState) => !prevState);
     props.setEditFormParams(data);
@@ -83,81 +46,149 @@ export default function InventoryTable(props) {
     );
   };
 
-  const columns = [
-    {
-      name: "ProductID",
-      selector: (row) => row.productId,
-      sortable: true,
-      sortField: "title",
-      maxWidth: "120px",
-    },
-    {
-      name: "ProductName",
-      selector: (row) => row.productName,
-      sortable: true,
-      sortField: "title",
-    },
-    {
-      name: "Supplier",
-      selector: (row) => row.supplier,
-      sortable: true,
-      sortField: "title",
-    },
-    {
-      name: "Quantity",
-      selector: (row) => row.quantity,
-      sortable: true,
-      sortField: "title",
-      maxWidth: "120px",
-    },
-    {
-      name: "Price",
-      selector: (row) => row.price,
-      sortable: true,
-      sortField: "title",
-      maxWidth: "120px",
-    },
-    {
-      cell: (data) => (
-        <button
-          onClick={() => handleEditButtonClick(data)}
-          className="btn btn-warning"
-        >
-          edit
-        </button>
-      ),
-      ignoreRowClick: true,
-      allowOverflow: true,
-      button: true,
-    },
-    {
-      cell: (data) => (
-        <button
-          onClick={() => handleGenerateButtonClick(data)}
-          className="btn btn-success"
-        >
-          generate
-        </button>
-      ),
-      ignoreRowClick: true,
-      allowOverflow: false,
-      button: true,
-    },
-  ];
+
+  const [showForm, setShowForm] = React.useState(false);
+  const [formData, setFormData] = React.useState({
+    productId: "", 
+    productName: "",
+    supplier: "",
+    quantity: "",
+    price: "",
+    category: "",
+  });
+  const [errorMsg, setErrorMsg] = React.useState("")
+  
+  
+
+  React.useEffect(() => {
+    console.log('changed');
+    if(props.dynamicData.inventory !== undefined) {
+        setFormData({
+          productId: props.dynamicData.inventory.length + 1, 
+          productName: "",
+          supplier: "",
+          quantity: "",
+          price: "",
+          category: "",
+        })
+    }
+
+   
+  }, [props.dynamicData.inventory])
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const submittingData = formData;
+
+    //need to change to Integer for productId and quantity and set id to productid
+    submittingData.productId = parseInt(submittingData.productId);
+    // submittingData.id = submittingData.productId;
+    submittingData.quantity = parseInt(submittingData.quantity);
+    submittingData.price = parseFloat(submittingData.price).toFixed(2)
+    try {
+      await axios.post('/inventory', submittingData)
+    } catch (error) {
+      setErrorMsg(error.response.data.msg)
+      return
+    }
+    
+    setErrorMsg("")
+    props.handleAddData(submittingData);
+    
+
+    setShowForm(!showForm);
+  }
+
+  function handleCancel() {
+    setErrorMsg("")
+    setShowForm(!showForm);
+  }
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  }
+
+  function addButtonPressed() {
+    setShowForm(prevState => !prevState);
+  }
 
   return (
-    <DataTable
-      className="dataTable"
-      columns={columns}
-      data={filteredItems}
-      fixedHeader={true}
-      selectableRows
-      subHeader
-      subHeaderComponent={subHeaderComponentMemo}
-      //adding pagination to the table
-      pagination
-      paginationResetDefaultPage={resetPaginationToggle}
-      paginationComponent={CustomMaterialPagination}
-    />
-  );
+    <>
+      <AddProductForm
+          handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
+          handleChange={handleChange}
+          formData={formData} 
+          errorMsg={errorMsg}
+          showForm={showForm}
+          setShowForm={setShowForm}
+      />
+      <MaterialTable
+        title="Inventory"
+        data = {inventoryData}
+        columns = {columns}
+        options = {
+          {
+            search: false,
+            paging: true,
+            filtering: true,
+            pageSize: 5,
+            maxBodyHeight: "500px",
+            exportButton: {
+                csv: true,
+            },
+            exportCsv: () => {
+              const columnTitles = columns
+                  .map(columnDef => columnDef.title);
+              
+              const csvData = inventoryData.map(rowData =>
+                    columns.map(columnDef => rowData[columnDef.field]),
+                  );
+            
+              const builder = new CsvBuilder(`Inventory_${new Date().toDateString()}_.csv`)
+                    .setColumns(columnTitles)
+                    .addRows(csvData)
+                    .exportFile();
+            
+              return builder;
+            }
+            ,
+            actionsColumnIndex: -1
+          }
+        }
+        actions={[
+          {
+            icon: 'edit',
+            tooltip: 'edit product',
+            onClick: (event, rowData) => {
+              handleEditButtonClick(rowData)
+            }  
+          },
+          {
+            icon: 'view_column',
+            tooltip: 'generate barcode',
+            onClick: (event, rowData) => {
+              handleGenerateButtonClick(rowData)
+            }  
+          },
+          {
+            icon: 'add',
+            tooltip: 'add product',
+            isFreeAction: true,
+            onClick: (event, rowData) => {
+              addButtonPressed()
+            }  
+          }]
+        }
+      >
+
+      </MaterialTable>
+    </>
+  )
 }
