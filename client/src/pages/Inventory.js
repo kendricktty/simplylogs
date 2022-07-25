@@ -54,7 +54,7 @@ function Inventory(props) {
   
 
     try {
-      await axios.patch(`/inventory/${submittingData._id}`,submittingData)
+      await axios.patch(`/products/${submittingData._id}`,submittingData)
     } catch (error) {
       console.log(error)
     }
