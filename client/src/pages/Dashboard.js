@@ -8,9 +8,9 @@ import WidgetLarge from "../components/Dashboard/Widget/WidgetLarge";
 import WidgetSmall from "../components/Dashboard/Widget/WidgetSmall";
 // import Carousel from "@brainhubeu/react-carousel";
 // import "@brainhubeu/react-carousel/lib/style.css";
+import Carousel from "react-bootstrap/Carousel";
 import axios from "../axios/axios";
 import MyPieChart from "../components/Dashboard/Chart/MyPieChart";
-
 
 export default function Dashboard(props) {
   const [data, setData] = React.useState({ year: null, week: null });
@@ -47,17 +47,21 @@ export default function Dashboard(props) {
         <DashboardQuickAction />
         <FeaturedInfo />
 
-        {/* {data.year !== null && (
-          <Carousel plugins={["arrows", "infinite"]}>
-            <Chart
-              data={data.year.monthlyRevenue.reverse()}
-              title="Sales Analytics"
-              grid
-              dataKey="Revenue"
-            />
-            <MyPieChart data={data.week} />
+        {data.year !== null && (
+          <Carousel variant="dark" interval="2000">
+            <Carousel.Item>
+              <Chart
+                data={data.year.monthlyRevenue.reverse()}
+                title="Sales Analytics"
+                grid
+                dataKey="Revenue"
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <MyPieChart data={data.week} />
+            </Carousel.Item>
           </Carousel>
-        )} */}
+        )}
         <div className="dashboardWidgets">
           <WidgetLarge />
           <WidgetSmall />
