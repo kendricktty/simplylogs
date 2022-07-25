@@ -10,7 +10,7 @@ export default function DashboardQuickAction(props) {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get("/inventory?getAllProducts", {
+        const res = await axios.get("/products?getAllProducts", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

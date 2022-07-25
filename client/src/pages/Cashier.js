@@ -26,7 +26,7 @@ export default function Cashier(props) {
 
   React.useEffect(() => {
     async function fetchData() {
-      const res = await axios.get('/inventory')
+      const res = await axios.get('/products')
       setProducts(res.data.inventory)
     }
     fetchData()

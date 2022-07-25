@@ -32,7 +32,7 @@ app.use(cors());
 
 // Initialise InventoryRouter
 app.use("/auth", authRouter)
-app.use("/inventory", authenticateUser,inventoryRouter);
+app.use("/products", authenticateUser,inventoryRouter);
 app.use("/order", authenticateUser,orderRouter) 
 
 

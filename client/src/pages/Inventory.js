@@ -17,7 +17,7 @@ function Inventory(props) {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get("/inventory")
+        const res = await axios.get("/products")
         setDynamicData(res.data)
       } catch (error) {
         console.log(error);
