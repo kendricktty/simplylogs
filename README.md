@@ -24,7 +24,6 @@ A fully functioning hosted demo of this application can be found here: https://s
 ## Key features ##
 * Dashboard - for users to view recent changes to their inventory, like orders and sales, at a glance.
 * Clean, spacious UI - A modern user interface flanked with a sidebar menu, coloured buttons, graphic icons and reduced clutter provides a more pleasant user experience.
-* User-customisable product ID - The ProductID field is user-customisable, allowing for users to create and implement unique IDs based on their business needs.
 * Barcodes - Unique barcodes for each product can be generated to aid in stocktaking. The “generate” button generates a unique barcode storing information on the selected inventory item.
 * Sales tracking - Detailed information on sales relating to each inventory item is listed on the Sales page. Users who prefer printable spreadsheets may generate a CSV or PDF representation of the sales data.
 * Invoice generation - The app generates a standard invoice upon the successful placement of an order, so that the user does not have to manually.
