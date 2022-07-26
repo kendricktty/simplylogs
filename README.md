@@ -45,9 +45,11 @@ Before cloning this repository, do ensure that you have NodeJS installed on your
 
 3. After setting up the backend server, `cd` into the `client` folder and repeat Step 3.
 
-4. Open a second terminal window, `cd` into the root of the project directory and run `npm start`. **It is imperative to run this step first before running Step 5.**
+4. In the root of the project directory create a `.env` file and populate with your `MONGO_URI`, `JWT_SECRET` using https://www.allkeysgenerator.com/Random/Security-Encryption-Key-Generator.aspx and set `JWT_LIFETIME=30d`.
+
+5. Open a second terminal window, `cd` into the root of the project directory and run `npm start`. **It is imperative to run this step first before running Step 6.**
    
-5. In the first terminal window, while still working from the `client` directory, run `npm start`.
+6. In the first terminal window, while still working from the `client` directory, run `npm start`.
 
 ## About this project ##
 We're a group of students from Singapore Management University (SMU), and this project was completed as part of the SMU .Hack Enrichment Application Programme (HEAP) 2022.
