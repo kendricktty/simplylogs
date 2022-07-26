@@ -116,7 +116,7 @@ This step requires the use of the `.env` file created in an earlier section.
 
 1. Completing Step 12 in the previous section brings you back to the **Database Deployments** screen. Click **Connect**.
 2. Choose **Connect your application**.
-3. Under "**Select your driver and version**", select **Node.js**, and the version of NodeJS you have installed (it's most likely 4.1 or later)
+3. Under "**Select your driver and version**", select **Node.js**, and version **2.2.12 or later**.
 4. Take note of the connection string displayed under step 2 that should look something like this:   
    
    `mongodb://<user>:<password>@cluster0.ykwkgt1.mongodb.net/?retryWrites=true&w=majority`  
@@ -124,13 +124,12 @@ This step requires the use of the `.env` file created in an earlier section.
    Replace the generic `<user>` and `<password>` placeholders with your database user ID and password. 
 5. In your `.env` file, add the following declaration:   
    `MONGO_URI=`
-6. Copy and paste the connection string in Step 4 after the `=` sign at the end of the declaration. After that, remove `+srv` from the connection string. The result should look something like this:   `MONGO_URI=mongodb://<user>:<password>@cluster0.ykwkgt1.mongodb.net/?retryWrites=true&w=majority`
+6. Copy and paste the connection string in Step 4 after the `=` sign at the end of the declaration. After that, remove `+srv` from the connection string. The result should look something like this:   `MONGO_URI=mongodb://<username>:<password>@ac-ce24sdf-shard-00-00.90fz97p.mongodb.net:27017,ac-ce24sdf-shard-00-01.90fz97p.mongodb.net:27017,ac-ce24sdf-shard-00-02.90fz97p.mongodb.net:27017/?ssl=true&replicaSet=atlas-1o28u5-shard-0&authSource=admin&retryWrites=true&w=majority
 7. You are now ready to start up the program!
 
 ## Running the program ##
-### macOS and Linux ###
 
-Open a terminal window, `cd` to `inventoryapp-backend`, and then run the following command:
+Open a terminal or Command Prompt window, `cd` to `inventoryapp-backend`, and then run the following command:
    
    `npm start`
 
