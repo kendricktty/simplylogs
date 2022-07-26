@@ -1,4 +1,5 @@
 # SimplyLogs #
+A working implementation can be found here: https://simplylogs-app.herokuapp.com/
 
 #### Created by ####
 * Bryan Tan Jia Jun (github.com/BryanTJJ99)
@@ -13,12 +14,18 @@ For HEAP 2022, SMU .Hack
 * Introduction
 * Key features
 * Dependencies
-* 
+* Installation
 
 ## Introduction ##
 SimplyLogs is our attempt at creating a more user-friendly and powerful inventory tracking application. Our prototype aims to improve the experience and accessibility of inventory/asset tracking by automating key processes like serialising, invoice generation and accounting, introducing a cleaner, more aesthetically pleasing user interface, and allowing for easy customisation of item serial numbers commonly used to organise inventory items.
 
 ## Key features ##
+* Dashboard - for users to view recent changes to their inventory, like orders and sales, at a glance.
+* Clean, spacious UI - A modern user interface flanked with a sidebar menu, coloured buttons, graphic icons and reduced clutter provides a more pleasant user experience.
+* User-customisable product ID - The ProductID field is user-customisable, allowing for users to create and implement unique IDs based on their business needs.
+* Barcodes - Unique barcodes for each product can be generated to aid in stocktaking. The “generate” button generates a unique barcode storing information on the selected inventory item.
+* Sales tracking - Detailed information on sales relating to each inventory item is listed on the Sales page. Users who prefer printable spreadsheets may generate a CSV or PDF representation of the sales data.
+* Invoice generation - The app generates a standard invoice upon the successful placement of an order, so that the user does not have to manually.
 
 ## Dependencies ##
 To build and run `SimplyLogs`, you will need:
@@ -29,8 +36,6 @@ To build and run `SimplyLogs`, you will need:
 ## Installation ##
 
 Before cloning this repository, do ensure that you have NodeJS installed on your machine. If you do not already have it installed, please visit the official NodeJS website for installation instructions: https://nodejs.org/en/download/
-
-The backend and frontend servers are each located in its own namesake folder, and need to be built and activated separately, one after the other, for this application to run correctly. After installing the required dependencies, the backend application needs to be activated first, and then the frontend application.
 
 ### macOS and Linux ###
 1. Open a new Terminal window, `cd` into a directory of your choice, and clone the repository:
@@ -52,7 +57,7 @@ The backend and frontend servers are each located in its own namesake folder, an
 ### Windows ###
 
 ### Creating your environment variables ###
-The backend application requires a custom-made `.env` file. Run the following command from inside `inventoryapp-backend` to create your new `.env` file:
+The backend application requires a custom-made `.env` file. Run the following command from the root directory of the project to create your new `.env` file:
 
 * macOS/Linux: `touch .env`
 * Windows: `echo.> .env`
@@ -114,7 +119,7 @@ This step requires the use of the `.env` file created in an earlier section.
 3. Under "**Select your driver and version**", select **Node.js**, and the version of NodeJS you have installed (it's most likely 4.1 or later)
 4. Take note of the connection string displayed under step 2 that should look something like this:   
    
-   `mongodb+srv://<user>:<password>@cluster0.ykwkgt1.mongodb.net/?retryWrites=true&w=majority`  
+   `mongodb://<user>:<password>@cluster0.ykwkgt1.mongodb.net/?retryWrites=true&w=majority`  
    
    Replace the generic `<user>` and `<password>` placeholders with your database user ID and password. 
 5. In your `.env` file, add the following declaration:   
@@ -124,25 +129,13 @@ This step requires the use of the `.env` file created in an earlier section.
 
 ## Running the program ##
 ### macOS and Linux ###
-You will need to start up the backend server first before starting up the frontend server for the data to persist.
 
-1. Open two terminal windows/sessions.
-2. In the first terminal window, `cd` to `inventoryapp-backend`, and then run the following command:
+Open a terminal window, `cd` to `inventoryapp-backend`, and then run the following command:
    
    `npm start`
 
-3. In the second terminal window, `cd` to `inventoryapp-frontend`, and then run `npm start`.
+## About this project ##
+We're a group of students from Singapore Management University (SMU), and this project was completed as part of the SMU .Hack Enrichment Application Programme (HEAP) 2022.
 
-## About us ##
-
-
-## License ##
-MIT License
-
-Copyright (c) 2022 HEAP Group 17.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
+## Disclaimer ##
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTH LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
