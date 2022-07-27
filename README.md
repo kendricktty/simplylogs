@@ -13,8 +13,8 @@ For HEAP 2022, SMU .Hack
 ## Contents ##
 * Introduction
 * Key features
-* Dependencies
 * Installation
+* About this project
 
 ## Introduction ##
 SimplyLogs is our attempt at creating a more user-friendly and powerful inventory tracking application. Our prototype aims to improve the experience and accessibility of inventory/asset tracking by automating key processes like serialising, invoice generation and accounting, introducing a cleaner, more aesthetically pleasing user interface, and allowing for easy customisation of item serial numbers commonly used to organise inventory items.
